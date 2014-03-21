@@ -55,4 +55,5 @@ Rails.application.routes.draw do
   #   end
 
   root 'index#index'
+  get '*foo', :to => 'index#index'
 end
