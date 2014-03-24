@@ -40,6 +40,8 @@ gem 'spring',        group: :development
 gem 'ember-rails'
 gem 'ember-source', '1.4.0'
 
+gem 'foundation-rails'
+
 group :test, :development do
   gem 'konacha'
 end

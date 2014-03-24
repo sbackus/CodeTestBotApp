@@ -1,5 +1,28 @@
+
+
 <form method="POST" action="http://localhost:3000/code_tests"> <!-- TODO: this needs to be a var or something -->
-<textarea id="email_text" name="email_text"></textarea>
-<input type="file" id="zipfile" name="zipfile" />
-<input type="submit" id="submit" name="submit" value="Create New Codetest!"/>
+<div class="row">
+  <div class="large-12 columns">
+    <h1>New Submission</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <label>Description
+      <textarea id="email_text" name="email_text"></textarea>
+    </label>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <label>Description
+      <input type="file" id="zipfile" name="zipfile" />
+    </label>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <input type="submit" id="submit" name="submit" value="Create New Codetest!" class="button small success"/>
+  </div>
+</div>
 </form>

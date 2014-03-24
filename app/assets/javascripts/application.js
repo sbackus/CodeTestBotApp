@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
+//= require foundation.topbar
 //= require turbolinks
 //= require handlebars
 //= require ember
@@ -19,5 +21,10 @@
 //= require_self
 //= require code_test_bot_app
 
-window.CodeTestBotApp = Ember.Application.create();
+window.CodeTestBotApp = Ember.Application.create({
+    ready: function() {
+        $(document).foundation();
+    }
+});
+
 
