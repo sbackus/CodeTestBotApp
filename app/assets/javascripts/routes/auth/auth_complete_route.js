@@ -1,8 +1,6 @@
 CodeTestBotApp.AuthCompleteRoute = Ember.Route.extend({
     setupController: function (controller, model) {
-        controller.storeToken(model.token);
-
-        this.controllerFor('auth').set('loggedIn', true);
+        this.controllerFor('auth').login(model.token);
 
         var previous = this.controllerFor('application').get('dataStore').getItem('previousTransition');
         if (previous != null) {

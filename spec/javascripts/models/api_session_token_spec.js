@@ -7,8 +7,8 @@ describe('ApiSessionToken', function () {
         apiSessionToken = CodeTestBotApp.ApiSessionToken.create();
     });
 
-    describe('hasToken false if', function () {
-        it('token is falsy', function () {
+    describe('hasToken', function () {
+        it('is false if token is falsy', function () {
             apiSessionToken.set('token', undefined);
             expect(apiSessionToken.get('hasToken')).to.be.false;
 
@@ -16,7 +16,7 @@ describe('ApiSessionToken', function () {
             expect(apiSessionToken.get('hasToken')).to.be.false;
         });
 
-        it('token is not a string', function () {
+        it('is false if token is not a string', function () {
             apiSessionToken.set('token', 1234);
             expect(apiSessionToken.get('hasToken')).to.be.false;
 
@@ -24,14 +24,12 @@ describe('ApiSessionToken', function () {
             expect(apiSessionToken.get('hasToken')).to.be.false;
         });
 
-        it('token string is empty', function () {
+        it('is false if token string is empty', function () {
             apiSessionToken.set('token', '');
             expect(apiSessionToken.get('hasToken')).to.be.false;
         });
-    });
 
-    describe('hasToken true if', function () {
-        it('token is non-empty string', function () {
+        it('is true if token is non-empty string', function () {
             apiSessionToken.set('token', '1234');
             expect(apiSessionToken.get('hasToken')).to.be.true;
         });

@@ -2,27 +2,25 @@
 
 describe('AuthCompletedRoute', function () {
     var route;
-    var controller;
-
     beforeEach(function () {
-        controller = { storeToken: sinon.spy() };
         route = testing().route('auth.complete');
-        route.transitionTo = sinon.stub();
+        sinon.stub(route, 'transitionTo');
 
         localStorage.removeItem('previousTransition');
     });
 
-    it('stores the session token on the application controller', function () {
-        var model = { token: '12345' };
-        route.setupController(controller, model);
-
-        expect(controller.storeToken).to.have.been.calledWith(model.token);
+    afterEach(function() {
+        route.transitionTo.restore();
     });
 
-    it('sets logged in status to true', function () {
+    it('logs in with the sessionToken via the authController', function () {
+        var model = { token: '12345' };
         var authController = testing().controller('auth');
-        route.setupController(controller, {});
-        expect(authController.get('loggedIn')).to.be.true;
+        sinon.spy(authController, 'login');
+
+        route.setupController(null, model);
+
+        expect(authController.login).to.have.been.calledWith(model.token);
     });
 
     describe('route transition', function () {
@@ -35,7 +33,7 @@ describe('AuthCompletedRoute', function () {
         it('redirects to the previous transition', function () {
             store.getItem = sinon.stub().withArgs('previousTransition').returns('transition test');
 
-            route.setupController(controller, {});
+            route.setupController(null, {});
 
             expect(route.transitionTo).to.have.been.calledWith('transition test');
         });
@@ -43,7 +41,7 @@ describe('AuthCompletedRoute', function () {
         it('redirects to / if no previous transition set', function () {
             store.getItem = sinon.stub().withArgs('previousTransition').returns(null);
 
-            route.setupController(controller, {});
+            route.setupController(null, {});
 
             expect(route.transitionTo).to.have.been.calledWith('/');
         });
