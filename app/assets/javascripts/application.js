@@ -18,6 +18,7 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require Math.uuid
 //= require_self
 //= require code_test_bot_app
 

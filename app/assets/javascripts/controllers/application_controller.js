@@ -1,3 +1,4 @@
 CodeTestBotApp.ApplicationController = Ember.Controller.extend({
-    loggedIn: true
+    needs: ['auth'],
+    loggedIn: Ember.computed.alias('controllers.auth.loggedIn')
 });
