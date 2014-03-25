@@ -6,5 +6,4 @@ CodeTestBotApp.AuthCompleteController = Em.Controller.extend({
     storeToken: function (sessionToken) {
         this.dataStore.setItem('sessionToken', sessionToken);
     }
-
 });
