@@ -3,6 +3,8 @@
 //= require sinon-chai
 //= require chai-as-promised
 
+window.CONFIG = {};
+
 CodeTestBotApp.setupForTesting();
 
 function testing() {

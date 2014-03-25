@@ -7,7 +7,7 @@ CodeTestBotApp.AuthLogoutRoute = Ember.Route.extend({
         $.ajax({
             dataType: 'json',
             data: { token: token.get('token') },
-            url: 'http://localhost:3000/sessions',
+            url: CONFIG.SERVER_HOST + '/sessions',
             type: 'DELETE'
         });
         this.transitionTo('/');

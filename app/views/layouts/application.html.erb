@@ -9,6 +9,13 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+
+    <script>
+      CONFIG = {
+          APP_HOST: '<%= ENV['APP_HOST'] %>',
+          SERVER_HOST: '<%= ENV['SERVER_HOST'] %>'
+      }
+    </script>
   </head>
 
   <body>

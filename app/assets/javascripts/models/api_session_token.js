@@ -14,7 +14,7 @@ CodeTestBotApp.ApiSessionToken.reopenClass({
         token = token || CodeTestBotApp.ApiSessionToken.create({ token: dataStore.getItem('session_token') });
         var session = {
             // TODO: This needs to come from some config val
-            return_to: 'http://localhost:3001/auth/complete'
+            return_to: CONFIG.APP_HOST + '/auth/complete'
         };
 
         if (token.get('hasToken')) {
@@ -27,7 +27,7 @@ CodeTestBotApp.ApiSessionToken.reopenClass({
             $.ajax({
                 dataType: 'json',
                 data: session,
-                url: 'http://localhost:3000/sessions',
+                url: CONFIG.SERVER_HOST + '/sessions',
                 type: 'POST',
                 success: function(data, status, xhr) {
                     if (data.api_session_token) {

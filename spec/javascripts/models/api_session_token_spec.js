@@ -41,6 +41,7 @@ describe('ApiSessionToken', function () {
         describe('promise', function () {
             before(function () {
                 this.server = sinon.fakeServer.create();
+                CONFIG.SERVER_HOST = 'test_server';
             });
 
             after(function () {
@@ -54,7 +55,7 @@ describe('ApiSessionToken', function () {
                         ttl: 20
                     }
                 };
-                this.server.respondWith('POST', 'http://localhost:3000/sessions',
+                this.server.respondWith('POST', CONFIG.SERVER_HOST + '/sessions',
                     [200, { 'Content-Type': 'application/json' }, JSON.stringify(response)]);
 
                 var promise = CodeTestBotApp.ApiSessionToken.acquire(null, testing().dataStore());
@@ -67,7 +68,7 @@ describe('ApiSessionToken', function () {
             });
 
             it('resolves with auth_url if needs login', function (done) {
-                this.server.respondWith('POST', 'http://localhost:3000/sessions',
+                this.server.respondWith('POST', CONFIG.SERVER_HOST + '/sessions',
                     [200, { 'Content-Type': 'application/json' }, '{"auth_url":"/test"}']);
 
                 var promise = CodeTestBotApp.ApiSessionToken.acquire(null, testing().dataStore());
@@ -78,7 +79,7 @@ describe('ApiSessionToken', function () {
             });
 
             it('rejects if ajax fails', function (done) {
-                this.server.respondWith('POST', 'http://localhost:3000/sessions',
+                this.server.respondWith('POST', CONFIG.SERVER_HOST + '/sessions',
                     [500, {}, 'OMG the server is on fire']);
 
                 var promise = CodeTestBotApp.ApiSessionToken.acquire(null, testing().dataStore());
@@ -107,10 +108,11 @@ describe('ApiSessionToken', function () {
             });
 
             it('sends the URL to return to after authentication', function () {
+                CONFIG.APP_HOST = 'test_host';
                 CodeTestBotApp.ApiSessionToken.acquire(null, testing().dataStore());
 
                 expect(this.requests[0].method).to.equal('POST');
-                expect(this.requests[0].requestBody).to.contain('return_to=' + encodeURIComponent('http://localhost:3001/auth/complete'));
+                expect(this.requests[0].requestBody).to.contain('return_to=' + encodeURIComponent('test_host/auth/complete'));
             });
 
             it('creates a new token if one does not already exist', function () {
