@@ -1,14 +1,17 @@
 //= require application
 //= require sinon
 //= require sinon-chai
-CodeTestBotApp.setupForTesting();
+//= require chai-as-promised
 
-//chai.use(spies);
+CodeTestBotApp.setupForTesting();
 
 function testing() {
     var helper = {
         container: function() {
             return CodeTestBotApp.__container__;
+        },
+        dataStore: function() {
+            return helper.controller('application').get('dataStore');
         },
         controller: function(name) {
             return helper.container().lookup('controller:' + name);

@@ -4,12 +4,11 @@ CodeTestBotApp.AuthenticatedRoute = Ember.Route.extend({
         var authController = this.controllerFor('auth');
         if (!authController.get('loggedIn')) {
             localStorage.setItem('previousTransition', transition.intent.url);
-            return CodeTestBotApp.ApiSessionToken.acquire().then(function (apiToken) {
-
+            return CodeTestBotApp.ApiSessionToken.acquire(null,this.controllerFor('application').get('dataStore')).then(function (apiToken) {
                 authController.set('loggedIn', true);
-            }, function (failure) {
-                if (failure.reason === 'expired') {
-                    self.controllerFor('auth.login').set('auth_url', failure.auth_url);
+
+                if (apiToken.reason === 'expired') {
+                    self.controllerFor('auth.login').set('auth_url', apiToken.auth_url);
                     self.transitionTo('auth.login');
                 }
             });

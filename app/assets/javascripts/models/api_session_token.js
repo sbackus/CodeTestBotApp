@@ -5,18 +5,15 @@ CodeTestBotApp.ApiSessionToken = Em.Object.extend({
 
     hasToken: function() {
         var token = this.get('token');
-        return token && typeof(token) === 'string' && token.length > 0;
-    }.property('token'),
-
-    refresh: function() {
-        CodeTestBotApp.ApiSessionToken.acquire(this);
-    }
+        return (token && typeof(token) === 'string' && token.length > 0) === true;
+    }.property('token')
 });
 
 CodeTestBotApp.ApiSessionToken.reopenClass({
-    acquire: function(token) {
-        token = token || CodeTestBotApp.ApiSessionToken.create({ token: localStorage.getItem('session_token') });
+    acquire: function(token, dataStore) {
+        token = token || CodeTestBotApp.ApiSessionToken.create({ token: dataStore.getItem('session_token') });
         var session = {
+            // TODO: This needs to come from some config val
             return_to: 'http://localhost:3001/auth/complete'
         };
 
@@ -39,13 +36,11 @@ CodeTestBotApp.ApiSessionToken.reopenClass({
 
                         resolve(token);
                     } else if (data.auth_url) {
-                        reject({ reason: 'expired', auth_url: data.auth_url });
+                        resolve({ reason: 'expired', auth_url: data.auth_url });
                     }
                 },
                 error: function(xhr, status, error) {
-                    var err = status + ': ' + error;
-                    alert('Session Failure: ' + err);
-                    reject({ reason: 'error', error: err });
+                    reject(new Error(status + ': ' + error));
                 }
             });
         });

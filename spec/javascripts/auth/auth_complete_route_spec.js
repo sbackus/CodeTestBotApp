@@ -1,11 +1,10 @@
 //= require spec_helper
 
 describe('AuthCompletedRoute', function () {
-    var applicationController;
     var route;
     var controller;
+
     beforeEach(function () {
-        applicationController = testing().controller('application');
         controller = { storeToken: sinon.spy() };
         route = testing().route('auth.complete');
         route.transitionTo = sinon.stub();
@@ -27,20 +26,24 @@ describe('AuthCompletedRoute', function () {
     });
 
     describe('route transition', function () {
+        var store;
+
+        beforeEach(function () {
+            store = testing().dataStore();
+        });
+
         it('redirects to the previous transition', function () {
-            var store = applicationController.get('dataStore');
             store.getItem = sinon.stub().withArgs('previousTransition').returns('transition test');
 
-            route.setupController(controller,{});
+            route.setupController(controller, {});
 
             expect(route.transitionTo).to.have.been.calledWith('transition test');
         });
 
         it('redirects to / if no previous transition set', function () {
-            var store = applicationController.get('dataStore');
             store.getItem = sinon.stub().withArgs('previousTransition').returns(null);
 
-            route.setupController(controller,{});
+            route.setupController(controller, {});
 
             expect(route.transitionTo).to.have.been.calledWith('/');
         });
