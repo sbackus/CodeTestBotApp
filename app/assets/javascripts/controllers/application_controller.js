@@ -2,6 +2,5 @@
 
 CodeTestBotApp.ApplicationController = Ember.Controller.extend({
     needs: ['auth'],
-    loggedIn: Ember.computed.alias('controllers.auth.loggedIn'),
-    dataStore: CodeTestBotApp.LocalStore.create()
+    loggedIn: Ember.computed.alias('controllers.auth.loggedIn')
 });

@@ -4,6 +4,7 @@
 //= require chai-as-promised
 
 window.CONFIG = {};
+CONFIG.SERVER_HOST = 'test_server';
 
 CodeTestBotApp.setupForTesting();
 
@@ -13,7 +14,7 @@ function testing() {
             return CodeTestBotApp.__container__;
         },
         dataStore: function() {
-            return helper.controller('application').get('dataStore');
+            return CodeTestBotApp.get('dataStore');
         },
         controller: function(name) {
             return helper.container().lookup('controller:' + name);
@@ -24,4 +25,17 @@ function testing() {
     };
 
     return helper;
+}
+
+beforeEach(function() {
+    window.fakeServer = sinon.fakeServer.create();
+    fakeServer.autoRespond = true;
+});
+
+afterEach(function() {
+    fakeServer.restore();
+});
+
+function mostRecentRequest() {
+    return fakeServer.requests[fakeServer.requests.length - 1];
 }

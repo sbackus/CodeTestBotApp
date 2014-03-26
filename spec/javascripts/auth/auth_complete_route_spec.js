@@ -28,10 +28,15 @@ describe('AuthCompletedRoute', function () {
 
         beforeEach(function () {
             store = testing().dataStore();
+            sinon.stub(store, 'getItem');
+        });
+
+        afterEach(function() {
+            store.getItem.restore();
         });
 
         it('redirects to the previous transition', function () {
-            store.getItem = sinon.stub().withArgs('previousTransition').returns('transition test');
+            store.getItem.withArgs('previousTransition').returns('transition test');
 
             route.setupController(null, {});
 
@@ -39,7 +44,7 @@ describe('AuthCompletedRoute', function () {
         });
 
         it('redirects to / if no previous transition set', function () {
-            store.getItem = sinon.stub().withArgs('previousTransition').returns(null);
+            store.getItem.withArgs('previousTransition').returns(null);
 
             route.setupController(null, {});
 

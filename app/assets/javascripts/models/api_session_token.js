@@ -10,10 +10,9 @@ CodeTestBotApp.ApiSessionToken = Em.Object.extend({
 });
 
 CodeTestBotApp.ApiSessionToken.reopenClass({
-    acquire: function(token, dataStore) {
-        token = token || CodeTestBotApp.ApiSessionToken.create({ token: dataStore.getItem('session_token') });
+    acquire: function(token) {
+        token = token || CodeTestBotApp.ApiSessionToken.create({ token: CodeTestBotApp.get('dataStore').getItem('sessionToken') });
         var session = {
-            // TODO: This needs to come from some config val
             return_to: CONFIG.APP_HOST + '/auth/complete'
         };
 
@@ -34,9 +33,11 @@ CodeTestBotApp.ApiSessionToken.reopenClass({
                         token.set('token', data.api_session_token.token);
                         token.set('ttl', data.api_session_token.ttl);
 
-                        resolve(token);
+                        resolve({ result: 'success', token: token });
                     } else if (data.auth_url) {
-                        resolve({ reason: 'expired', auth_url: data.auth_url });
+                        resolve({ result: 'auth_required', auth_url: data.auth_url });
+                    } else {
+                        reject(new Error('Unexpected response: ' + data.toString()));
                     }
                 },
                 error: function(xhr, status, error) {

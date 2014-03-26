@@ -6,17 +6,6 @@ describe('AuthController', function () {
     beforeEach(function () {
         authController = testing().controller('auth');
         dataStore = testing().dataStore();
-
-        this.xhr = sinon.useFakeXMLHttpRequest();
-        var requests = this.requests = [];
-
-        this.xhr.onCreate = function (xhr) {
-            requests.push(xhr);
-        };
-    });
-
-    afterEach(function () {
-        this.xhr.restore();
     });
 
     describe('login', function () {
@@ -59,8 +48,10 @@ describe('AuthController', function () {
 
             authController.logout();
 
-            expect(this.requests[0].method).to.equal('DELETE');
-            expect(this.requests[0].requestBody).to.equal('token=testing123');
+            expect(mostRecentRequest().method).to.equal('DELETE');
+            expect(mostRecentRequest().requestBody).to.equal('token=testing123');
+
+            dataStore.getItem.restore();
         });
     });
 });

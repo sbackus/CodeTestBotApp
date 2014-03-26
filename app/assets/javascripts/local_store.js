@@ -1,4 +1,4 @@
-CodeTestBotApp.LocalStore = Ember.Object.extend({
+window.LocalStore = Ember.Object.extend({
     getItem: function(key) {
         return localStorage.getItem(key);
     },

@@ -4,7 +4,7 @@
 CodeTestBotApp.setupForTesting();
 
 describe('LocalStore', function() {
-    var store = CodeTestBotApp.LocalStore.create();
+    var store = LocalStore.create();
     beforeEach(function() {
        localStorage.removeItem('test');
     });
