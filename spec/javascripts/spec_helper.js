@@ -1,4 +1,5 @@
 //= require application
+//= require ember-mocha-adapter
 //= require sinon
 //= require sinon-chai
 //= require chai-as-promised
@@ -7,6 +8,7 @@ window.CONFIG = {};
 CONFIG.SESSIONS_URL = 'test_server/sessions';
 
 CodeTestBotApp.setupForTesting();
+CodeTestBotApp.injectTestHelpers();
 
 function testing() {
     var helper = {
