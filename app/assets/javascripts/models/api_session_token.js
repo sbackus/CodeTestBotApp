@@ -1,4 +1,3 @@
-
 CodeTestBotApp.ApiSessionToken = Em.Object.extend({
     token: null,
     ttl: 0,

@@ -4,7 +4,7 @@ window.LocalStore = Ember.Object.extend({
     },
 
     setItem: function(key, value) {
-        localStorage.setItem(key,value);
+        localStorage.setItem(key, value);
     },
 
     removeItem: function(key) {
