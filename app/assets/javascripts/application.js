@@ -18,13 +18,14 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require Math.uuid
+//= require local_store
 //= require_self
 //= require code_test_bot_app
 
 window.CodeTestBotApp = Ember.Application.create({
+    dataStore: LocalStore.create(),
     ready: function() {
         $(document).foundation();
     }
 });
-
-

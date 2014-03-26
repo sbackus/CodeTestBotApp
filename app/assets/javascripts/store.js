@@ -1,4 +1,3 @@
-
 CodeTestBotApp.Store = DS.Store.extend({
-  adapter: '_ams'
+    adapter: '_ams'
 });

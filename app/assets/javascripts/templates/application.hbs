@@ -1,16 +1,16 @@
 <nav class="top-bar" data-topbar>
     <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Code Test Bot</a></h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+        <li class="name">
+            <h1><a href="/">Code Test Bot</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
     <section class="top-bar-section">
         <ul class="right">
             {{#if loggedIn}}
-            <li><a {{action 'auth.logout'}}>Logout</a></li>
+            <li>{{#link-to 'auth.logout'}}Logout{{/link-to}}</li>
             {{else}}
-            <li><a href="/auth/login">Login</a></li>
+            <li>{{#link-to 'auth.login'}}Login{{/link-to}}</li>
             {{/if}}
         </ul>
     </section>
