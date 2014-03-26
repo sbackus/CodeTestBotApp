@@ -44,7 +44,7 @@ describe('ApiSessionToken', function () {
                         ttl: 20
                     }
                 };
-                fakeServer.respondWith('POST', CONFIG.SERVER_HOST + '/sessions',
+                fakeServer.respondWith('POST', CONFIG.SESSIONS_URL,
                     [200, { 'Content-Type': 'application/json' }, JSON.stringify(response)]);
 
                 CodeTestBotApp.ApiSessionToken.acquire().then(function (result) {
@@ -56,7 +56,7 @@ describe('ApiSessionToken', function () {
             });
 
             it('resolves with auth_url if needs login', function (done) {
-                fakeServer.respondWith('POST', CONFIG.SERVER_HOST + '/sessions',
+                fakeServer.respondWith('POST', CONFIG.SESSIONS_URL,
                     [200, { 'Content-Type': 'application/json' }, '{"auth_url":"/test"}']);
 
                 var expectedResult = { result: 'auth_required', auth_url: '/test'};
@@ -68,7 +68,7 @@ describe('ApiSessionToken', function () {
             });
 
             it('rejects if ajax fails', function (done) {
-                fakeServer.respondWith('POST', CONFIG.SERVER_HOST + '/sessions',
+                fakeServer.respondWith('POST', CONFIG.SESSIONS_URL,
                     [500, {}, 'OMG the server is on fire']);
 
                 CodeTestBotApp.ApiSessionToken.acquire().then(done, function(err) {

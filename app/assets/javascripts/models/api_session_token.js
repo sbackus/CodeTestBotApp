@@ -25,7 +25,7 @@ CodeTestBotApp.ApiSessionToken.reopenClass({
             $.ajax({
                 dataType: 'json',
                 data: session,
-                url: CONFIG.SERVER_HOST + '/sessions',
+                url: CONFIG.SESSIONS_URL,
                 type: 'POST',
                 success: function(data, status, xhr) {
                     if (data.api_session_token) {

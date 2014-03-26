@@ -13,7 +13,8 @@
     <script>
       CONFIG = {
           APP_HOST: '<%= ENV['APP_HOST'] %>',
-          SERVER_HOST: '<%= ENV['SERVER_HOST'] %>'
+          SERVER_HOST: '<%= ENV['SERVER_HOST'] %>',
+          SESSIONS_URL: '<%= "#{ENV['SERVER_HOST']}/sessions" %>'
       }
     </script>
   </head>

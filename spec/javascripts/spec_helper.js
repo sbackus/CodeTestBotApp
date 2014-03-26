@@ -4,7 +4,7 @@
 //= require chai-as-promised
 
 window.CONFIG = {};
-CONFIG.SERVER_HOST = 'test_server';
+CONFIG.SESSIONS_URL = 'test_server/sessions';
 
 CodeTestBotApp.setupForTesting();
 

@@ -16,7 +16,7 @@ CodeTestBotApp.AuthController = Ember.Controller.extend({
         $.ajax({
             dataType: 'json',
             data: { token: token },
-            url: CONFIG.SERVER_HOST + '/sessions',
+            url: CONFIG.SESSIONS_URL,
             type: 'DELETE'
         });
     },
