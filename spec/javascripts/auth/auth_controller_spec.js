@@ -54,4 +54,43 @@ describe('AuthController', function () {
             dataStore.getItem.restore();
         });
     });
+
+    describe('handleAuthResponse', function() {
+        describe('on result success', function() {
+            it('logs in with the token via the login method', function() {
+                var response = { result: 'success', token: CodeTestBotApp.ApiSessionToken.create({ token: 'testing123' }) };
+                sinon.stub(authController, 'login');
+
+                authController.handleAuthResponse(response);
+
+                expect(authController.login).to.have.been.calledWith('testing123');
+                authController.login.restore();
+            });
+        });
+
+        describe('on result auth_required', function() {
+            it('aborts the given transition', function() {
+                var transition = { abort: sinon.stub() };
+
+                authController.handleAuthResponse({ result: 'auth_required' }, false, transition);
+
+                expect(transition.abort).to.have.been.called;
+            });
+
+            it('transitions to the login route if redirect argument is false', function() {
+                sinon.stub(authController, 'transitionToRoute');
+
+                authController.handleAuthResponse({ result: 'auth_required' }, false, null);
+
+                expect(authController.transitionToRoute).to.have.been.calledWith('auth.login');
+                authController.transitionToRoute.restore();
+            });
+
+            it('redirects to the auth_url if redirect argument is true', function() {
+                authController.handleAuthResponse({ result: 'auth_required', auth_url: '/test/auth' }, true, null);
+
+                expect(WindowLocationHelper.setLocation).to.have.been.calledWith('/test/auth');
+            });
+        });
+    });
 });

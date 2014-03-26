@@ -1,8 +1,11 @@
 CodeTestBotApp.AuthLoginController = Ember.Controller.extend({
-    auth_url: null,
+    needs: ['auth'],
     actions: {
         login: function() {
-            window.location = this.get('auth_url');
+            var authController = this.get('controllers.auth');
+            CodeTestBotApp.ApiSessionToken.acquire().then(function(response) {
+                authController.handleAuthResponse(response, true);
+            });
         }
     }
 });

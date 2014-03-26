@@ -19,5 +19,21 @@ CodeTestBotApp.AuthController = Ember.Controller.extend({
             url: CONFIG.SERVER_HOST + '/sessions',
             type: 'DELETE'
         });
+    },
+
+    handleAuthResponse: function(response, redirect, transition) {
+        if (response.result === 'success') {
+            this.login(response.token.get('token'));
+        } else if (response.result === 'auth_required') {
+            if (transition) {
+                transition.abort();
+            }
+
+            if (redirect === true) {
+                WindowLocationHelper.setLocation(response.auth_url);
+            } else {
+                this.transitionToRoute('auth.login');
+            }
+        }
     }
 });

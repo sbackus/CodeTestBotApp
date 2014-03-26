@@ -39,3 +39,5 @@ afterEach(function() {
 function mostRecentRequest() {
     return fakeServer.requests[fakeServer.requests.length - 1];
 }
+
+sinon.stub(WindowLocationHelper, 'setLocation');
