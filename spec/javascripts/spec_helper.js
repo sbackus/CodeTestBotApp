@@ -4,8 +4,12 @@
 //= require sinon-chai
 //= require chai-as-promised
 
-window.CONFIG = {};
-CONFIG.SESSIONS_URL = 'test_server/sessions';
+window.CONFIG = {
+    APP_HOST: 'http://fake.app.host',
+    SERVER_HOST: 'http://fake.server.host',
+    SESSIONS_URL: 'test_server/sessions',
+    NEW_SESSION_URL: 'test_server/sessions/new'
+};
 
 CodeTestBotApp.setupForTesting();
 CodeTestBotApp.injectTestHelpers();

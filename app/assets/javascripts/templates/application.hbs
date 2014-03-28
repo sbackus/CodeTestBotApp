@@ -7,8 +7,8 @@
     </ul>
     <section class="top-bar-section">
         <ul class="right">
-            {{#if loggedIn}}
-            <li>{{#link-to 'auth.logout'}}Logout{{/link-to}}</li>
+            {{#if session.isAuthenticated}}
+            <li><a {{ action 'invalidateSession' }}>Logout</a></li>
             {{else}}
             <li>{{#link-to 'auth.login'}}Login{{/link-to}}</li>
             {{/if}}
