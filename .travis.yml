@@ -7,5 +7,8 @@ script:
   - bundle exec rake teaspoon
   - istanbul instrument test.js
 after_script:
+  - 'which istanbul'
   - 'find . -name lcov.info'
+  - 'ls -al'
+  - 'ls -al tmp'
   - 'grunt coveralls:teaspoon_coverage'
