@@ -1,6 +1,6 @@
 CodeTestBotApp.SubmissionsNewRoute = CodeTestBotApp.AuthenticatedRoute.extend({
     model: function() {
-        return this.store.createRecord('submission', { emailText: 'Testing' });
+        return this.store.createRecord('submission');
     }
 });
 
