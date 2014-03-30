@@ -39,6 +39,7 @@ Ember.Application.initializer({
 window.CodeTestBotApp = Ember.Application.create({
     dataStore: LocalStore.create(),
     ready: function() {
+        Foundation.set_namespace = function() {}; // Fix for teaspoon CLI runner... should revisit this periodically
         $(document).foundation();
     }
 });

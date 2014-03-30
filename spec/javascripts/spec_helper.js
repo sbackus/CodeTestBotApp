@@ -1,8 +1,17 @@
+//= require support/chai
+//= require support/sinon
+//= require support/sinon-chai
+//= require support/chai-as-promised
+
+//
+// PhantomJS (Teaspoons default driver) doesn't have support for Function.prototype.bind, which has caused confusion. Use
+// this polyfill to avoid the confusion.
+//= require support/bind-poly
+
 //= require application
-//= require ember-mocha-adapter
-//= require sinon
-//= require sinon-chai
-//= require chai-as-promised
+//= require support/ember-mocha-adapter
+
+window.expect = chai.expect;
 
 window.CONFIG = {
     APP_HOST: 'http://fake.app.host',

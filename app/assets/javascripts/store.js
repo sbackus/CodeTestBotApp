@@ -1,3 +1,5 @@
+window.CONFIG = window.CONFIG || {};
+
 CodeTestBotApp.ApplicationAdapter = DS.ActiveModelAdapter.extend({
     host: CONFIG.SERVER_HOST
 });
