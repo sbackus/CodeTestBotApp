@@ -27,6 +27,7 @@ Teaspoon.setup do |config|
   #config.suppress_log        = false # suppress logs coming from console[log/error/debug]
   #config.color               = true
 
+  puts 'In Teaspoon setup (teaspoon_env.rb)'
   # Coverage (requires istanbul -- https://github.com/gotwarlost/istanbul)
   config.coverage                      = true
   config.coverage_reports              = "lcovonly"

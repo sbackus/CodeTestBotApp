@@ -4,7 +4,7 @@ rvm:
 before_script:
   - 'npm install -g istanbul && npm install -g grunt-cli && npm install grunt-coveralls'
 script:
-  - bundle exec rake teaspoon
+  - bundle exec rake teaspoon USE_COVERAGE=true
 after_script:
   - 'find . -name lcov.info'
   - 'grunt coveralls:teaspoon_coverage'
