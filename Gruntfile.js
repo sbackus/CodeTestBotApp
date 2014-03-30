@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         coveralls: {
-            options: {
-                src: 'coverage/lcov.info'
+            teaspoon_coverage: {
+                src: 'coverage/default/lcov.info'
             }
         }
     });
