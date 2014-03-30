@@ -29,7 +29,7 @@ Teaspoon.setup do |config|
 
   # Coverage (requires istanbul -- https://github.com/gotwarlost/istanbul)
   config.coverage                      = true
-  config.coverage_reports              = "lcov"
+  config.coverage_reports              = "lcovonly"
   config.coverage_output_dir           = "coverage"
   #config.statements_coverage_threshold = 50
   #config.functions_coverage_threshold  = 50

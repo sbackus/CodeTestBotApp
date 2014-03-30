@@ -6,5 +6,5 @@ before_script:
 script:
   - bundle exec rake teaspoon
 after_script:
-  - 'ls -al'
+  - 'find . -name 'lcov.info'
   - 'grunt coveralls:teaspoon_coverage'
