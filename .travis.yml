@@ -6,4 +6,5 @@ before_script:
 script:
   - bundle exec rake teaspoon
 after_script:
+  - 'ls -al'
   - 'grunt coveralls:teaspoon_coverage'
