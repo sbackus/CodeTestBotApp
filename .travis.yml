@@ -2,6 +2,6 @@ language: ruby
 rvm:
 - 2.0.0
 before_script:
-  - 'npm install -g istanbul && npm install grunt-coveralls'
+  - 'npm install -g istanbul && npm install -g grunt && npm install grunt-coveralls'
 after_script:
   - 'grunt coveralls'
