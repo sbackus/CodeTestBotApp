@@ -10,10 +10,12 @@ Teaspoon.configure do |config|
 
   config.suite do |suite|
     suite.use_framework :mocha
+    suite.no_coverage = [%r{/lib/ruby/gems/}, %r{/vendor/assets/}, %r{/support/}, %r{/(.+)_helper.},
+                         %r{.rvm/}, %r{app/assets/javascripts/templates}]
   end
 
   config.coverage :CI do |coverage|
-    coverage.reports = ['lcovonly']
+    coverage.reports = ['lcov', 'text-summary']
     coverage.output_path = 'coverage'
   end
 
