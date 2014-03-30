@@ -5,6 +5,7 @@ before_script:
   - 'npm install -g istanbul && npm install -g grunt-cli && npm install grunt-coveralls'
 script:
   - bundle exec rake teaspoon
+  - istanbul instrument test.js
 after_script:
   - 'find . -name lcov.info'
   - 'grunt coveralls:teaspoon_coverage'
