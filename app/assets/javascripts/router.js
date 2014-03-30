@@ -15,7 +15,3 @@ CodeTestBotApp.Router.map(function() {
 });
 
 CodeTestBotApp.ApplicationRoute = Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin);
-
-CodeTestBotApp.SubmissionsNewRoute = CodeTestBotApp.AuthenticatedRoute.extend({
-
-});

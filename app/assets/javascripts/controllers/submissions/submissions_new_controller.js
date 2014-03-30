@@ -1,8 +1,11 @@
 CodeTestBotApp.SubmissionsNewController = Ember.Controller.extend({
-    emailText: null,
-    file: null,
-
     isFormIncomplete: function() {
-        return Ember.isEmpty(this.get('emailText')) || Ember.isEmpty(this.get('file'));
-    }.property('emailText', 'file')
+        return Ember.isEmpty(this.get('model.emailText')) || Ember.isEmpty(this.get('model.zipfile'));
+    }.property('model.emailText', 'model.zipfile'),
+
+    actions: {
+        createSubmission: function() {
+            this.get('model').save();
+        }
+    }
 });
