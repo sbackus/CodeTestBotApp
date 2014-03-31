@@ -19,3 +19,5 @@ CodeTestBotApp.Router.map(function() {
 });
 
 CodeTestBotApp.ApplicationRoute = Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin);
+
+CodeTestBotApp.CandidatesIndexView = CodeTestBotApp.FoundationView.extend();

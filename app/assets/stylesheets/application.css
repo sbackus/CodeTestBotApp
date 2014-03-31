@@ -13,5 +13,14 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
+ *= require foundation-icons
 
  */
+
+.f-dropdown li > a > i {
+    margin-right: 8px;
+}
+
+table .button {
+    margin-bottom: 0;
+}

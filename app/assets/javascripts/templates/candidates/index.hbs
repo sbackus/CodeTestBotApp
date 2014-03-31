@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Candidates</h1>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th width="40%">Name</th>
+                    <th width="60%">Email Address</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td>
+                        <a href="#" class="button split tiny radius">Edit <span data-dropdown="drop"></span></a><br>
+                        <ul id="drop" class="f-dropdown" data-dropdown-content>
+                            <li><a href="#"><i class="fi-pencil"></i>Edit</a></li>
+                            <li><a href="#"><i class="fi-lock"></i>Make Inactive</a></li>
+                            <li><a href="#"><i class="fi-x"></i>Delete</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

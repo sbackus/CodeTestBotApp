@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require foundation.topbar
+//= require foundation.dropdown
 //= require handlebars
 //= require ./features
 //= require ember-canary
