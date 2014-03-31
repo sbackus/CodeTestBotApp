@@ -10,10 +10,8 @@ CodeTestBotApp.Router.map(function() {
     this.resource('auth', function() {
         this.route('login');
         this.route('logout');
-        this.route('complete', { path: '/complete/:token', queryParams: ['token'] });
+        this.route('complete');
     });
 });
 
-CodeTestBotApp.SubmissionsNewRoute = CodeTestBotApp.AuthenticatedRoute.extend({
-
-});
+CodeTestBotApp.ApplicationRoute = Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin);

@@ -1,11 +1,9 @@
-CodeTestBotApp.AuthenticatedRoute = Ember.Route.extend({
+CodeTestBotApp.AuthenticatedRoute = Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
     beforeModel: function(transition) {
-        var authController = this.controllerFor('auth');
-        if (!authController.get('loggedIn')) {
-            CodeTestBotApp.get('dataStore').setItem('previousTransition', transition.intent.url);
-            return CodeTestBotApp.ApiSessionToken.acquire().then(function(response) {
-                authController.handleAuthResponse(response, false);
-            });
+        if (!this.get('session.isAuthenticated')) {
+            CodeTestBotApp.get('dataStore').setItem('attemptedTransition', transition.intent.url);
         }
+
+        this._super(transition);
     }
 });

@@ -43,5 +43,5 @@ gem 'ember-source', '1.4.0'
 gem 'foundation-rails'
 
 group :test, :development do
-  gem 'konacha'
+  gem 'teaspoon', :git => 'https://github.com/modeset/teaspoon.git'
 end
