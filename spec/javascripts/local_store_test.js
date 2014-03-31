@@ -1,8 +1,6 @@
 //= require spec_helper
 //= require local_store
 
-CodeTestBotApp.setupForTesting();
-
 describe('LocalStore', function() {
     var store = LocalStore.create();
     beforeEach(function() {

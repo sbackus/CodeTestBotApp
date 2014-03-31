@@ -20,6 +20,10 @@ describe('AuthenticatedRoute', function() {
         });
 
         describe('when session is not authenticated', function() {
+            beforeEach(function() {
+                route.set('session', { isAuthenticated: false });
+            });
+
             it('saves the transition intent in the application store', function() {
                 var dataStore = testing().dataStore();
                 sinon.stub(dataStore, 'setItem');
@@ -32,8 +36,6 @@ describe('AuthenticatedRoute', function() {
             });
 
             it('transitions to the login route', function() {
-                route.set('session', { isAuthenticated: false });
-
                 route.beforeModel(transition);
 
                 expect(transition.abort).to.have.been.called;
@@ -42,9 +44,11 @@ describe('AuthenticatedRoute', function() {
         });
 
         describe('when session is authenticated', function() {
-            it('continues transition like normal', function() {
+            beforeEach(function() {
                 route.set('session', { isAuthenticated: true });
+            });
 
+            it('continues transition like normal', function() {
                 route.beforeModel(transition);
 
                 expect(transition.abort).not.to.have.been.called;

@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>New Candidate</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <label>Name
+            {{input value=name placeholder="Name"}}
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <label>Email
+            {{input value=email placeholder="Email Address"}}
+        </label>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <button class="button small radius success" {{bind-attr disabled=isFormIncomplete}} {{action createCandidate}}>Create Candidate</button>
+    </div>
+</div>
