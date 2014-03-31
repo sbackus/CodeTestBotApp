@@ -15,7 +15,7 @@ Teaspoon.configure do |config|
   end
 
   config.coverage :CI do |coverage|
-    coverage.reports = ['lcov', 'text-summary']
+    coverage.reports = ['lcov']
     coverage.output_path = 'coverage'
   end
 
