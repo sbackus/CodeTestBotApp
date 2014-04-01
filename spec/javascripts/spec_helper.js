@@ -36,6 +36,9 @@ function testing() {
         },
         route: function(name) {
             return helper.container().lookup('route:' + name);
+        },
+        randomElement: function(arr) {
+            return arr[Math.floor(Math.random()*arr.length)];
         }
     };
 

@@ -1,6 +1,9 @@
 CodeTestBotApp.SubmissionsNewRoute = CodeTestBotApp.AuthenticatedRoute.extend({
     model: function() {
-        return this.store.createRecord('submission');
+        return Ember.Object.create({
+            submission: this.store.createRecord('submission'),
+            candidates: this.store.find('candidate')
+        });
     }
 });
 

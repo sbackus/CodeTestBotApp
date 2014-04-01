@@ -8,25 +8,28 @@ describe('SubmissionsNewController', function() {
     });
 
     describe('isFormIncomplete', function() {
-        it('is true when any field is empty', function() {
-            var model = Ember.Object.create();
+        var model;
+        beforeEach(function() {
+            model = Ember.Object.create({
+                submission: Ember.Object.create({emailText: 'text', zipfile: 'file'}),
+                candidates: []
+            });
+
             controller.set('model', model);
-            
-            model.set('emailText', null);
-            model.set('zipfile', null);
-            expect(controller.get('isFormIncomplete')).to.be.true;
+            controller.set('selectedCandidate', {});
+        });
 
-            model.set('emailText', 'Some text');
-            model.set('zipfile', null);
-            expect(controller.get('isFormIncomplete')).to.be.true;
-
-            model.set('emailText', null);
-            model.set('zipfile', 'some file');
-            expect(controller.get('isFormIncomplete')).to.be.true;
-
-            model.set('emailText', 'Some text');
-            model.set('zipfile', 'some file');
+        it('is false when all fields are filled', function() {
             expect(controller.get('isFormIncomplete')).to.be.false;
+        });
+
+        it('is true when any field is empty', function() {
+            var fields = ['model.submission.emailText', 'model.submission.zipfile', 'selectedCandidate'];
+            var field = testing().randomElement(fields);
+
+            controller.set(field, null);
+
+            expect(controller.get('isFormIncomplete')).to.be.true;
         });
     });
 
