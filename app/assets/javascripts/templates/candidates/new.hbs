@@ -1,20 +1,23 @@
 <div class="row">
     <div class="large-12 columns">
         <h1>New Candidate</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="large-12 columns">
         <label>Name
-            {{input value=name placeholder="Name"}}
+            {{input value=candidate.name placeholder="Name"}}
         </label>
+        <label>Email
+            {{input value=candidate.email placeholder="Email Address"}}
+        </label>
+
     </div>
 </div>
 <div class="row">
-    <div class="large-12 columns">
-        <label>Email
-            {{input value=email placeholder="Email Address"}}
-        </label>
+    <div class="large-4 columns">
+        {{view Ember.Select viewName="select"
+            contentBinding="model.levels"
+            optionLabelPath="content.text"
+            optionValuePath="content.id"
+            prompt="Select a level:"
+            selectionBinding="selectedLevel"}}
     </div>
 </div>
 <div class="row">
