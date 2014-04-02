@@ -8,6 +8,7 @@
 // this polyfill to avoid the confusion.
 //= require support/bind-poly
 
+//= require testing
 //= require application
 //= require support/ember-mocha-adapter
 
@@ -19,9 +20,6 @@ window.CONFIG = {
     SESSIONS_URL: 'test_server/sessions',
     NEW_SESSION_URL: 'test_server/sessions/new'
 };
-
-CodeTestBotApp.setupForTesting();
-CodeTestBotApp.injectTestHelpers();
 
 function testing() {
     var helper = {

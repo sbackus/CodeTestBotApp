@@ -43,3 +43,8 @@ window.CodeTestBotApp = Ember.Application.create({
         $(document).foundation();
     }
 });
+
+if (window.TESTING === true) {
+    CodeTestBotApp.setupForTesting();
+    CodeTestBotApp.injectTestHelpers();
+}
