@@ -1,5 +1,6 @@
 CodeTestBotApp.SubmissionsNewController = Ember.Controller.extend({
     selectedCandidate: null,
+    selectedLanguage: null,
 
     isFormIncomplete: function() {
         return Ember.isEmpty(this.get('model.submission.emailText')) ||
@@ -9,7 +10,10 @@ CodeTestBotApp.SubmissionsNewController = Ember.Controller.extend({
 
     actions: {
         createSubmission: function() {
-            this.get('model.submission').save();
+            var submission = this.get('model.submission');
+            submission.set('candidate', this.get('selectedCandidate'));
+            submission.set('language', this.get('selectedLanguage'));
+            submission.save();
         }
     }
 });

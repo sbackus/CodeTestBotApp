@@ -10,8 +10,13 @@
             optionLabelPath="content.display"
             optionValuePath="content.id"
             prompt="Select a candidate:"
-            selectionBinding="selectedCandidate"
-            classNames="small"}}
+            selectionBinding="selectedCandidate"}}
+        {{view Ember.Select viewName="select"
+            contentBinding="model.languages"
+            optionLabelPath="content.name"
+            optionValuePath="content.id"
+            prompt="Select a language:"
+            selectionBinding="selectedLanguage"}}
     </div>
 </div>
 <div class="row">
