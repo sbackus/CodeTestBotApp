@@ -21,7 +21,7 @@ describe('AuthenticatedRoute', function() {
 
         describe('when session is not authenticated', function() {
             beforeEach(function() {
-                route.set('session', { isAuthenticated: false });
+                route.set('session', Ember.Object.create({ isAuthenticated: false }));
             });
 
             it('saves the transition intent in the application store', function() {
@@ -45,7 +45,7 @@ describe('AuthenticatedRoute', function() {
 
         describe('when session is authenticated', function() {
             beforeEach(function() {
-                route.set('session', { isAuthenticated: true });
+                route.set('session', Ember.Object.create({ isAuthenticated: true }));
             });
 
             it('continues transition like normal', function() {
