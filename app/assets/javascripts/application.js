@@ -22,19 +22,9 @@
 //= require ember-simple-auth
 //= require Math.uuid
 //= require local_store
+//= require_tree ./initializers
 //= require_self
 //= require code_test_bot_app
-
-Ember.Application.initializer({
-    name: 'authentication',
-    initialize: function(container, application) {
-        container.register('authenticators:out-of-band-token', Ember.SimpleAuth.Authenticators.OutOfBandTokenAuthenticator);
-        Ember.SimpleAuth.setup(container, application, {
-            authenticationRoute: 'auth.login',
-            crossOriginWhitelist: [CONFIG.SERVER_HOST]
-        });
-    }
-});
 
 window.CodeTestBotApp = Ember.Application.create({
     dataStore: LocalStore.create(),

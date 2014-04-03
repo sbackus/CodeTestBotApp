@@ -16,7 +16,7 @@ describe('AuthenticatedRoute', function() {
         var transition;
 
         beforeEach(function() {
-            transition = { intent: { url: '/some/url' }, abort: sinon.stub(), send: sinon.stub() }
+            transition = { intent: { url: '/test/path' }, abort: sinon.stub(), send: sinon.stub() }
         });
 
         describe('when session is not authenticated', function() {
@@ -30,7 +30,7 @@ describe('AuthenticatedRoute', function() {
 
                 route.beforeModel(transition);
 
-                expect(dataStore.setItem).to.have.been.calledWith('attemptedTransition', '/some/url');
+                expect(dataStore.setItem).to.have.been.calledWith('attemptedTransition', '/test/path');
 
                 dataStore.setItem.restore();
             });
