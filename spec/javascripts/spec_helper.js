@@ -52,6 +52,16 @@ afterEach(function() {
     fakeServer.restore();
 });
 
+after(function() {
+    // Cheesy hacks to reset the browser URL and clean up the page HTML after test runs so that you can
+    // refresh to re-run tests.
+    CodeTestBotApp.Router.map(function() {
+        this.route('_test_hack', { path: '/teaspoon/default' })
+    });
+    visit('/teaspoon/default');
+    $('.ember-view').remove();
+});
+
 function mostRecentRequest() {
     return fakeServer.requests[fakeServer.requests.length - 1];
 }
