@@ -11,6 +11,12 @@ CodeTestBotApp.Router.map(function() {
         this.route('new');
     });
 
+    this.resource('submission', { path: '/submissions/:submission_id' }, function() {
+        this.resource('assessments', function() {
+            this.route('new')
+        });
+    });
+
     this.resource('auth', function() {
         this.route('login');
         this.route('logout');
