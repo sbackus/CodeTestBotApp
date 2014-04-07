@@ -6,12 +6,14 @@
 <div class="row">
     <div class="large-6 columns">
         {{view Ember.Select viewName="select"
+            id="candidate-select"
             contentBinding="model.candidates"
             optionLabelPath="content.display"
             optionValuePath="content.id"
             prompt="Select a candidate:"
             selectionBinding="selectedCandidate"}}
         {{view Ember.Select viewName="select"
+            id="language-select"
             contentBinding="model.languages"
             optionLabelPath="content.name"
             optionValuePath="content.id"
@@ -22,11 +24,11 @@
 <div class="row">
     <div class="large-12 columns">
         <label>Copy and paste the email text or any instructions given by the candidate.
-            {{textarea value=model.submission.emailText rows="6" placeholder="Email text or instructions"}}
+            {{textarea value=model.submission.emailText rows="6" placeholder="Email text or instructions" id="email-text"}}
         </label>
         <label>Select the zipfile provided by the candidate.
-            {{view CodeTestBotApp.FileUpload name="zipfile" file=model.submission.zipfile}}
+            {{view CodeTestBotApp.FileUpload name="zipfile" file=model.submission.zipfile id="zipfile"}}
         </label>
-        <input type="button" value="Create New Codetest!" class="button small radius success" {{bind-attr disabled=isFormIncomplete}} {{action createSubmission}}/>
+        <input id="submit-button" type="button" value="Create New Codetest!" class="button small radius success" {{bind-attr disabled=isFormIncomplete}} {{action createSubmission}}/>
     </div>
 </div>

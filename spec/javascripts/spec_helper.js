@@ -37,6 +37,9 @@ function testing() {
         },
         randomElement: function(arr) {
             return arr[Math.floor(Math.random()*arr.length)];
+        },
+        callAction: function(controller, actionName){
+            return controller._actions[actionName].apply(controller);
         }
     };
 

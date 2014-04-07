@@ -11,9 +11,12 @@ CodeTestBotApp.SubmissionsNewController = Ember.Controller.extend({
     actions: {
         createSubmission: function() {
             var submission = this.get('model.submission');
+            var self = this;
             submission.set('candidate', this.get('selectedCandidate'));
             submission.set('language', this.get('selectedLanguage'));
-            submission.save();
+            return submission.save().then(function(){
+                self.transitionToRoute('/submissions');
+            });
         }
     }
 });
