@@ -9,6 +9,7 @@
                     <th width="33%">Language</th>
                     <th width="33%">Level</th>
                     <th width="33%">Created</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,9 @@
                     <td>{{languageDisplay}}</td>
                     <td>{{candidate.level.text}}</td>
                     <td>{{createdAt}}</td>
+                    <td>
+                        {{#link-to 'submission.index' this class="button tiny radius"}}View{{/link-to}}
+                    </td>
                 </tr>
                 {{/each}}
             </tbody>

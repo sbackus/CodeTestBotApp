@@ -24,3 +24,7 @@
 table .button {
     margin-bottom: 0;
 }
+
+.row.display {
+    margin-bottom: 10px;
+}
