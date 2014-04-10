@@ -9,11 +9,11 @@ CodeTestBotApp.Router.map(function() {
 
     this.resource('submissions', function() {
         this.route('new');
-    });
 
-    this.resource('submission', { path: '/submissions/:submission_id' }, function() {
-        this.resource('assessments', function() {
-            this.route('new')
+        this.resource('submission', { path: '/:submission_id' }, function() {
+            this.resource('assessments', function() {
+                this.route('new')
+            });
         });
     });
 
