@@ -3,17 +3,23 @@
 CodeTestBotApp.AssessmentsNewRoute = CodeTestBotApp.AuthenticatedRoute.extend({
     model: function() {
         return Ember.Object.create({
-            submission: null,
+            assessment: this.store.createRecord('assessment'),
             languages: this.store.find('language'),
             levels: this.store.find('level')
         });
     },
     setupController: function(controller, model) {
-        var submissionController = this.controllerFor('submission');
-        var submission = submissionController.get('model');
-        model.set('submission', submission);
+        this._super(controller, model);
+
+        var self = this;
+        var submission = this.controllerFor('submission').get('model');
+        model.set('assessment.submission', submission);
         controller.set('selectedLanguage', submission.get('language'));
         controller.set('selectedLevel', submission.get('candidate.level'));
-        this._super(controller, model);
+
+        return this.get('user.current').then(function(user) {
+            var assessor = user.toJSON({ includeId: true });
+            model.set('assessment.assessor', self.store.push('assessor', assessor));
+        });
     }
 });

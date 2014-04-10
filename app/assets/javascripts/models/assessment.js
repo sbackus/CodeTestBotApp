@@ -1,3 +1,5 @@
+//= require ./assessor
+
 CodeTestBotApp.Assessment = DS.Model.extend({
     score: DS.attr(),
     notes: DS.attr(),
