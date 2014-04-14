@@ -2,23 +2,22 @@
 
 describe('CandidatesNewController', function() {
     var controller;
+    var model;
+    var candidate;
 
     beforeEach(function() {
+        candidate = Ember.Object.create({name: 'Bob', email: 'bob@example.com', save: function(){}});
         controller = testing().controller('candidates.new');
+        model = Ember.Object.create({
+            candidate: candidate,
+            levels: []
+        });
+
+        controller.set('model', model);
+        controller.set('selectedLevel', {});
     });
 
     describe('isFormIncomplete', function() {
-        var model;
-        beforeEach(function() {
-            model = Ember.Object.create({
-                candidate: Ember.Object.create({name: 'Bob', email: 'bob@example.com'}),
-                levels: []
-            });
-
-            controller.set('model', model);
-            controller.set('selectedLevel', {});
-        });
-
         it('is false when all fields are filled', function() {
             expect(controller.get('isFormIncomplete')).to.be.false;
         });
@@ -34,12 +33,17 @@ describe('CandidatesNewController', function() {
     });
 
     describe('createCandidate action', function() {
-        beforeEach(function() {
-            CodeTestBotApp.reset();
+        it('persists the candidate model', function() {
+            // TODO: needs auth handling for tests
         });
 
-        it('persists the submission model', function() {
-            // TODO: needs auth handling for tests
+        it('redirects to the candidates page', function(done){
+            sinon.stub(candidate, 'save').returns(new Ember.RSVP.resolve());
+            sinon.stub(controller, 'transitionToRoute');
+            testing().callAction(controller,'createCandidate').then(function() {
+                expect(controller.transitionToRoute).to.have.been.calledWith('/candidates');
+                done();
+            });
         });
     });
 });

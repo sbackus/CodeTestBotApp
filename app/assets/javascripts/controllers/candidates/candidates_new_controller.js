@@ -9,8 +9,11 @@ CodeTestBotApp.CandidatesNewController = Ember.ObjectController.extend({
     actions: {
         createCandidate: function() {
             var candidate = this.get('model.candidate');
+            var self = this;
             candidate.set('level', this.get('selectedLevel'));
-            candidate.save();
+            return candidate.save().then(function(){
+                self.transitionToRoute('/candidates');
+            });
         }
     }
 });
