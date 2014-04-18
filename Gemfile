@@ -25,6 +25,7 @@ end
 
 group :test, :development do
   gem 'teaspoon', :git => 'https://github.com/modeset/teaspoon.git'
+  gem 'phantomjs', '~> 1.9.7'
 end
 
 group :development do
