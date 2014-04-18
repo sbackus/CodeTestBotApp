@@ -17,6 +17,10 @@ CodeTestBotApp.Router.map(function() {
         });
     });
 
+    this.resource('users', function() {
+
+    });
+
     this.resource('auth', function() {
         this.route('login');
         this.route('logout');

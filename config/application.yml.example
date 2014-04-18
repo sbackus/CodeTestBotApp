@@ -1,0 +1,3 @@
+development:
+ SERVER_HOST: http://localhost:3000
+ APP_HOST: http://localhost:3001
