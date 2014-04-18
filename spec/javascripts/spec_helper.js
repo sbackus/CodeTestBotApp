@@ -17,9 +17,14 @@ window.expect = chai.expect;
 window.CONFIG = {
     APP_HOST: 'http://fake.app.host',
     SERVER_HOST: 'http://fake.server.host',
-    SESSIONS_URL: 'test_server/sessions',
-    NEW_SESSION_URL: 'test_server/sessions/new'
+    SESSIONS_URL: 'http://fake.server.host/sessions',
+    NEW_SESSION_URL: 'http://fake.server.host/sessions/new'
 };
+
+// Recreate adapter so that it picks up the testing config values
+CodeTestBotApp.ApplicationAdapter = DS.ActiveModelAdapter.extend({
+    host: CONFIG.SERVER_HOST
+});
 
 function testing() {
     var helper = {
@@ -35,11 +40,24 @@ function testing() {
         route: function(name) {
             return helper.container().lookup('route:' + name);
         },
+        store: function() {
+            return helper.container().lookup('store:main');
+        },
         randomElement: function(arr) {
             return arr[Math.floor(Math.random()*arr.length)];
         },
         callAction: function(controller, actionName){
             return controller._actions[actionName].apply(controller);
+        },
+        mockAjaxResponse: function(method, path, response, code) {
+            fakeServer.respondWith(method, CONFIG.SERVER_HOST + path,
+                [code || 200, { 'Content-Type': 'application/json' }, JSON.stringify(response)]);
+        },
+        promiseErrorHandler: function(done) {
+            return function(err) {
+                console.log(err);
+                done(err);
+            };
         }
     };
 
@@ -49,6 +67,10 @@ function testing() {
 beforeEach(function() {
     window.fakeServer = sinon.fakeServer.create();
     fakeServer.autoRespond = true;
+    fakeServer.respondWith(function(request) {
+        console.error('Unhandled request: ', request);
+        request.respond(404, [], '');
+    });
 });
 
 afterEach(function() {
