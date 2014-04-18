@@ -35,9 +35,19 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                <td colspan="3" class="text-center">No assessments yet.</td>
-            </tr>
+            {{#if hasAssessments}}
+            {{#each assessment in assessments}}
+                <tr>
+                    <td>{{assessment.assessor}}</td>
+                    <td>{{assessment.score}}</td>
+                    <td></td>
+                </tr>
+            {{/each}}
+            {{else}}
+                <tr>
+                    <td colspan="3" class="text-center">No assessments yet.</td>
+                </tr>
+            {{/if}}
             </tbody>
         </table>
 
