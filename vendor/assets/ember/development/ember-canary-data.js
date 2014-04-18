@@ -3,7 +3,7 @@
  * @copyright Copyright 2011-2014 Tilde Inc. and contributors.
  *            Portions Copyright 2011 LivingSocial Inc.
  * @license   Licensed under MIT license (see license.js)
- * @version   1.0.0-beta.7+canary.07966bca
+ * @version   1.0.0-beta.7+canary.75ab8043
  */
 (function(global) {
 var define, requireModule, require, requirejs;
@@ -60,43 +60,36 @@ var define, requireModule, require, requirejs;
   };
 })();
 
-define("activemodel-adapter/lib/initializers", 
-  ["../../ember-data/lib/system/container_proxy","./system/active_model_serializer","./system/active_model_adapter"],
-  function(__dependency1__, __dependency2__, __dependency3__) {
-    "use strict";
-    var ContainerProxy = __dependency1__["default"];
-    var ActiveModelSerializer = __dependency2__["default"];
-    var ActiveModelAdapter = __dependency3__["default"];
-
-    Ember.onLoad('Ember.Application', function(Application) {
-      Application.initializer({
-        name: "activeModelAdapter",
-
-        initialize: function(container, application) {
-          var proxy = new ContainerProxy(container);
-          proxy.registerDeprecations([
-            {deprecated: 'serializer:_ams',  valid: 'serializer:-active-model'},
-            {deprecated: 'adapter:_ams',     valid: 'adapter:-active-model'}
-          ]);
-
-          application.register('serializer:-active-model', ActiveModelSerializer);
-          application.register('adapter:-active-model', ActiveModelAdapter);
-        }
-      });
-    });
-  });
 define("activemodel-adapter/lib/main", 
-  ["./system","./initializers","exports"],
-  function(__dependency1__, __dependency2__, __exports__) {
+  ["./system","exports"],
+  function(__dependency1__, __exports__) {
     "use strict";
     var ActiveModelAdapter = __dependency1__.ActiveModelAdapter;
     var ActiveModelSerializer = __dependency1__.ActiveModelSerializer;
     var EmbeddedRecordsMixin = __dependency1__.EmbeddedRecordsMixin;
 
-
     __exports__.ActiveModelAdapter = ActiveModelAdapter;
     __exports__.ActiveModelSerializer = ActiveModelSerializer;
     __exports__.EmbeddedRecordsMixin = EmbeddedRecordsMixin;
+  });
+define("activemodel-adapter/lib/setup-container", 
+  ["../../ember-data/lib/system/container_proxy","./system/active_model_serializer","./system/active_model_adapter","exports"],
+  function(__dependency1__, __dependency2__, __dependency3__, __exports__) {
+    "use strict";
+    var ContainerProxy = __dependency1__["default"];
+    var ActiveModelSerializer = __dependency2__["default"];
+    var ActiveModelAdapter = __dependency3__["default"];
+
+    __exports__["default"] = function setupActiveModelAdapter(container, application){
+      var proxy = new ContainerProxy(container);
+      proxy.registerDeprecations([
+        {deprecated: 'serializer:_ams',  valid: 'serializer:-active-model'},
+        {deprecated: 'adapter:_ams',     valid: 'adapter:-active-model'}
+      ]);
+
+      container.register('serializer:-active-model', ActiveModelSerializer);
+      container.register('adapter:-active-model', ActiveModelAdapter);
+    };
   });
 define("activemodel-adapter/lib/system", 
   ["./system/embedded_records_mixin","./system/active_model_adapter","./system/active_model_serializer","exports"],
@@ -190,7 +183,7 @@ define("activemodel-adapter/lib/system/active_model_adapter",
 
         @method pathForType
         @param {String} type
-        @returns String
+        @return String
       */
       pathForType: function(type) {
         var decamelized = decamelize(type);
@@ -212,7 +205,7 @@ define("activemodel-adapter/lib/system/active_model_adapter",
 
         @method ajaxError
         @param jqXHR
-        @returns error
+        @return error
       */
       ajaxError: function(jqXHR) {
         var error = this._super(jqXHR);
@@ -263,7 +256,7 @@ define("activemodel-adapter/lib/system/active_model_serializer",
 
         @method keyForAttribute
         @param {String} attribute
-        @returns String
+        @return String
       */
       keyForAttribute: function(attr) {
         return decamelize(attr);
@@ -276,7 +269,7 @@ define("activemodel-adapter/lib/system/active_model_serializer",
         @method keyForRelationship
         @param {String} key
         @param {String} kind
-        @returns String
+        @return String
       */
       keyForRelationship: function(key, kind) {
         key = decamelize(key);
@@ -289,7 +282,7 @@ define("activemodel-adapter/lib/system/active_model_serializer",
         }
       },
 
-      /**
+      /*
         Does not serialize hasMany relationships by default.
       */
       serializeHasMany: Ember.K,
@@ -330,7 +323,7 @@ define("activemodel-adapter/lib/system/active_model_serializer",
 
         @method typeForRoot
         @param {String} root
-        @returns String the model's typeKey
+        @return String the model's typeKey
       */
       typeForRoot: function(root) {
         var camelized = camelize(root);
@@ -368,7 +361,7 @@ define("activemodel-adapter/lib/system/active_model_serializer",
         @param {subclass of DS.Model} type
         @param {Object} hash
         @param {String} prop
-        @returns Object
+        @return Object
       */
 
       normalize: function(type, hash, prop) {
@@ -616,11 +609,11 @@ define("ember-data/lib/adapters/fixture_adapter",
 
     /**
       `DS.FixtureAdapter` is an adapter that loads records from memory.
-      Its primarily used for development and testing. You can also use
+      It's primarily used for development and testing. You can also use
       `DS.FixtureAdapter` while working on the API but are not ready to
       integrate yet. It is a fully functioning adapter. All CRUD methods
       are implemented. You can also implement query logic that a remote
-      system would do. Its possible to do develop your entire application
+      system would do. It's possible to develop your entire application
       with `DS.FixtureAdapter`.
 
       For information on how to use the `FixtureAdapter` in your
@@ -1136,7 +1129,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {subclass of DS.Model} type
         @param {String} id
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       find: function(store, type, id) {
         return this.ajax(this.buildURL(type.typeKey, id), 'GET');
@@ -1154,7 +1147,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {subclass of DS.Model} type
         @param {String} sinceToken
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       findAll: function(store, type, sinceToken) {
         var query;
@@ -1181,7 +1174,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {subclass of DS.Model} type
         @param {Object} query
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       findQuery: function(store, type, query) {
         return this.ajax(this.buildURL(type.typeKey), 'GET', { data: query });
@@ -1219,7 +1212,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {subclass of DS.Model} type
         @param {Array} ids
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       findMany: function(store, type, ids) {
         return this.ajax(this.buildURL(type.typeKey), 'GET', { data: { ids: ids } });
@@ -1252,7 +1245,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {DS.Model} record
         @param {String} url
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       findHasMany: function(store, record, url) {
         var host = get(this, 'host'),
@@ -1291,7 +1284,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {DS.Model} record
         @param {String} url
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       findBelongsTo: function(store, record, url) {
         var id   = get(record, 'id'),
@@ -1314,7 +1307,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {subclass of DS.Model} type
         @param {DS.Model} record
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       createRecord: function(store, type, record) {
         var data = {};
@@ -1339,7 +1332,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {subclass of DS.Model} type
         @param {DS.Model} record
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       updateRecord: function(store, type, record) {
         var data = {};
@@ -1361,7 +1354,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @param {DS.Store} store
         @param {subclass of DS.Model} type
         @param {DS.Model} record
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       deleteRecord: function(store, type, record) {
         var id = get(record, 'id');
@@ -1382,7 +1375,7 @@ define("ember-data/lib/adapters/rest_adapter",
         @method buildURL
         @param {String} type
         @param {String} id
-        @returns {String} url
+        @return {String} url
       */
       buildURL: function(type, id) {
         var url = [],
@@ -1457,7 +1450,7 @@ define("ember-data/lib/adapters/rest_adapter",
 
         @method pathForType
         @param {String} type
-        @returns {String} path
+        @return {String} path
       **/
       pathForType: function(type) {
         var camelized = Ember.String.camelize(type);
@@ -1604,11 +1597,11 @@ define("ember-data/lib/core",
       /**
         @property VERSION
         @type String
-        @default '1.0.0-beta.7+canary.07966bca'
+        @default '1.0.0-beta.7+canary.75ab8043'
         @static
       */
       DS = Ember.Namespace.create({
-        VERSION: '1.0.0-beta.7+canary.07966bca'
+        VERSION: '1.0.0-beta.7+canary.75ab8043'
       });
 
       if (Ember.libraries) {
@@ -1617,6 +1610,29 @@ define("ember-data/lib/core",
     }
 
     __exports__["default"] = DS;
+  });
+define("ember-data/lib/ember-initializer", 
+  ["./setup-container"],
+  function(__dependency1__) {
+    "use strict";
+    var setupContainer = __dependency1__["default"];
+
+    /**
+      @module ember-data
+    */
+
+    var set = Ember.set;
+
+    /*
+      This code initializes Ember-Data onto an Ember application.
+    */
+
+    Ember.onLoad('Ember.Application', function(Application) {
+      Application.initializer({
+        name:       "ember-data",
+        initialize: setupContainer
+      });
+    });
   });
 define("ember-data/lib/ext/date", 
   [],
@@ -1683,126 +1699,110 @@ define("ember-data/lib/ext/date",
       Date.parse = Ember.Date.parse;
     }
   });
-define("ember-data/lib/initializers", 
-  ["./system/store","./serializers","./adapters","./system/debug/debug_adapter","./system/container_proxy","./transforms"],
-  function(__dependency1__, __dependency2__, __dependency3__, __dependency4__, __dependency5__, __dependency6__) {
+define("ember-data/lib/initializers/data_adapter", 
+  ["../system/debug/debug_adapter","exports"],
+  function(__dependency1__, __exports__) {
     "use strict";
-    var Store = __dependency1__["default"];
-    var JSONSerializer = __dependency2__.JSONSerializer;
-    var RESTSerializer = __dependency2__.RESTSerializer;
-    var RESTAdapter = __dependency3__.RESTAdapter;
-    var DebugAdapter = __dependency4__["default"];
-    var ContainerProxy = __dependency5__["default"];
-    var BooleanTransform = __dependency6__.BooleanTransform;
-    var DateTransform = __dependency6__.DateTransform;
-    var StringTransform = __dependency6__.StringTransform;
-    var NumberTransform = __dependency6__.NumberTransform;
+    var DebugAdapter = __dependency1__["default"];
 
     /**
-      @module ember-data
+      Configures a container with injections on Ember applications
+      for the Ember-Data store. Accepts an optional namespace argument.
+
+      @method initializeStoreInjections
+      @param {Ember.Container} container
     */
+    __exports__["default"] = function initializeDebugAdapter(container){
+      container.register('data-adapter:main', DebugAdapter);
+    };
+  });
+define("ember-data/lib/initializers/store", 
+  ["../serializers","../adapters","../system/container_proxy","../system/store","exports"],
+  function(__dependency1__, __dependency2__, __dependency3__, __dependency4__, __exports__) {
+    "use strict";
+    var JSONSerializer = __dependency1__.JSONSerializer;
+    var RESTSerializer = __dependency1__.RESTSerializer;
+    var RESTAdapter = __dependency2__.RESTAdapter;
+    var ContainerProxy = __dependency3__["default"];
+    var Store = __dependency4__["default"];
 
-    var set = Ember.set;
+    /**
+      Configures a container for use with an Ember-Data
+      store. Accepts an optional namespace argument.
 
-    /*
-      This code registers an injection for Ember.Application.
-
-      If an Ember.js developer defines a subclass of DS.Store on their application,
-      as `App.ApplicationStore` (or via a module system that resolves to `store:application`)
-      this code will automatically instantiate it and make it available on the
-      router.
-
-      Additionally, after an application's controllers have been injected, they will
-      each have the store made available to them.
-
-      For example, imagine an Ember.js application with the following classes:
-
-      App.ApplicationStore = DS.Store.extend({
-        adapter: 'custom'
-      });
-
-      App.PostsController = Ember.ArrayController.extend({
-        // ...
-      });
-
-      When the application is initialized, `App.ApplicationStore` will automatically be
-      instantiated, and the instance of `App.PostsController` will have its `store`
-      property set to that instance.
-
-      Note that this code will only be run if the `ember-application` package is
-      loaded. If Ember Data is being used in an environment other than a
-      typical application (e.g., node.js where only `ember-runtime` is available),
-      this code will be ignored.
+      @method initializeStore
+      @param {Ember.Container} container
+      @param {Object} [application] an application namespace
     */
+    __exports__["default"] = function initializeStore(container, application){
+      Ember.deprecate('Specifying a custom Store for Ember Data on your global namespace as `App.Store` ' +
+                      'has been deprecated. Please use `App.ApplicationStore` instead.', !(application && application.Store));
 
-    Ember.onLoad('Ember.Application', function(Application) {
-      Application.initializer({
-        name: "store",
+      container.register('store:main', container.lookupFactory('store:application') || (application && application.Store) || Store);
 
-        initialize: function(container, application) {
-          Ember.deprecate('Specifying a custom Store for Ember Data on your global namespace as `App.Store` ' +
-                          'has been deprecated. Please use `App.ApplicationStore` instead.', !application.Store);
+      // allow older names to be looked up
 
-          application.register('store:main', container.lookupFactory('store:application') || application.Store || Store);
+      var proxy = new ContainerProxy(container);
+      proxy.registerDeprecations([
+        {deprecated: 'serializer:_default',  valid: 'serializer:-default'},
+        {deprecated: 'serializer:_rest',     valid: 'serializer:-rest'},
+        {deprecated: 'adapter:_rest',        valid: 'adapter:-rest'}
+      ]);
 
-          // allow older names to be looked up
+      // new go forward paths
+      container.register('serializer:-default', JSONSerializer);
+      container.register('serializer:-rest', RESTSerializer);
+      container.register('adapter:-rest', RESTAdapter);
 
-          var proxy = new ContainerProxy(container);
-          proxy.registerDeprecations([
-            {deprecated: 'serializer:_default',  valid: 'serializer:-default'},
-            {deprecated: 'serializer:_rest',     valid: 'serializer:-rest'},
-            {deprecated: 'adapter:_rest',        valid: 'adapter:-rest'}
-          ]);
+      // Eagerly generate the store so defaultStore is populated.
+      // TODO: Do this in a finisher hook
+      container.lookup('store:main');
+    };
+  });
+define("ember-data/lib/initializers/store_injections", 
+  ["exports"],
+  function(__exports__) {
+    "use strict";
+    /**
+      Configures a container with injections on Ember applications
+      for the Ember-Data store. Accepts an optional namespace argument.
 
-          // new go forward paths
-          application.register('serializer:-default', JSONSerializer);
-          application.register('serializer:-rest', RESTSerializer);
-          application.register('adapter:-rest', RESTAdapter);
+      @method initializeStoreInjections
+      @param {Ember.Container} container
+    */
+    __exports__["default"] = function initializeStoreInjections(container){
+      container.injection('controller',   'store', 'store:main');
+      container.injection('route',        'store', 'store:main');
+      container.injection('serializer',   'store', 'store:main');
+      container.injection('data-adapter', 'store', 'store:main');
+    };
+  });
+define("ember-data/lib/initializers/transforms", 
+  ["../transforms","exports"],
+  function(__dependency1__, __exports__) {
+    "use strict";
+    var BooleanTransform = __dependency1__.BooleanTransform;
+    var DateTransform = __dependency1__.DateTransform;
+    var StringTransform = __dependency1__.StringTransform;
+    var NumberTransform = __dependency1__.NumberTransform;
 
-          // Eagerly generate the store so defaultStore is populated.
-          // TODO: Do this in a finisher hook
-          container.lookup('store:main');
-        }
-      });
+    /**
+      Configures a container for use with Ember-Data
+      transforms.
 
-      Application.initializer({
-        name: "transforms",
-        before: "store",
-
-        initialize: function(container, application) {
-          application.register('transform:boolean', BooleanTransform);
-          application.register('transform:date', DateTransform);
-          application.register('transform:number', NumberTransform);
-          application.register('transform:string', StringTransform);
-        }
-      });
-
-      Application.initializer({
-        name: "data-adapter",
-        before: "store",
-
-        initialize: function(container, application) {
-          application.register('data-adapter:main', DebugAdapter);
-        }
-      });
-
-      Application.initializer({
-        name: "injectStore",
-        before: "store",
-
-        initialize: function(container, application) {
-          application.inject('controller', 'store', 'store:main');
-          application.inject('route', 'store', 'store:main');
-          application.inject('serializer', 'store', 'store:main');
-          application.inject('data-adapter', 'store', 'store:main');
-        }
-      });
-
-    });
+      @method initializeTransforms
+      @param {Ember.Container} container
+    */
+    __exports__["default"] = function initializeTransforms(container){
+      container.register('transform:boolean', BooleanTransform);
+      container.register('transform:date',    DateTransform);
+      container.register('transform:number',  NumberTransform);
+      container.register('transform:string',  StringTransform);
+    };
   });
 define("ember-data/lib/main", 
-  ["./core","./ext/date","./system/store","./system/model","./system/changes","./system/adapter","./system/debug","./system/record_arrays","./system/record_array_manager","./adapters","./serializers/json_serializer","./serializers/rest_serializer","../../ember-inflector/lib/main","../../activemodel-adapter/lib/main","./transforms","./system/relationships","./initializers","./system/container_proxy","exports"],
-  function(__dependency1__, __dependency2__, __dependency3__, __dependency4__, __dependency5__, __dependency6__, __dependency7__, __dependency8__, __dependency9__, __dependency10__, __dependency11__, __dependency12__, __dependency13__, __dependency14__, __dependency15__, __dependency16__, __dependency17__, __dependency18__, __exports__) {
+  ["./core","./ext/date","./system/store","./system/model","./system/changes","./system/adapter","./system/debug","./system/record_arrays","./system/record_array_manager","./adapters","./serializers/json_serializer","./serializers/rest_serializer","../../ember-inflector/lib/main","../../activemodel-adapter/lib/main","./transforms","./system/relationships","./ember-initializer","./setup-container","./system/container_proxy","exports"],
+  function(__dependency1__, __dependency2__, __dependency3__, __dependency4__, __dependency5__, __dependency6__, __dependency7__, __dependency8__, __dependency9__, __dependency10__, __dependency11__, __dependency12__, __dependency13__, __dependency14__, __dependency15__, __dependency16__, __dependency17__, __dependency18__, __dependency19__, __exports__) {
     "use strict";
     /**
       Ember Data
@@ -1855,8 +1855,9 @@ define("ember-data/lib/main",
 
     var hasMany = __dependency16__.hasMany;
     var belongsTo = __dependency16__.belongsTo;
+    var setupContainer = __dependency18__["default"];
 
-    var ContainerProxy = __dependency18__["default"];
+    var ContainerProxy = __dependency19__["default"];
 
     DS.Store         = Store;
     DS.PromiseArray  = PromiseArray;
@@ -1907,6 +1908,8 @@ define("ember-data/lib/main",
     DS.hasMany   = hasMany;
 
     DS.ContainerProxy = ContainerProxy;
+
+    DS._setupContainer = setupContainer;
 
     Ember.lookup.DS = DS;
 
@@ -2839,7 +2842,7 @@ define("ember-data/lib/serializers/rest_serializer",
         @param {subclass of DS.Model} type
         @param {Object} hash
         @param {String} prop
-        @returns {Object}
+        @return {Object}
       */
       normalize: function(type, hash, prop) {
         this.normalizeId(hash);
@@ -2874,7 +2877,7 @@ define("ember-data/lib/serializers/rest_serializer",
         @method normalizePayload
         @param {subclass of DS.Model} type
         @param {Object} payload
-        @returns {Object} the normalized payload
+        @return {Object} the normalized payload
       */
       normalizePayload: function(type, payload) {
         return payload;
@@ -3025,7 +3028,7 @@ define("ember-data/lib/serializers/rest_serializer",
         @param {Object} payload
         @param {String} id
         @param {'find'|'createRecord'|'updateRecord'|'deleteRecord'} requestType
-        @returns {Object} the primary response to the original request
+        @return {Object} the primary response to the original request
       */
       extractSingle: function(store, primaryType, payload, recordId, requestType) {
         payload = this.normalizePayload(primaryType, payload);
@@ -3170,7 +3173,7 @@ define("ember-data/lib/serializers/rest_serializer",
         @param {subclass of DS.Model} type
         @param {Object} payload
         @param {'findAll'|'findMany'|'findHasMany'|'findQuery'} requestType
-        @returns {Array} The primary array that was returned in response
+        @return {Array} The primary array that was returned in response
           to the original query.
       */
       extractArray: function(store, primaryType, payload) {
@@ -3274,7 +3277,7 @@ define("ember-data/lib/serializers/rest_serializer",
 
         @method typeForRoot
         @param {String} root
-        @returns {String} the model's typeKey
+        @return {String} the model's typeKey
       */
       typeForRoot: function(root) {
         return Ember.String.singularize(root);
@@ -3472,6 +3475,65 @@ define("ember-data/lib/serializers/rest_serializer",
     });
 
     __exports__["default"] = RESTSerializer;
+  });
+define("ember-data/lib/setup-container", 
+  ["./initializers/store","./initializers/transforms","./initializers/store_injections","./initializers/data_adapter","../../../activemodel-adapter/lib/setup-container","exports"],
+  function(__dependency1__, __dependency2__, __dependency3__, __dependency4__, __dependency5__, __exports__) {
+    "use strict";
+    var initializeStore = __dependency1__["default"];
+    var initializeTransforms = __dependency2__["default"];
+    var initializeStoreInjections = __dependency3__["default"];
+    var initializeDataAdapter = __dependency4__["default"];
+    var setupActiveModelContainer = __dependency5__["default"];
+
+    /**
+      @module ember-data
+    */
+
+    var set = Ember.set;
+
+    /*
+      This code registers an injection for Ember.Application.
+
+      If an Ember.js developer defines a subclass of DS.Store on their application,
+      as `App.ApplicationStore` (or via a module system that resolves to `store:application`)
+      this code will automatically instantiate it and make it available on the
+      router.
+
+      Additionally, after an application's controllers have been injected, they will
+      each have the store made available to them.
+
+      For example, imagine an Ember.js application with the following classes:
+
+      App.ApplicationStore = DS.Store.extend({
+        adapter: 'custom'
+      });
+
+      App.PostsController = Ember.ArrayController.extend({
+        // ...
+      });
+
+      When the application is initialized, `App.ApplicationStore` will automatically be
+      instantiated, and the instance of `App.PostsController` will have its `store`
+      property set to that instance.
+
+      Note that this code will only be run if the `ember-application` package is
+      loaded. If Ember Data is being used in an environment other than a
+      typical application (e.g., node.js where only `ember-runtime` is available),
+      this code will be ignored.
+    */
+
+    __exports__["default"] = function setupContainer(container, application){
+      // application is not a required argument. This ensures
+      // testing setups can setup a container without booting an
+      // entire ember application.
+
+      initializeDataAdapter(container, application);
+      initializeTransforms(container, application);
+      initializeStoreInjections(container, application);
+      initializeStore(container, application);
+      setupActiveModelContainer(container, application);
+    };
   });
 define("ember-data/lib/system/adapter", 
   ["exports"],
@@ -5121,13 +5183,17 @@ define("ember-data/lib/system/model/errors",
 
         @method errorsFor
         @param {String} attribute
-        @returns {Array}
+        @return {Array}
       */
       errorsFor: function(attribute) {
         return get(this, 'errorsByAttributeName').get(attribute);
       },
 
       /**
+        An array containing all of the error messages for this record.
+        
+        @property messages
+        @type {Array}
       */
       messages: Ember.computed.mapBy('content', 'message'),
 
@@ -5252,7 +5318,7 @@ define("ember-data/lib/system/model/errors",
 
         @method has
         @param {String} attribute
-        @returns {Boolean} true if there some errors on given attribute
+        @return {Boolean} true if there some errors on given attribute
       */
       has: function(attribute) {
         return !isEmpty(this.errorsFor(attribute));
@@ -5599,7 +5665,7 @@ define("ember-data/lib/system/model/model",
 
         @method serialize
         @param {Object} options
-        @returns {Object} an object whose values are primitive JSON values only
+        @return {Object} an object whose values are primitive JSON values only
       */
       serialize: function(options) {
         var store = get(this, 'store');
@@ -5618,7 +5684,7 @@ define("ember-data/lib/system/model/model",
 
         @method toJSON
         @param {Object} options
-        @returns {Object} A JSON representation of the object.
+        @return {Object} A JSON representation of the object.
       */
       toJSON: function(options) {
         if (!JSONSerializer) { JSONSerializer = requireModule("ember-data/lib/serializers/json_serializer")["default"]; }
@@ -6690,6 +6756,10 @@ define("ember-data/lib/system/model/states",
 
         invokeLifecycleCallbacks: function(record) {
           record.triggerLater('becameInvalid', record);
+        },
+
+        exit: function(record) {
+          record._inFlightAttributes = {};
         }
       }
     };
@@ -8967,7 +9037,7 @@ define("ember-data/lib/system/store",
 
         @property defaultAdapter
         @private
-        @returns DS.Adapter
+        @return DS.Adapter
       */
       defaultAdapter: Ember.computed('adapter', function() {
         var adapter = get(this, 'adapter');
@@ -9007,7 +9077,7 @@ define("ember-data/lib/system/store",
         @param {String} type
         @param {Object} properties a hash of properties to set on the
           newly created record.
-        @returns {DS.Model} record
+        @return {DS.Model} record
       */
       createRecord: function(type, properties) {
         type = this.modelFor(type);
@@ -9045,7 +9115,7 @@ define("ember-data/lib/system/store",
         @method _generateId
         @private
         @param {String} type
-        @returns {String} if the adapter can generate one, an ID
+        @return {String} if the adapter can generate one, an ID
       */
       _generateId: function(type) {
         var adapter = this.adapterFor(type);
@@ -9196,7 +9266,7 @@ define("ember-data/lib/system/store",
         @method findByIds
         @param {String} type
         @param {Array} ids
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       findByIds: function(type, ids) {
         var store = this;
@@ -9214,7 +9284,7 @@ define("ember-data/lib/system/store",
         @method fetchRecord
         @private
         @param {DS.Model} record
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       fetchRecord: function(record) {
         if (isNone(record)) { return null; }
@@ -9332,7 +9402,7 @@ define("ember-data/lib/system/store",
         @method hasRecordForId
         @param {String or subclass of DS.Model} type
         @param {String|Integer} id
-        @returns {Boolean}
+        @return {Boolean}
       */
       hasRecordForId: function(type, id) {
         id = coerceId(id);
@@ -9348,7 +9418,7 @@ define("ember-data/lib/system/store",
         @private
         @param {String or subclass of DS.Model} type
         @param {String|Integer} id
-        @returns {DS.Model} record
+        @return {DS.Model} record
       */
       recordForId: function(type, id) {
         type = this.modelFor(type);
@@ -9500,7 +9570,7 @@ define("ember-data/lib/system/store",
         @private
         @param {DS.Model} type
         @param {DS.RecordArray} array
-        @returns {Promise} promise
+        @return {Promise} promise
       */
       fetchAll: function(type, array) {
         var adapter = this.adapterFor(type),
@@ -9881,7 +9951,7 @@ define("ember-data/lib/system/store",
 
         @method modelFor
         @param {String or subclass of DS.Model} key
-        @returns {subclass of DS.Model}
+        @return {subclass of DS.Model}
       */
       modelFor: function(key) {
         var factory;
@@ -9960,7 +10030,7 @@ define("ember-data/lib/system/store",
         @method push
         @param {String or subclass of DS.Model} type
         @param {Object} data
-        @returns {DS.Model} the record that was created or
+        @return {DS.Model} the record that was created or
           updated.
       */
       push: function(type, data, _partial) {
@@ -10101,7 +10171,7 @@ define("ember-data/lib/system/store",
         @param {subclass of DS.Model} type
         @param {String} id
         @param {Object} data
-        @returns {DS.Model} record
+        @return {DS.Model} record
       */
       buildRecord: function(type, id, data) {
         var typeMap = this.typeMapFor(type),
@@ -10221,7 +10291,7 @@ define("ember-data/lib/system/store",
         @method adapterFor
         @private
         @param {subclass of DS.Model} type
-        @returns DS.Adapter
+        @return DS.Adapter
       */
       adapterFor: function(type) {
         var container = this.container, adapter;
@@ -10344,7 +10414,7 @@ define("ember-data/lib/system/store",
     // Delegation to the adapter and promise management
     /**
       A `PromiseArray` is an object that acts like both an `Ember.Array`
-      and a promise. When the promise is resolved the the resulting value
+      and a promise. When the promise is resolved the resulting value
       will be set to the `PromiseArray`'s `content` property. This makes
       it easy to create data bindings with the `PromiseArray` that will be
       updated when the promise resolves.
