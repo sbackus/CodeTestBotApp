@@ -85,6 +85,7 @@ GEM
     mime-types (1.25.1)
     minitest (5.3.1)
     multi_json (1.9.2)
+    phantomjs (1.9.7.0)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -154,6 +155,7 @@ DEPENDENCIES
   foundation-rails
   jbuilder (~> 2.0.5)
   jquery-rails
+  phantomjs (~> 1.9.7)
   rails (= 4.1.0.rc1)
   rails_12factor
   sass-rails (~> 4.0.2)
