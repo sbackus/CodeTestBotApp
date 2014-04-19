@@ -7,13 +7,14 @@ describe('Users Index Integration', function() {
         visit('/auth/complete?token=test_token');
 
         testing().mockAjaxResponse('GET', '/users', { users: [
-            { id: 1, name: 'User1' },
-            { id: 2, name: 'User2' },
+            { id: 1, name: 'User1', editable: true },
+            { id: 2, name: 'User2', editable: false },
         ]});
+
+        visit('/users');
     });
 
     it('displays a list of users', function() {
-        visit('/users');
         andThen(function() {
             var names = [];
             find('td.name').each(function() { names.push($(this).text()); });
@@ -23,11 +24,26 @@ describe('Users Index Integration', function() {
     });
 
     it('can transition to user edit', function() {
-        visit('/users');
         click('.button[href="/users/1/edit"]');
         andThen(function() {
             expect(currentRouteName()).to.eq('user.edit');
             expect(currentURL()).to.eq('/users/1/edit');
+        });
+    });
+
+    describe('edit button', function() {
+        it('is enabled for editable users', function() {
+            andThen(function() {
+                var button = find('a.button[href="/users/1/edit"]');
+                expect(button.hasClass('disabled')).to.be.false;
+            });
+        });
+
+        it('is disabled for uneditable users', function() {
+            andThen(function() {
+                var button = find('a.button[href="/users/2/edit"]');
+                expect(button.hasClass('disabled')).to.be.true;
+            });
         });
     });
 });

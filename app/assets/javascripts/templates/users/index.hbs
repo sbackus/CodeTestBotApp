@@ -20,7 +20,7 @@
                     <td class="name">{{name}}</td>
                     <td class="email">{{email}}</td>
                     <td class="role">{{roleDisplay}}</td>
-                    <td>{{#link-to 'user.edit' this class="button small radius"}}Edit{{/link-to}}</td>
+                    <td>{{#link-to 'user.edit' this class="button small radius" disabled=editDisabled}}Edit{{/link-to}}</td>
                 </tr>
             {{/each}}
             </tbody>
