@@ -4,6 +4,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+    this.resource('auth', function() {
+        this.route('login');
+    });
 });
 
 export default Router;
