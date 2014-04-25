@@ -17,7 +17,7 @@ var preprocessJs = p.preprocessJs;
 
 module.exports = function (broccoli) {
 
-  var prefix = 'tmp';
+  var prefix = 'code-test-bot-app';
   var rootURL = '/';
 
   // index.html

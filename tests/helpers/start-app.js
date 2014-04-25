@@ -1,4 +1,4 @@
-var Router = require('tmp/router')['default'];
+var Router = require('code-test-bot-app/router')['default'];
 
 function startApp(attrs) {
   var App;
@@ -15,7 +15,7 @@ function startApp(attrs) {
   });
 
   Ember.run(function(){
-    App = require('tmp/main')['default']('tmp', attributes);
+    App = require('code-test-bot-app/main')['default']('code-test-bot-app', attributes);
     App.setupForTesting();
     App.injectTestHelpers();
   });
