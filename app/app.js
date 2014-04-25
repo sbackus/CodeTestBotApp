@@ -1,4 +1,5 @@
 import Resolver from 'ember/resolver';
+module EmberSimpleAuth from 'ember-simple-auth';
 import loadInitializers from 'ember/load-initializers';
 
 Ember.MODEL_FACTORY_INJECTIONS = true;
