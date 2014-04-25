@@ -1,9 +1,3 @@
-language: ruby
-rvm:
-- 2.1.1
-before_script:
-  - 'npm install -g istanbul && npm install -g grunt-cli && npm install grunt-coveralls'
-script:
-  - bundle exec rake teaspoon
-after_script:
-  - 'grunt coveralls:teaspoon_coverage'
+language: node_js
+node_js:
+  - 0.10
