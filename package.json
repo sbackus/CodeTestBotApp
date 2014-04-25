@@ -10,7 +10,7 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
+    "test": "EMBER_ENV=test ember build && ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   },
   "repository": {
     "type": "git",
