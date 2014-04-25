@@ -6,8 +6,9 @@ var compileES6 = require('broccoli-es6-concatenator');
 var validateES6 = require('broccoli-es6-import-validate');
 var pickFiles = require('broccoli-static-compiler');
 var mergeTrees = require('broccoli-merge-trees');
+var exportTree = require('broccoli-export-tree');
 
-var env = require('broccoli-env').getEnv();
+var env = process.env.EMBER_ENV || 'development';
 var getEnvJSON = require('./config/environment');
 
 var p = require('ember-cli/lib/preprocessors');
@@ -147,7 +148,8 @@ module.exports = function (broccoli) {
     });
 
     var legacyTestFiles = [
-      'qunit/qunit/qunit.js',
+        // Karma has its own QUnit setup and this causes conflicts.
+//      'qunit/qunit/qunit.js',
       'qunit-shim.js',
       'ember-qunit/dist/named-amd/main.js'
     ];
@@ -175,5 +177,11 @@ module.exports = function (broccoli) {
     outputTrees = outputTrees.concat(testsTrees);
   }
 
-  return mergeTrees(outputTrees, { overwrite: true });
+  var finalTree = mergeTrees(outputTrees, { overwrite: true });
+
+  if (env === 'test') {
+    finalTree = exportTree(finalTree, { destDir: 'testDist' });
+  }
+
+  return finalTree;
 };

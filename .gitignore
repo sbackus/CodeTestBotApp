@@ -23,6 +23,7 @@
 # compiled output
 /dist
 /tmp
+/testDist
 
 # dependencies
 /node_modules
