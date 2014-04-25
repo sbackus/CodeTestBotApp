@@ -17,7 +17,7 @@
   </head>
   <body>
     <script>
-      window.CodeTestBotApp = require('code-test-bot-app/main')['default']('code-test-bot-app');
+      window.CodeTestBotApp = require('code-test-bot-app/app')['default'].create(ENV.APP);
     </script>
   </body>
 </html>
