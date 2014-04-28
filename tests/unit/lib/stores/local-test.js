@@ -1,4 +1,7 @@
-import LocalStore from 'code-test-bot-app/lib/local-store';
+/* globals localStorage, equal */
+
+import { test } from 'ember-qunit';
+import LocalStore from 'code-test-bot-app/lib/stores/local';
 
 module('LocalStore');
 

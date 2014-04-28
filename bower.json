@@ -5,20 +5,16 @@
     "jquery": "~1.9.1",
     "qunit": "~1.12.0",
     "ember-qunit": "~0.1.5",
-    "ember": "http://builds.emberjs.com/canary/ember.js",
+    "ember": "1.5.1",
     "ember-data": "1.0.0-beta.7",
-    "ember-resolver": "git://github.com/stefanpenner/ember-jj-abrams-resolver.git#master",
+    "ember-resolver": "stefanpenner/ember-jj-abrams-resolver#master",
     "ic-ajax": "~1.x",
-    "loader": "git://github.com/stefanpenner/loader.js#1.0.0",
-    "ember-cli-shims": "git://github.com/stefanpenner/ember-cli-shims.git#0.0.1",
-    "ember-load-initializers": "git://github.com/stefanpenner/ember-load-initializers.git#0.0.1",
-    "ember-simple-auth": "https://github.com/simplabs/ember-simple-auth-component.git"
+    "loader": "stefanpenner/loader.js#1.0.0",
+    "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.1",
+    "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.1",
+    "ember-simple-auth": "simplabs/ember-simple-auth-component"
   },
   "devDependencies": {
-    "sinonjs": "~1.9.1",
-    "sinon-qunit": "~1.0.0"
-  },
-  "resolutions": {
-    "ember": "e-tag:f9738bea2"
+    "sinonjs": "~1.9.1"
   }
 }

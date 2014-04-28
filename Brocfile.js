@@ -9,7 +9,7 @@ var app = new EmberApp({
   legacyFilesToAppend: [
     'jquery.js',
     'handlebars.js',
-    'index.js',
+    'ember.js',
     'ic-ajax/dist/named-amd/main.js',
     'ember-data.js',
     'app-shims.js',

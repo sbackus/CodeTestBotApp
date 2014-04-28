@@ -1,4 +1,7 @@
-module Authenticator from 'code-test-bot-app/lib/ember-simple-auth/authenticators/out-of-band-token-authenticator';
+/* globals expect, ok, deepEqual */
+
+import { test } from 'ember-qunit';
+import 'code-test-bot-app/lib/ember-simple-auth/authenticators/out-of-band-token-authenticator';
 module('OutOfBandTokenAuthenticator');
 
 var OutOfBandTokenAuthenticator = Ember.SimpleAuth.Authenticators.OutOfBandTokenAuthenticator;
@@ -54,5 +57,5 @@ test('authenticate: returns a promise that resolves with the expires_at value no
         authenticator.authenticate(token).then(function(result) {
             deepEqual(result, { access_token: 'token', expires_at: 5000 });
         });
-    })
+    });
 });

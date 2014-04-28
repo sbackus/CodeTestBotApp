@@ -1,10 +1,18 @@
+import 'code-test-bot-app/lib/ember-simple-auth/authenticators/out-of-band-token-authenticator';
+
 export default {
     name: 'authentication',
     initialize: function(container, application) {
-        container.register('authenticators:out-of-band-token', Ember.SimpleAuth.Authenticators.OutOfBandTokenAuthenticator);
-        Ember.SimpleAuth.setup(container, application, {
+        container.register('authenticator:out-of-band-token', Ember.SimpleAuth.Authenticators.OutOfBandTokenAuthenticator);
+
+        var options = {
+            authorizerFactory: 'authorizer:oauth2-bearer',
             authenticationRoute: 'auth.login',
-            crossOriginWhitelist: [CONFIG.SERVER_HOST]
-        });
+            crossOriginWhitelist: [ENV.SERVER_HOST]
+        };
+
+        options = Ember.merge({ storeFactory: 'session-store:ephemeral' }, options);
+
+        Ember.SimpleAuth.setup(container, application, options);
     }
 };

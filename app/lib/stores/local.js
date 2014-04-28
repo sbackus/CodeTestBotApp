@@ -1,4 +1,8 @@
-export default Ember.Object.extend({
+/* globals localStorage */
+
+import Base from './base';
+
+export default Base.extend({
     getItem: function(key) {
         return localStorage.getItem(key);
     },
@@ -8,6 +12,6 @@ export default Ember.Object.extend({
     },
 
     removeItem: function(key) {
-        localStorage.removeItem(key)
+        localStorage.removeItem(key);
     }
 });
