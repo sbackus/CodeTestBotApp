@@ -34,3 +34,5 @@ window.equal = equal;
 window.strictEqual = strictEqual;
 
 QUnit.config.testTimeout = 2000;
+
+import './fixtures';

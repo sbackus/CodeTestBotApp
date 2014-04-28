@@ -22,6 +22,7 @@ module.exports = function(environment) {
 
     ENV.SERVER_HOST = 'http://localhost:3000';
     ENV.APP_HOST = 'http://localhost:4200';
+    ENV.NEW_SESSION_URL = 'http://localhost:3000/sessions/new';
   }
 
   if (environment === 'production') {
