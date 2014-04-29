@@ -93,12 +93,12 @@ describe('AssessmentsNewRoute', function() {
         });
 
         it('sets the assessment assessor to the current user', function(done) {
-            route.setupController(controller, model).then(function() {
+            expect(route.setupController(controller, model)).to.eventually.be.fulfilled.then(function(){
                 var assessor = model.get('assessment.assessor');
-                expect(assessor.get('id')).to.eq('2');
+                expect(assessor.get('id')).to.eq('3');
                 expect(assessor.get('name')).to.eq('Test');
                 done();
-            }, testing().promiseErrorHandler(done));
+            });
         });
     });
 });
