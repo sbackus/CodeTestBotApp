@@ -12,7 +12,8 @@
     "module": true,
     "QUnit": true,
     "require": true,
-    "requirejs": true
+    "requirejs": true,
+    "CodeTestBotApp": true
   },
   "node" : false,
   "browser" : false,

@@ -50,12 +50,12 @@ test('restore: returns a promise that resolves if the access token exists and is
 });
 
 test('authenticate: returns a promise that resolves with the expires_at value normalized to milliseconds', function() {
-    var token = { access_token: 'token', expires_at: 5 };
+    var token = { access_token: 'token', expires_at: 5, expires: 'true' };
     var authenticator = OutOfBandTokenAuthenticator.create();
 
     Ember.run(function() {
         authenticator.authenticate(token).then(function(result) {
-            deepEqual(result, { access_token: 'token', expires_at: 5000 });
+            deepEqual(result, { access_token: 'token', expires_at: 5000, expires: true });
         });
     });
 });

@@ -17,7 +17,8 @@ Ember.SimpleAuth.Authenticators.OutOfBandTokenAuthenticator = Ember.SimpleAuth.A
     authenticate: function(token_data) {
         return new Ember.RSVP.Promise(function(resolve) {
             Ember.run(function() {
-                token_data.expires_at *= 1000;
+                token_data.expires_at = parseInt(token_data.expires_at) * 1000;
+                token_data.expires = token_data.expires === 'true';
                 resolve(token_data);
             });
         });
