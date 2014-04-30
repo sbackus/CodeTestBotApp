@@ -4,6 +4,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+    this.resource('candidates', function() {
+        this.route('new');
+    });
+
     this.resource('submissions', function() {
         this.route('new');
     });
