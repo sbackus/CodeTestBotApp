@@ -6,7 +6,7 @@ import startApp from '../helpers/start-app';
 
 moduleFor('route:submissions/new', 'Authenticated Route', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ dataStore: 'data-store:ephemeral' });
+        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral' });
     },
     teardown: function() {
         CodeTestBotApp.reset();

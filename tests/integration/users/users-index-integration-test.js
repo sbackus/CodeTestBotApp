@@ -5,7 +5,7 @@ import startApp from '../../helpers/start-app';
 
 module('Users Index Integration', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ dataStore: 'data-store:ephemeral' });
+        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral' });
         authenticateSession();
     },
     teardown: function() {
