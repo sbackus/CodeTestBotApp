@@ -1,3 +1,21 @@
-<h2 id='title'>Welcome to Ember.js</h2>
+<nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="/">Code Test Bot</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+    <section class="top-bar-section">
+        <ul class="right">
+            {{#if session.isAuthenticated}}
+                <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
+                <li class="divider"></li>
+                <li><a {{ action 'invalidateSession' }}>Logout</a></li>
+            {{else}}
+                <li>{{#link-to 'auth.login'}}Login{{/link-to}}</li>
+            {{/if}}
+        </ul>
+    </section>
+</nav>
 
 {{outlet}}

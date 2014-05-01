@@ -11,7 +11,7 @@ export default {
             crossOriginWhitelist: [ENV.SERVER_HOST]
         };
 
-        options = Ember.merge({ storeFactory: 'session-store:ephemeral' }, options);
+        options = Ember.merge({ storeFactory: application.get('storeFactory') }, options);
 
         Ember.SimpleAuth.setup(container, application, options);
     }

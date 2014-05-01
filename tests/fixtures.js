@@ -5,3 +5,12 @@ defineFixture(ENV.NEW_SESSION_URL + '?redirect_uri=' + ENV.APP_HOST + '/auth/com
     jqXHR: {},
     textStatus: 'success'
 });
+
+defineFixture(ENV.SERVER_HOST + '/users', {
+    response: { users: [
+        { id: 1, name: 'User1', editable: true },
+        { id: 2, name: 'User2', editable: false }
+    ]},
+    jqXHR: {},
+    textStatus: 'success'
+});
