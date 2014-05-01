@@ -1,3 +1,7 @@
-html, body {
-  margin: 20px;
+.f-dropdown li > a > i {
+    margin-right: 8px;
+}
+
+table .button {
+    margin-bottom: 0;
 }
