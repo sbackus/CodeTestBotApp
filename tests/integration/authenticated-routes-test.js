@@ -3,6 +3,7 @@
 
 import { test , moduleFor } from 'ember-qunit';
 import startApp from '../helpers/start-app';
+import { authenticateSession } from '../helpers/authentication';
 
 moduleFor('route:submissions/new', 'Authenticated Route', {
     setup: function() {
@@ -28,12 +29,7 @@ test('when session not authenticated, saves transition intent and transitions to
 test('when session is authenticated, continues transition like normal', function() {
     expect(1);
 
-    var session = CodeTestBotApp.__container__.lookup('session:main');
-    session.authenticate('authenticator:out-of-band-token', {
-        access_token: 'fake_token',
-        expires_at: (new Date().getTime() / 1000) + 86400,
-        expires: true
-    });
+    authenticateSession();
 
     visit('/submissions/new');
     andThen(function() {

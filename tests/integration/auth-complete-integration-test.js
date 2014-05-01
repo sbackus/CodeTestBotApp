@@ -2,6 +2,7 @@
 
 import { test } from 'ember-qunit';
 import startApp from '../helpers/start-app';
+import { getSession } from '../helpers/authentication';
 
 module('Auth Complete Integration', {
     setup: function() {
@@ -19,7 +20,7 @@ test('authenticates the session with the OutOfBandTokenAuthenticator', function(
 
     visit(url);
     andThen(function() {
-        var session = CodeTestBotApp.__container__.lookup('session:main');
+        var session = getSession();
         equal(session.get('access_token'), 'token1234');
         equal(session.get('expires_at'), 5000000);
         equal(session.get('expires'), true);

@@ -1,6 +1,7 @@
 /* globals sinon, equal */
 
 import { moduleFor, test } from 'ember-qunit';
+import { randomElement } from '../../../helpers/utils';
 
 var controller, candidate;
 moduleFor('controller:candidates/new', 'Candidates New Controller', {
@@ -48,7 +49,3 @@ test('createCandidate action sets the selectedLevel and saves the candidate', fu
     equal(controller.get('model.candidate.level'), expectedLevel);
     equal(candidate.save.callCount, 1);
 });
-
-function randomElement(arr) {
-    return arr[Math.floor(Math.random()*arr.length)];
-}

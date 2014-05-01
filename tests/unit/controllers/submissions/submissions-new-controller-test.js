@@ -1,6 +1,7 @@
 /* globals sinon, equal, ok */
 
 import { moduleFor, test } from 'ember-qunit';
+import { randomElement } from '../../../helpers/utils';
 
 var controller, submission, model;
 moduleFor('controller:submissions/new', 'Submissions New Controller', {
@@ -62,7 +63,3 @@ test('createSubmission transitions to the submissions index after successful sav
 
     ok(expectation.verify());
 });
-
-function randomElement(arr) {
-    return arr[Math.floor(Math.random()*arr.length)];
-}

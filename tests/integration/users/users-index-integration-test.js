@@ -2,6 +2,7 @@
 
 import { test } from 'ember-qunit';
 import startApp from '../../helpers/start-app';
+import { authenticateSession } from '../../helpers/authentication';
 
 module('Users Index Integration', {
     setup: function() {
@@ -49,12 +50,3 @@ test('edit button is disabled for uneditable users', function() {
         ok(button.hasClass('disabled'), 'Edit button should be disabled');
     });
 });
-
-function authenticateSession() {
-    var session = CodeTestBotApp.__container__.lookup('session:main');
-    session.authenticate('authenticator:out-of-band-token', {
-        access_token: 'fake_token',
-        expires_at: (new Date().getTime() / 1000) + 86400,
-        expires: true
-    });
-}
