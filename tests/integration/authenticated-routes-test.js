@@ -1,6 +1,3 @@
-// TODO: figure out why JSHint is not using .jshintrc only for some tests (like this one, requiring this annoying globals line)
-/* globals CodeTestBotApp, expect, visit, andThen, equal, currentRouteName */
-
 import { test , moduleFor } from 'ember-qunit';
 import startApp from '../helpers/start-app';
 import { authenticateSession } from '../helpers/authentication';

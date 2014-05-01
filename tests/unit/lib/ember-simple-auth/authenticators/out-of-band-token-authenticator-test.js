@@ -1,5 +1,3 @@
-/* globals expect, ok, deepEqual */
-
 import { test } from 'ember-qunit';
 import 'code-test-bot-app/lib/ember-simple-auth/authenticators/out-of-band-token-authenticator';
 module('OutOfBandTokenAuthenticator');

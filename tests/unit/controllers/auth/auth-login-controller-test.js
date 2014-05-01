@@ -1,4 +1,3 @@
-/* globals ok, equal */
 import { test , moduleFor } from 'ember-qunit';
 import WindowLocationHelper from 'code-test-bot-app/lib/window-location-helper';
 

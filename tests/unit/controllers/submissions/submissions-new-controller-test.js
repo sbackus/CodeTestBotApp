@@ -1,5 +1,3 @@
-/* globals sinon, equal, ok */
-
 import { moduleFor, test } from 'ember-qunit';
 import { randomElement } from '../../../helpers/utils';
 

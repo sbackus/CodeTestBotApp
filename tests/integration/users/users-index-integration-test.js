@@ -1,5 +1,3 @@
-/* globals visit, andThen, find, click, currentRouteName, currentURL, ok, equal, deepEqual */
-
 import { test } from 'ember-qunit';
 import startApp from '../../helpers/start-app';
 import { authenticateSession } from '../../helpers/authentication';

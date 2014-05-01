@@ -1,5 +1,3 @@
-/* globals sinon, equal */
-
 import { test, moduleFor } from 'ember-qunit';
 import { injectFakeStore } from '../../../helpers/data';
 

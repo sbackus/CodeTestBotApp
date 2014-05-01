@@ -1,4 +1,4 @@
-/* globals localStorage, equal */
+/* globals localStorage */
 
 import { test } from 'ember-qunit';
 import LocalStore from 'code-test-bot-app/lib/stores/local';

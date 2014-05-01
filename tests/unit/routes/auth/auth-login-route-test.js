@@ -1,5 +1,3 @@
-/* globals deepEqual */
-
 import { test, moduleFor } from 'ember-qunit';
 
 moduleFor('route:auth/login', 'Auth Login Route');

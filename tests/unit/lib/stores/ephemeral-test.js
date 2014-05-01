@@ -1,5 +1,3 @@
-/* globals equal */
-
 import { test } from 'ember-qunit';
 import EphemeralStore from 'code-test-bot-app/lib/stores/ephemeral';
 
