@@ -40,7 +40,11 @@
     "keyEvent",
     "isolatedContainer",
     "startApp",
-    "sinon"
+    "sinon",
+    "andThen",
+    "currentURL",
+    "currentRouteName",
+    "CodeTestBotApp"
   ],
   "node" : false,
   "browser" : false,
