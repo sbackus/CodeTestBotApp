@@ -1,6 +1,7 @@
 /* globals sinon, equal */
 
 import { moduleFor, test } from 'ember-qunit';
+import { injectFakeStore } from '../../../helpers/data';
 
 var expectedCandidate;
 moduleFor('route:candidates/new', 'Candidates New Route', {
@@ -17,7 +18,7 @@ test('model is new candidate record and list of levels', function() {
     var expectedLevels = 'expectedLevels';
 
     var route = this.subject();
-    var store = fakeStore(route);
+    var store = injectFakeStore(route);
 
     sinon.stub(store, 'createRecord').withArgs('candidate').returns(expectedCandidate);
     sinon.stub(store, 'find').withArgs('level').returns(expectedLevels);
@@ -52,9 +53,3 @@ test('when leaving route, does not delete the record if it was saved', function(
 
     equal(expectedCandidate.deleteRecord.callCount, 0);
 });
-
-function fakeStore(route) {
-    var store = { createRecord: function() {}, find: function() {} };
-    route.store = store;
-    return store;
-}

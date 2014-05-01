@@ -1,6 +1,7 @@
 /* globals sinon, equal */
 
 import { test, moduleFor } from 'ember-qunit';
+import { injectFakeStore } from '../../../helpers/data';
 
 moduleFor('route:submissions/new', 'Submissions New Route');
 
@@ -10,8 +11,7 @@ test('sets up the model with a new submission record, candidates, and languages'
     var expectedLanguages = 'expectedLanguages';
 
     var route = this.subject();
-    var store = { createRecord: function() {}, find: function() {} };
-    route.store = store;
+    var store = injectFakeStore(route);
 
     var find = sinon.stub(store, 'find');
     find.withArgs('candidate').returns(expectedCandidates);
