@@ -13,6 +13,8 @@ module('Users Index Integration', {
 });
 
 test('displays a list of users', function() {
+    expect(1);
+
     visit('/users');
     andThen(function() {
         var names = [];
@@ -25,6 +27,8 @@ test('displays a list of users', function() {
 });
 
 test('can transition to user edit', function() {
+    expect(2);
+
     visit('/users');
     click('.button[href="/users/1/edit"]');
     andThen(function() {
@@ -34,6 +38,8 @@ test('can transition to user edit', function() {
 });
 
 test('edit button is enabled for editable users', function() {
+    expect(1);
+
     visit('/users');
     andThen(function() {
         var button = find('a.button[href="/users/1/edit"]');
@@ -42,6 +48,8 @@ test('edit button is enabled for editable users', function() {
 });
 
 test('edit button is disabled for uneditable users', function() {
+    expect(1);
+
     visit('/users');
     andThen(function() {
         var button = find('a.button[href="/users/2/edit"]');

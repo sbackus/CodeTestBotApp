@@ -4,11 +4,11 @@ export default Ember.Route.extend(Ember.SimpleAuth.AuthenticatedRouteMixin, {
         if (!session.get('isAuthenticated')) {
             window.CodeTestBotApp.get('dataStore').setItem('attemptedTransition', transition.intent.url);
         } else {
-            this.get('user.current').then(null, function(err) {
-                if (err.status === 403) {
-                    session.invalidate();
-                }
-            });
+//            this.get('user.current').then(null, function(err) {
+//                if (err.status === 403) {
+//                    session.invalidate();
+//                }
+//            });
         }
 
         return this._super(transition);
