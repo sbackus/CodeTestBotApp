@@ -4,7 +4,7 @@ import { authenticateSession } from '../../helpers/authentication';
 
 module('Users Index Integration', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral' });
+        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral', dataStore: 'data-store:ephemeral' });
         authenticateSession();
     },
     teardown: function() {

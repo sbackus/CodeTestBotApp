@@ -1,8 +1,8 @@
 export default DS.Model.extend({
     name: DS.attr(),
     email: DS.attr(),
-    editable: DS.attr()
-//    session: DS.hasMany('session'),
+    editable: DS.attr(),
+    session: DS.hasMany('session')
 //    roles: DS.hasMany('role'),
 //
 //    roleNames: Ember.computed.mapBy('roles', 'name'),

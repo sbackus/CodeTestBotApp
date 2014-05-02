@@ -4,7 +4,7 @@ import { getSession } from '../helpers/authentication';
 
 module('Auth Complete Integration', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral' });
+        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral', dataStore: 'data-store:ephemeral' });
     },
     teardown: function() {
         CodeTestBotApp.reset();

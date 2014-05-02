@@ -2,9 +2,9 @@ import { test , moduleFor } from 'ember-qunit';
 import startApp from '../helpers/start-app';
 import { authenticateSession } from '../helpers/authentication';
 
-moduleFor('route:submissions/new', 'Authenticated Route', {
+module('Authenticated Route', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral' });
+        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral', dataStore: 'data-store:ephemeral' });
     },
     teardown: function() {
         CodeTestBotApp.reset();
@@ -26,7 +26,7 @@ test('when session not authenticated, saves transition intent and transitions to
 test('when session is authenticated, continues transition like normal', function() {
     expect(1);
 
-    authenticateSession();
+    visit('/').then(authenticateSession);
 
     visit('/submissions/new');
     andThen(function() {
