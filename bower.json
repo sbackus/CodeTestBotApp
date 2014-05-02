@@ -18,6 +18,6 @@
     "sinonjs": "~1.9.1"
   },
   "resolutions": {
-    "ember": "e-tag:eb0b410a9"
+    "ember": "e-tag:7f8756bc3"
   }
 }
