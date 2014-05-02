@@ -15,6 +15,7 @@
     "ember-simple-auth": "simplabs/ember-simple-auth-component"
   },
   "devDependencies": {
-    "sinonjs": "~1.9.1"
+    "sinonjs": "~1.9.1",
+    "qunit-bdd": "~0.4.0"
   }
 }

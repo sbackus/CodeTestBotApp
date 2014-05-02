@@ -44,7 +44,17 @@
     "andThen",
     "currentURL",
     "currentRouteName",
-    "CodeTestBotApp"
+    "CodeTestBotApp",
+
+    "describe",
+    "context",
+    "it",
+    "before",
+    "after",
+    "lazy",
+    "expect",
+    "fail",
+    "helper"
   ],
   "node" : false,
   "browser" : false,

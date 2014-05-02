@@ -13,7 +13,8 @@ var app = new EmberApp({
     'ember-data.js',
     'app-shims.js',
     'ember-resolver.js',
-    'ember-load-initializers.js'
+    'ember-load-initializers.js',
+    'qunit-bdd.js'
   ],
 
   // AKA whitelisted modules
