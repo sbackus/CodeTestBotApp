@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>{{candidate.level.text}} {{language.name}} Submission</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <h3>Details</h3>
+    </div>
+</div>
+<div class="row display">
+    <div class="large-12 columns">
+        <label>File</label>
+        <a class="button small radius success" {{bind-attr href=zipfile}}><i class="fi-download"></i>&nbsp;Download</a>
+    </div>
+</div>
+<div class="row display">
+    <div class="large-12 columns">
+        <label>Email Text</label>
+        <p>{{emailText}}</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-12 columns">
+        <h3>Assessments</h3>
+
+        <table class="large-12">
+            <thead>
+            <tr>
+                <th>Assessor</th>
+                <th>Score</th>
+                <th>Completion Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#if hasAssessments}}
+                {{#each assessment in assessments}}
+                    <tr>
+                        <td>{{assessment.assessor}}</td>
+                        <td>{{assessment.score}}</td>
+                        <td></td>
+                    </tr>
+                {{/each}}
+            {{else}}
+                <tr>
+                    <td colspan="3" class="text-center">No assessments yet.</td>
+                </tr>
+            {{/if}}
+            </tbody>
+        </table>
+
+        {{#link-to 'assessments.new' class="button small radius success right"}}New Assessment{{/link-to}}
+    </div>
+</div>

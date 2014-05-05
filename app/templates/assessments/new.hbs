@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>New Assessment</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <fieldset>
+            <legend>Submission</legend>
+
+
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>Language
+                        {{view Ember.Select viewName="select"
+                        contentBinding="model.languages"
+                        optionLabelPath="content.name"
+                        optionValuePath="content.id"
+                        prompt="Select a language:"
+                        selectionBinding="selectedLanguage"
+                        disabled="disabled"
+                        class="language"}}
+                    </label>
+                </div>
+                <div class="large-6 columns">
+                    <label>Candidate Level
+                        {{view Ember.Select viewName="select"
+                        contentBinding="model.levels"
+                        optionLabelPath="content.text"
+                        optionValuePath="content.id"
+                        prompt="Select a language:"
+                        selectionBinding="selectedLevel"
+                        disabled="disabled"
+                        class="level"}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-2 columns">
+                    <label>File
+                        <a class="button small radius success zipfile" {{bind-attr href=assessment.submission.zipfile}}><i class="fi-download"></i>&nbsp;Download</a>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Email Text
+                        {{textarea value=assessment.submission.emailText rows="6" disabled="disabled" class="email-text"}}
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Assessment</legend>
+
+            <div class="row">
+                <div class="large-2 columns">
+                    <label>Score (0-5)
+                        {{input value=assessment.score}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Notes
+                        {{textarea value=assessment.notes rows="6"}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <button class="button small radius success right" {{action createAssessment}}>Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
