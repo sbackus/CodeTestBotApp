@@ -17,7 +17,7 @@ export default AuthenticatedRoute.extend({
             levels: this.store.find('level')
         });
 
-        model.set('assessor', transition.data.assessor);
+        model.set('assessment.assessor', transition.data.assessor);
 
         return model;
     },
