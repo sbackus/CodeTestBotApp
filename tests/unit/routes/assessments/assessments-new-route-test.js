@@ -7,7 +7,7 @@ moduleFor('route:assessments/new', 'Assessments New Route');
 test('model is new assessment record, languages and levels', function() {
     expect(4);
 
-    var expectedAssessment = 'expectedAssessment';
+    var expectedAssessment = Ember.Object.create({});
     var expectedLanguages = 'expectedLanguages';
     var expectedLevels = 'expectedLevels';
     var expectedAssessor = 'expectedAssessor';
@@ -29,5 +29,5 @@ test('model is new assessment record, languages and levels', function() {
     equal(model.get('assessment'), expectedAssessment);
     equal(model.get('languages'), expectedLanguages);
     equal(model.get('levels'), expectedLevels);
-    equal(model.get('assessor'), expectedAssessor);
+    equal(model.get('assessment.assessor'), expectedAssessor);
 });

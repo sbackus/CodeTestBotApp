@@ -7,7 +7,6 @@ Ember.testing = true;
 import resolver from './helpers/resolver';
 require('ember-qunit').setResolver(resolver);
 
-import 'sinon';
 import WindowLocationHelper from 'code-test-bot-app/lib/window-location-helper';
 sinon.stub(WindowLocationHelper, 'setLocation');
 

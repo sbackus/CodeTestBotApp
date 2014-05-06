@@ -10,11 +10,13 @@ export default function testFor(fullName, body) {
         return container.lookupFactory(fullName);
     }
 
-    helper('subject', function(options) {
-        return factory().create(options);
-    });
+    return function() {
+        helper('subject', function(options) {
+            return factory().create(options);
+        });
 
-    return body;
+        body();
+    };
 }
 
 // Copied from https://github.com/rpflorence/ember-qunit/blob/master/lib/isolated-container.js

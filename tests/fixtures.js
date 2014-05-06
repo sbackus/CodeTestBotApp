@@ -80,3 +80,5 @@ function defineServerFixture(path, response, options) {
 
     defineFixture(ENV.SERVER_HOST + path, options);
 }
+
+export default {};
