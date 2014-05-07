@@ -1,16 +1,14 @@
 var Application = require('code-test-bot-app/app')['default'];
 var Router = require('code-test-bot-app/router')['default'];
 
-export default function startApp(attrs) {
+function startApp(attrs) {
   var App;
 
   var attributes = Ember.merge({
     // useful Test defaults
     rootElement: '#ember-testing',
     LOG_ACTIVE_GENERATION:false,
-    LOG_VIEW_LOOKUPS: false,
-    LOG_TRANSITIONS: true,
-    LOG_TRANSITIONS_INTERNAL: true
+    LOG_VIEW_LOOKUPS: false
   }, attrs); // but you can override;
 
   Router.reopen({
@@ -27,3 +25,14 @@ export default function startApp(attrs) {
 
   return App;
 }
+
+export function startAppEphemeral(attrs) {
+    attrs = Ember.merge({ storeFactory: 'session-store:ephemeral', dataStore: 'data-store:ephemeral' }, attrs);
+    return window.CodeTestBotApp = startApp(attrs);
+}
+
+export function resetApp() {
+    window.CodeTestBotApp.reset();
+}
+
+export default startApp;
