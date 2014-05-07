@@ -17,7 +17,7 @@
 - ```ember server```
 
 ####to run the tests:
-- ```ember server```
+- ```ember test```
 
 ####to build for distribution:
 - ```ember build```
