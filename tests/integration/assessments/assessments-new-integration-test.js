@@ -1,5 +1,5 @@
 import { test } from 'ember-qunit';
-import startApp from '../../helpers/start-app';
+import { startAppEphemeral, resetApp } from '../../helpers/start-app';
 import { authenticateSession } from '../../helpers/authentication';
 import { defineServerFixture } from '../../fixtures';
 import fakeServer from '../../helpers/fake-server';
@@ -7,7 +7,7 @@ import fakeServer from '../../helpers/fake-server';
 var server;
 module('Assessments New Integration', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral', dataStore: 'data-store:ephemeral' });
+        startAppEphemeral();
 
         fakeServer.start();
         fakeServer.respondWith('GET', 'http://localhost:3000/sessions/current', [200, { "Content-Type": "application/json" }, JSON.stringify({ session: { id: 1, user_id: 2 }, users: [{id: 2, name: 'User2'}]})]);
@@ -15,7 +15,7 @@ module('Assessments New Integration', {
         visit('/').then(authenticateSession);
     },
     teardown: function() {
-        CodeTestBotApp.reset();
+        resetApp();
         fakeServer.stop();
     }
 });

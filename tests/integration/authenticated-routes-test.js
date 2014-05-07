@@ -1,13 +1,13 @@
 import { test , moduleFor } from 'ember-qunit';
-import startApp from '../helpers/start-app';
+import { startAppEphemeral, resetApp } from '../helpers/start-app';
 import { authenticateSession } from '../helpers/authentication';
 
 module('Authenticated Route', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral', dataStore: 'data-store:ephemeral' });
+        startAppEphemeral();
     },
     teardown: function() {
-        CodeTestBotApp.reset();
+        resetApp();
     }
 });
 

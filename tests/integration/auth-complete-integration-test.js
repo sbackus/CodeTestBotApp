@@ -1,13 +1,13 @@
 import { test } from 'ember-qunit';
-import startApp from '../helpers/start-app';
+import { startAppEphemeral, resetApp } from '../helpers/start-app';
 import { getSession } from '../helpers/authentication';
 
 module('Auth Complete Integration', {
     setup: function() {
-        window.CodeTestBotApp = startApp({ storeFactory: 'session-store:ephemeral', dataStore: 'data-store:ephemeral' });
+        startAppEphemeral();
     },
     teardown: function() {
-        CodeTestBotApp.reset();
+        resetApp();
     }
 });
 
