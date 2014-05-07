@@ -4,8 +4,7 @@ import { authenticateSession } from '../../helpers/authentication';
 import { defineServerFixture } from '../../fixtures';
 import fakeServer from '../../helpers/fake-server';
 
-var server;
-module('Assessments New Integration', {
+module('Integration - assessments/new', {
     setup: function() {
         startAppEphemeral();
 

@@ -70,7 +70,7 @@
             </div>
             <div class="row">
                 <div class="large-12 columns">
-                    <button class="button small radius success right create" {{action createAssessment}}>Submit</button>
+                    <button class="button small radius success right create" {{bind-attr disabled=isFormIncomplete}} {{action createAssessment}}>Submit</button>
                 </div>
             </div>
         </fieldset>
