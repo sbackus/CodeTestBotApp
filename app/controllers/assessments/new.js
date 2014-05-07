@@ -7,7 +7,7 @@ export default Ember.ObjectController.extend({
             var self = this;
             var assessment = this.get('model.assessment');
             return assessment.save().then(function() {
-                self.transitionToRoute('assessments.index');
+                self.transitionToRoute('submission.index', assessment.get('submission'));
             });
         }
     }

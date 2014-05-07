@@ -8,17 +8,12 @@ defineFixture(ENV.NEW_SESSION_URL + '?redirect_uri=' + ENV.APP_HOST + '/auth/com
     textStatus: 'success'
 });
 
-defineServerFixture('/sessions/current', {
-    session: { id: 1, user_id: 2 },
-    users: [
-        { id: 2, name: 'User2' }
-    ]
-});
-
 defineServerFixture('/users', { users: [
     { id: 1, name: 'User1', editable: true },
     { id: 2, name: 'User2', editable: false }
 ]});
+defineServerFixture('/users/1', { user: { id: 1, name: 'User1', editable: true } });
+defineServerFixture('/users/2', { user: { id: 2, name: 'User2', editable: false } });
 
 defineServerFixture('/languages', { languages: [
     { id: 1, name: 'Java' },
@@ -80,5 +75,9 @@ function defineServerFixture(path, response, options) {
 
     defineFixture(ENV.SERVER_HOST + path, options);
 }
+
+export {
+    defineServerFixture
+};
 
 export default {};
