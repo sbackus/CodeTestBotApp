@@ -7,5 +7,14 @@ export default AuthenticatedRoute.extend({
             candidates: this.store.find('candidate'),
             languages: this.store.find('language')
         });
+    },
+
+    actions: {
+        willTransition: function() {
+            var submission = this.controller.get('submission');
+            if (submission.get('isNew')) {
+                submission.deleteRecord();
+            }
+        }
     }
 });
