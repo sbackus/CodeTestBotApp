@@ -1,3 +1,4 @@
+import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
 
 export default Ember.ObjectController.extend({
     assessments: function() {
@@ -6,6 +7,25 @@ export default Ember.ObjectController.extend({
             return assessment.get('submission.id') === id;
         });
     }.property(),
+
+    averageScore: Ember.reduceComputed('assessments', {
+        initialValue: 0,
+        initialize: function(initialValue, changeMeta, instanceMeta) {
+            instanceMeta.count = 0;
+        },
+        addedItem: function(accumulatedValue, item, changeMeta, instanceMeta) {
+            var score = item.get('score');
+            var avg = cumulativeMovingAverage(accumulatedValue, score, instanceMeta.count);
+            instanceMeta.count++;
+            return avg;
+        },
+        removedItem: function(accumulatedValue, item, changeMeta, instanceMeta) {
+            var score = item.get('score');
+            var avg = cumulativeMovingAverage(accumulatedValue, score, instanceMeta.count, true);
+            instanceMeta.count--;
+            return avg;
+        }
+    }),
 
     hasAssessments: function() {
         return this.get('assessments.length') > 0;

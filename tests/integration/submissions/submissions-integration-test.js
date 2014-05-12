@@ -36,7 +36,7 @@ describe('Integration - submissions', function() {
     describe('detail page', function() {
         context('when no assessments', function() {
             before(function() {
-                fakeServer.jsonSuccess('GET', 'http://localhost:3000/submissions/1/assessments', { assessments: [] });
+                fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1', { assessments: [] });
             });
 
             it('shows a no assessments message', function() {
@@ -51,8 +51,9 @@ describe('Integration - submissions', function() {
 
         context('when assessments exist', function() {
             before(function() {
-                fakeServer.jsonSuccess('GET', 'http://localhost:3000/submissions/1/assessments', { assessments: [
-                    { id: 1, score: 2, notes: 'notes', submission_id: 1, assessor_id: 2 }
+                fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1', { assessments: [
+                    { id: 1, score: 2, notes: 'notes', submission_id: 1, assessor_id: 2 },
+                    { id: 2, score: 4, notes: 'notes', submission_id: 1, assessor_id: 3 }
                 ]});
             });
 
@@ -61,7 +62,16 @@ describe('Integration - submissions', function() {
 
                 visit('/submissions/1');
                 andThen(function() {
-                    expect(find('tr.assessment').length).to.equal(1);
+                    expect(find('tr.assessment').length).to.equal(2);
+                });
+            });
+
+            it('shows an average score', function() {
+                expect(1);
+
+                visit('/submissions/1');
+                andThen(function() {
+                    expect(find('p.score').text()).to.equal('3');
                 });
             });
         });

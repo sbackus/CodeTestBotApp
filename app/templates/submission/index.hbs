@@ -21,6 +21,14 @@
         <p>{{emailText}}</p>
     </div>
 </div>
+{{#if hasAssessments}}
+<div class="row display">
+    <div class="large-12 columns">
+        <label>Average Score</label>
+        <p class="score">{{averageScore}}</p>
+    </div>
+</div>
+{{/if}}
 
 <div class="row">
     <div class="large-12 columns">

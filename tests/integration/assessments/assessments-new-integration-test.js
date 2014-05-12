@@ -35,6 +35,7 @@ test('saves the assessment and redirects to the submission details page', functi
     expect(1);
 
     fakeServer.jsonSuccess('POST', 'http://localhost:3000/assessments', {});
+    fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1', { assessments: []});
 
     visit('/submissions/1/assessments/new');
     fillIn('input.score', '1');
