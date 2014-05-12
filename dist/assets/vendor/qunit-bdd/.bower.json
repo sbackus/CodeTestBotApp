@@ -1,0 +1,31 @@
+{
+  "name": "qunit-bdd",
+  "version": "0.4.1",
+  "authors": [
+    "Brian Donovan <donovan@squareup.com>"
+  ],
+  "description": "BDD-style testing for QUnit.",
+  "main": "lib/qunit-bdd.js",
+  "keywords": [
+    "qunit",
+    "bdd"
+  ],
+  "license": "Apache 2",
+  "homepage": "https://github.com/square/qunit-bdd",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.4.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.4.1",
+    "commit": "27fcacebd733ff547e8b4323d517ed4f17344b2d"
+  },
+  "_source": "git://github.com/square/qunit-bdd.git",
+  "_target": "~0.4.0",
+  "_originalSource": "qunit-bdd"
+}

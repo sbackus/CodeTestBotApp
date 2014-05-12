@@ -1,0 +1,29 @@
+{
+  "name": "qunit-bdd",
+  "version": "0.4.1",
+  "description": "BDD-style testing for QUnit.",
+  "main": "lib/qunit-bdd.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node_modules/karma/bin/karma --singleRun=true start karma.conf.js",
+    "develop": "node_modules/karma/bin/karma start karma.conf.js"
+  },
+  "keywords": [
+    "qunit",
+    "bdd"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:square/qunit-bdd.git"
+  },
+  "author": "Brian Donovan",
+  "license": "Apache 2",
+  "devDependencies": {
+    "karma": "^0.12.6",
+    "qunitjs": "~1.12.0",
+    "karma-qunit": "^0.1.1",
+    "karma-phantomjs-launcher": "^0.1.4"
+  }
+}

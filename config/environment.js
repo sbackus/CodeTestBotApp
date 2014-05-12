@@ -27,7 +27,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+      ENV.SERVER_HOST = 'http://codetestbotserver.herokuapp.com';
+      ENV.APP_HOST = 'http://codetestbot.herokuapp.com';
+      ENV.NEW_SESSION_URL = 'http://codetestbotserver.herokuapp.com/sessions/new';
   }
 
   return ENV;
