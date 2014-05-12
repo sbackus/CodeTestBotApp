@@ -26,7 +26,7 @@
     <div class="large-12 columns">
         <h3>Assessments</h3>
 
-        <table class="large-12">
+        <table class="large-12 assessments">
             <thead>
             <tr>
                 <th>Assessor</th>
@@ -37,9 +37,9 @@
             <tbody>
             {{#if hasAssessments}}
                 {{#each assessment in assessments}}
-                    <tr>
-                        <td>{{assessment.assessor}}</td>
-                        <td>{{assessment.score}}</td>
+                    <tr class="assessment">
+                        <td class="assessor">{{assessment.assessor}}</td>
+                        <td class="score">{{assessment.score}}</td>
                         <td></td>
                     </tr>
                 {{/each}}

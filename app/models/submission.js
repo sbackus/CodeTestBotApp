@@ -5,6 +5,7 @@ export default DS.Model.extend({
 
     candidate: DS.belongsTo('candidate'),
     language: DS.belongsTo('language'),
+    assessments: DS.hasMany('assessment'),
 
     languageDisplay: function() {
         return Ember.isNone(this.get('language')) ? 'Unknown' : this.get('language.name');
