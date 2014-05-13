@@ -5,14 +5,14 @@ moduleFor('route:submissions/new', 'Submissions New Route');
 
 test('sets up the model with a new submission record, candidates, and languages', function() {
     var expectedSubmission = 'expectedSubmission';
-    var expectedCandidates = 'expectedCandidates';
+    var expectedLevels = 'expectedLevels';
     var expectedLanguages = 'expectedLanguages';
 
     var route = this.subject();
     var store = injectFakeStore(route);
 
     var find = sinon.stub(store, 'find');
-    find.withArgs('candidate').returns(expectedCandidates);
+    find.withArgs('level').returns(expectedLevels);
     find.withArgs('language').returns(expectedLanguages);
 
     sinon.stub(store, 'createRecord').returns(expectedSubmission);
@@ -21,7 +21,7 @@ test('sets up the model with a new submission record, candidates, and languages'
         var model = route.model();
 
         equal(model.get('submission'), expectedSubmission);
-        equal(model.get('candidates'), expectedCandidates);
+        equal(model.get('levels'), expectedLevels);
         equal(model.get('languages'), expectedLanguages);
     });
 });

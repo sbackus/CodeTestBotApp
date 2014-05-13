@@ -6,7 +6,7 @@ export default Ember.ObjectController.extend({
         return this.store.filter('assessment', { submission_id: id }, function(assessment) {
             return assessment.get('submission.id') === id;
         });
-    }.property(),
+    }.property('id'),
 
     averageScore: Ember.reduceComputed('assessments', {
         initialValue: 0,

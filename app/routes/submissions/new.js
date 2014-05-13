@@ -4,8 +4,8 @@ export default AuthenticatedRoute.extend({
     model: function() {
         return Ember.Object.create({
             submission: this.store.createRecord('submission'),
-            candidates: this.store.find('candidate'),
-            languages: this.store.find('language')
+            languages: this.store.find('language'),
+            levels: this.store.find('level')
         });
     },
 
