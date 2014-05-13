@@ -12,7 +12,8 @@
     "loader": "stefanpenner/loader.js#1.0.0",
     "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.1",
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.1",
-    "ember-simple-auth": "simplabs/ember-simple-auth-component"
+    "ember-simple-auth": "simplabs/ember-simple-auth-component",
+    "momentjs": "~2.6.0"
   },
   "devDependencies": {
     "sinonjs": "~1.9.1",

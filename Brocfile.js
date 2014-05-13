@@ -15,6 +15,7 @@ app.import('vendor/ember-data/ember-data.js');
 app.import('vendor/foundation/foundation.js');
 app.import('vendor/ember-simple-auth/ember-simple-auth.js');
 app.import('vendor/ember-simple-auth/ember-simple-auth-oauth2.js');
+app.import('vendor/momentjs/moment.js');
 
 // If the library that you are including contains AMD or ES6 modules that
 // you would like to import into your application please specify an

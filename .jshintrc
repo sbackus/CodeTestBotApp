@@ -13,6 +13,7 @@
     "QUnit": true,
     "require": true,
     "requirejs": true,
+    "moment": true,
     "CodeTestBotApp": true
   },
   "node" : false,

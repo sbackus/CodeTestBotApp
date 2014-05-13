@@ -9,6 +9,10 @@ export default DS.Model.extend({
 
     languageDisplay: function() {
         return Ember.isNone(this.get('language')) ? 'Unknown' : this.get('language.name');
-    }.property('language')
+    }.property('language'),
+
+    createdAtDisplay: function() {
+        return moment(this.get('createdAt')).format('l LT');
+    }.property('createdAt')
 });
 
