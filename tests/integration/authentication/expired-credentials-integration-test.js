@@ -16,7 +16,7 @@ describe('Integration - expired credentials', function() {
     context('when server responds with invalid_token', function() {
         before(function() {
             fakeServer.respondWith('GET', 'http://localhost:3000/submissions/2', [401, { 'WWW-Authenticate': 'Bearer error="invalid_token"' }, '']);
-            visit('/');
+            visit('/auth/login');
             andThen(authenticateSession);
         });
 

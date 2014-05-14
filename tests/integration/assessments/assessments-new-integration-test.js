@@ -11,7 +11,7 @@ module('Integration - assessments/new', {
         fakeServer.start();
         fakeServer.respondWith('GET', 'http://localhost:3000/sessions/current', [200, { "Content-Type": "application/json" }, JSON.stringify({ session: { id: 1, user_id: 2 }, users: [{id: 2, name: 'User2'}]})]);
 
-        visit('/').then(authenticateSession);
+        visit('/auth/login').then(authenticateSession);
     },
     teardown: function() {
         resetApp();

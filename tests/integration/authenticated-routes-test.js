@@ -30,7 +30,7 @@ test('when session not authenticated, saves transition intent and transitions to
 test('when session is authenticated, continues transition like normal', function() {
     expect(1);
 
-    visit('/').then(authenticateSession);
+    visit('/auth/login').then(authenticateSession);
 
     visit('/submissions/new');
     andThen(function() {

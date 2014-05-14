@@ -6,7 +6,7 @@ describe('Integration - submissions', function() {
     before(function() {
         fakeServer.start();
         startAppEphemeral();
-        visit('/').then(authenticateSession);
+        visit('/auth/login').then(authenticateSession);
     });
 
     after(function() {
