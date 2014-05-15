@@ -32,6 +32,9 @@ export default Ember.ObjectController.extend(UserAwareMixin, {
         return this.get('assessments.length') > 0;
     }.property('assessments.length'),
 
+    isInactive: Ember.computed.not('active'),
+    showCloseButton: Ember.computed.and('isRecruiter', 'active'),
+
     actions: {
         closeSubmission: function() {
             var self = this;

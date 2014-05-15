@@ -1,6 +1,6 @@
 <div class="row">
     <div class="large-12 columns">
-        <h1>{{candidate.level.text}} {{language.name}} Submission</h1>
+        <h1>{{candidate.level.text}} {{language.name}} Submission {{#if isInactive}}(Closed){{/if}}</h1>
     </div>
 </div>
 
@@ -37,7 +37,7 @@
     </div>
 </div>
 {{/if}}
-{{#if isRecruiter}}
+{{#if showCloseButton}}
 <div class="row display">
     <div class="large-12 columns">
         <button class="button small radius" {{action closeSubmission}}>Close Submission</button>
@@ -72,6 +72,10 @@
             </tbody>
         </table>
 
-        {{#link-to 'assessments.new' class="button small radius success right"}}New Assessment{{/link-to}}
+        {{#if active}}
+            {{#link-to 'assessments.new' class="button small radius success right"}}New Assessment{{/link-to}}
+        {{else}}
+            <p>This submission is closed for new assessments.</p>
+        {{/if}}
     </div>
 </div>
