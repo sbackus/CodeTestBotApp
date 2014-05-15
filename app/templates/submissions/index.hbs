@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <h1>Submissions</h1>
+        <h1>Active Submissions</h1>
 
         <table width="100%">
             <thead>
@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each submission in this}}
+                {{#each submission in activeSubmissions}}
                 <tr class="submission">
                     {{#if isRecruiter}}
                     <td>{{submission.candidate.display}}</td>
@@ -40,5 +40,43 @@
 <div class="row">
     <div class="large-12 columns">
         {{#link-to 'submissions.new' classNames="button small radius success right"}}New Submission{{/link-to}}
+    </div>
+</div>
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Inactive Submissions</h1>
+
+        <table width="100%">
+            <thead>
+            <tr>
+                {{#if isRecruiter}}
+                    <th width="40%">Candidate</th>
+                    <th width="20%">Language</th>
+                    <th width="20%">Level</th>
+                    <th width="20%">Created</th>
+                {{else}}
+                    <th width="33%">Language</th>
+                    <th width="33%">Level</th>
+                    <th width="33%">Created</th>
+                {{/if}}
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each submission in inactiveSubmissions}}
+                <tr class="submission">
+                    {{#if isRecruiter}}
+                        <td>{{submission.candidate.display}}</td>
+                    {{/if}}
+                    <td>{{submission.languageDisplay}}</td>
+                    <td>{{submission.candidate.level.text}}</td>
+                    <td>{{submission.createdAtDisplay}}</td>
+                    <td>
+                        {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
     </div>
 </div>
