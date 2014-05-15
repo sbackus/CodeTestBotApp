@@ -9,6 +9,14 @@
         <h3>Details</h3>
     </div>
 </div>
+{{#if isRecruiter}}
+<div class="row display">
+    <div class="large-12 columns">
+        <label>Candidate</label>
+        <p>{{candidate.display}}</p>
+    </div>
+</div>
+{{/if}}
 <div class="row display">
     <div class="large-12 columns">
         <label>File</label>
@@ -43,19 +51,17 @@
             </tr>
             </thead>
             <tbody>
-            {{#if hasAssessments}}
-                {{#each assessment in assessments}}
-                    <tr class="assessment">
-                        <td class="assessor">{{assessment.assessor}}</td>
-                        <td class="score">{{assessment.score}}</td>
-                        <td class="created-at">{{assessment.createdAtDisplay}}</td>
-                    </tr>
-                {{/each}}
+            {{#each assessment in assessments}}
+                <tr class="assessment">
+                    <td class="assessor">{{assessment.assessor}}</td>
+                    <td class="score">{{assessment.score}}</td>
+                    <td class="created-at">{{assessment.createdAtDisplay}}</td>
+                </tr>
             {{else}}
                 <tr>
                     <td colspan="3" class="text-center">No assessments yet.</td>
                 </tr>
-            {{/if}}
+            {{/each}}
             </tbody>
         </table>
 

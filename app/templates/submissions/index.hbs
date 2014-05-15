@@ -6,20 +6,30 @@
         <table width="100%">
             <thead>
                 <tr>
+                    {{#if isRecruiter}}
+                    <th width="40%">Candidate</th>
+                    <th width="20%">Language</th>
+                    <th width="20%">Level</th>
+                    <th width="20%">Created</th>
+                    {{else}}
                     <th width="33%">Language</th>
                     <th width="33%">Level</th>
                     <th width="33%">Created</th>
+                    {{/if}}
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                {{#each}}
+                {{#each submission in this}}
                 <tr class="submission">
-                    <td>{{languageDisplay}}</td>
-                    <td>{{candidate.level.text}}</td>
-                    <td>{{createdAtDisplay}}</td>
+                    {{#if isRecruiter}}
+                    <td>{{submission.candidate.display}}</td>
+                    {{/if}}
+                    <td>{{submission.languageDisplay}}</td>
+                    <td>{{submission.candidate.level.text}}</td>
+                    <td>{{submission.createdAtDisplay}}</td>
                     <td>
-                        {{#link-to 'submission.index' this class="button tiny radius"}}View{{/link-to}}
+                        {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
                     </td>
                 </tr>
                 {{/each}}

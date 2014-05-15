@@ -1,6 +1,7 @@
+import UserAwareMixin from 'code-test-bot-app/mixins/user-aware';
 import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
 
-export default Ember.ObjectController.extend({
+export default Ember.ObjectController.extend(UserAwareMixin, {
     assessments: function() {
         var id = this.get('id');
         return this.store.filter('assessment', { submission_id: id }, function(assessment) {
