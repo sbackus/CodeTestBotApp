@@ -3,7 +3,7 @@ export default DS.Model.extend({
     email: DS.attr(),
     editable: DS.attr(),
     session: DS.hasMany('session'),
-    roles: DS.hasMany('role'),
+    roles: DS.hasMany('role', { embedded: 'always', async: true}),
 
     roleNames: Ember.computed.mapBy('roles', 'name'),
 
