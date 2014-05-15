@@ -30,5 +30,16 @@ export default Ember.ObjectController.extend(UserAwareMixin, {
 
     hasAssessments: function() {
         return this.get('assessments.length') > 0;
-    }.property('assessments.length')
+    }.property('assessments.length'),
+
+    actions: {
+        closeSubmission: function() {
+            var self = this;
+            var submission = this.get('content');
+            submission.set('active', false);
+            submission.save().then(function() {
+                self.transitionToRoute('/submissions');
+            });
+        }
+    }
 });

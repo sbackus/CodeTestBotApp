@@ -1,6 +1,7 @@
 export default DS.Model.extend({
     emailText: DS.attr(),
     zipfile: DS.attr(),
+    active: DS.attr(),
     createdAt: DS.attr(),
 
     candidate: DS.belongsTo('candidate'),
