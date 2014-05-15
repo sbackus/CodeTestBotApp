@@ -1,5 +1,5 @@
 meta.foundation-data-attribute-namespace {
-        font-family: false; }
+    font-family: false; }
 
 .f-dropdown li > a > i {
     margin-right: 8px;
@@ -7,4 +7,18 @@ meta.foundation-data-attribute-namespace {
 
 table .button {
     margin-bottom: 0;
+}
+
+table.current-roles {
+    border: none;
+}
+
+.warning {
+    color: red;
+    position: relative;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    float: left;
 }
