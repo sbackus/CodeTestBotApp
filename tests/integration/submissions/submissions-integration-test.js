@@ -35,9 +35,11 @@ describe('Integration - submissions', function() {
     });
 
     describe('detail page', function() {
-        context('when no assessments', function() {
+        context('when user has not submitted an assessment', function() {
             before(function() {
-                fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1', { assessments: [] });
+                fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1', { assessments: [
+                    { id: 2, score: 4, notes: 'notes', submission_id: 1, assessor_id: 3 }
+                ]});
             });
 
             it('shows a no assessments message', function() {
@@ -45,7 +47,7 @@ describe('Integration - submissions', function() {
 
                 visit('/submissions/1');
                 andThen(function() {
-                    shouldContainText('table.assessments', 'No assessments yet.');
+                    shouldContainText('table.assessments', 'All assessments will be visible');
                 });
             });
         });
