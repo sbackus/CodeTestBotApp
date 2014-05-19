@@ -1,3 +1,5 @@
+/* globals marked */
+
 export default DS.Model.extend({
     score: DS.attr(),
     notes: DS.attr(),
@@ -7,5 +9,10 @@ export default DS.Model.extend({
 
     createdAtDisplay: function() {
         return moment(this.get('createdAt')).format('l LT');
-    }.property('createdAt')
+    }.property('createdAt'),
+    
+    notesDisplay: function() {
+        var renderer = new marked.Renderer();
+        return marked(this.get('notes'), { renderer: renderer });
+    }.property('notes')
 });
