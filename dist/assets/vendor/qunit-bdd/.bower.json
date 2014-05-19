@@ -1,6 +1,6 @@
 {
   "name": "qunit-bdd",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "authors": [
     "Brian Donovan <donovan@squareup.com>"
   ],
@@ -19,11 +19,11 @@
     "test",
     "tests"
   ],
-  "_release": "0.4.1",
+  "_release": "0.4.2",
   "_resolution": {
     "type": "version",
-    "tag": "v0.4.1",
-    "commit": "27fcacebd733ff547e8b4323d517ed4f17344b2d"
+    "tag": "v0.4.2",
+    "commit": "7725886e519b7e4d8c5df6434ef35ecc8ab1b608"
   },
   "_source": "git://github.com/square/qunit-bdd.git",
   "_target": "~0.4.0",

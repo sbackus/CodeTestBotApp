@@ -18,6 +18,6 @@
     "commit": "6986891ae51e580290bdc24f0d280bb758b76806"
   },
   "_source": "git://github.com/simplabs/ember-simple-auth-component.git",
-  "_target": "*",
+  "_target": "0.3.1",
   "_originalSource": "simplabs/ember-simple-auth-component"
 }
