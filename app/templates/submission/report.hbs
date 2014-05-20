@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Report for {{candidate.name}}</h1>
+        <p>This report was generated from assessments by {{assessors}}.</p>
+    </div>
+</div>
+
+<div class="row display">
+    <div class="large-12 columns">
+        <label>Average Score</label>
+        <p class="score">{{averageScore}}</p>
+    </div>
+</div>
+
+<div class="row display">
+    <div class="large-12 columns report">
+        {{{report}}}
+    </div>
+</div>
+
+<!-- TODO: Remove this hack -->
+{{#each assessments}}{{/each}}

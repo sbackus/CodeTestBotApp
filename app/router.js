@@ -11,6 +11,8 @@ Router.map(function() {
         this.route('new');
 
         this.resource('submission', { path: '/:submission_id' }, function() {
+            this.route('report');
+
             this.resource('assessments', function() {
                 this.route('new');
             });

@@ -37,10 +37,15 @@
     </div>
 </div>
 {{/if}}
-{{#if showCloseButton}}
+{{#if isRecruiter}}
 <div class="row display">
     <div class="large-12 columns">
+        {{#if showCloseButton}}
         <button class="button small radius" {{action closeSubmission}}>Close Submission</button>
+        {{/if}}
+        {{#if showReportButton}}
+        {{#link-to 'submission.report' class="button small radius" }}Generate Report{{/link-to}}
+        {{/if}}
     </div>
 </div>
 {{/if}}

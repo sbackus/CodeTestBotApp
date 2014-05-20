@@ -8,3 +8,7 @@ meta.foundation-data-attribute-namespace {
 table .button {
     margin-bottom: 0;
 }
+
+div.report p {
+    margin-bottom: 0;
+}

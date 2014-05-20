@@ -1,9 +1,9 @@
-import UserAwareMixin from 'code-test-bot-app/mixins/user-aware';
+/* globals marked */
+
 import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
 
-export default Ember.ObjectController.extend(UserAwareMixin, {
-    userHasAssessment: false,
-
+export default Ember.ObjectController.extend({
+    // TODO: this is duplicated with submission/index.js
     assessments: function() {
         var id = this.get('id');
         return this.store.filter('assessment', { submission_id: id }, function(assessment) {
@@ -30,30 +30,34 @@ export default Ember.ObjectController.extend(UserAwareMixin, {
         }
     }),
 
-    hasAssessments: function() {
-        return this.get('assessments.length') > 0;
-    }.property('assessments.length'),
+    assessors: '',
+    report: '',
 
-    isInactive: Ember.computed.not('active'),
-    showCloseButton: Ember.computed.and('isRecruiter', 'active'),
-    showReportButton: Ember.computed.and('isRecruiter', 'hasAssessments'),
-    showAssessments: Ember.computed.or('userHasAssessment', 'isRecruiter'),
-
-    updateUserHasAssessment: function() {
+    updateAssessors: function() {
         var self = this;
         self.get('assessments').then(function(assessments) {
-            self.set('userHasAssessment', assessments.findBy('assessor.id', self.get('user.id')) !== undefined);
+            var assessors = assessments.map(function(assessment) {
+                return assessment.get('assessor.name') + ' (score: ' + assessment.get('score') + ')';
+            });
+            self.set('assessors', assessors.join(', '));
         });
     }.observes('assessments.[]'),
 
-    actions: {
-        closeSubmission: function() {
-            var self = this;
-            var submission = this.get('content');
-            submission.set('active', false);
-            submission.save().then(function() {
-                self.transitionToRoute('/submissions');
-            });
-        }
-    }
+    updateReport: function() {
+        var self = this;
+        self.get('assessments').then(function(assessments) {
+            var report = assessments.reduce(function(previousValue, item, index) {
+                if (previousValue !== '') {
+                    previousValue += '\n\n';
+                }
+
+                return previousValue + '**Developer ' + (index + 1) + ' wrote:**\n\n' + item.get('notes');
+            }, '');
+
+            var renderer = new marked.Renderer();
+            report = marked(report, { renderer: renderer });
+
+            self.set('report', report);
+        });
+    }.observes('assessments.[]')
 });
