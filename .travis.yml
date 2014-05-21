@@ -4,3 +4,5 @@ node_js:
 before_script:
   - npm install -g bower
   - bower install
+notifications:
+  slack: cyrusinnovation:Z2W8lBY3jScFOXf5I8QzDy6x
