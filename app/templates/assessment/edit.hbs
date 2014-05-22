@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Edit Assessment</h1>
+
+        <fieldset>
+            <legend>Assessment</legend>
+
+            <div class="row">
+                <div class="large-2 columns">
+                    <label>Score (0-5)
+                        {{input value=score class="score"}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Notes
+                        {{textarea value=notes rows="6" class="notes"}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <button class="button small radius success right create" {{bind-attr disabled=isFormIncomplete}} {{action editAssessment}}>Submit</button>
+                </div>
+            </div>
+        </fieldset>
+
+        {{#link-to 'submission.index' submission class="button small radius"}}Back to submission{{/link-to}}
+    </div>
+</div>

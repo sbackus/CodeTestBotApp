@@ -19,9 +19,12 @@ Router.map(function() {
         });
     });
 
-    this.resource('assessment', { path: '/assessments/:assessment_id' }, function() {
-
+    this.resource('assessments', function() {
+        this.resource('assessment', { path: '/:assessment_id' }, function() {
+            this.route('edit');
+        });
     });
+
 
     this.resource('users', function() {
         this.resource('user', { path: '/:user_id' }, function() {
