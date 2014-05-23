@@ -7,8 +7,7 @@ moduleFor('controller:submissions/new', 'Submissions New Controller', {
         controller = this.subject();
         submission = Ember.Object.create({emailText: 'text', zipfile: 'file', save: function(){}});
         model = Ember.Object.create({
-            submission: submission,
-            candidates: []
+            submission: submission
         });
         controller.set('model', model);
         controller.set('candidateName', 'Bob');

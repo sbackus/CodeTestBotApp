@@ -27,6 +27,6 @@ export default AuthenticatedRoute.extend({
         var submission = this.controllerFor('submission').get('model');
         model.set('assessment.submission', submission);
         controller.set('selectedLanguage', submission.get('language'));
-        controller.set('selectedLevel', submission.get('candidate.level'));
+        controller.set('selectedLevel', submission.get('level'));
     }
 });

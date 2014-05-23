@@ -1,9 +1,3 @@
-function findOrCreate(find, create, thisArg) {
-    return find.call(thisArg).then(function(result) {
-        return Ember.isNone(result) ? create.call(thisArg) : result;
-    });
-}
-
 export default Ember.ObjectController.extend({
     candidateName: null,
     candidateEmail: null,
@@ -28,21 +22,11 @@ export default Ember.ObjectController.extend({
         });
     },
 
-    createCandidate: function() {
-        var candidate = this.store.createRecord('candidate', {
-            name: this.get('candidateName'),
-            email: this.get('candidateEmail'),
-            level: this.get('selectedLevel')
-        });
-
-        return candidate.save().then(function() {
-            return candidate;
-        });
-    },
-
-    createSubmission: function(candidate) {
+    createSubmission: function() {
         var submission = this.get('submission');
-        submission.set('candidate', candidate);
+        submission.set('candidateName', this.get('candidateName'));
+        submission.set('candidateEmail', this.get('candidateEmail'));
+        submission.set('level', this.get('selectedLevel'));
         submission.set('language', this.get('selectedLanguage'));
         return submission.save();
     },
@@ -50,11 +34,10 @@ export default Ember.ObjectController.extend({
     actions: {
         submit: function() {
             var self = this;
-            findOrCreate(self.findCandidate, self.createCandidate, self)
-                .then(self.createSubmission.bind(self))
-                .then(function() {
-                    self.transitionToRoute('/submissions');
-                });
+            self.createSubmission() .then(function() {
+                self.transitionToRoute('/submissions');
+            });
         }
     }
 });
+

@@ -23,10 +23,10 @@
                 {{#each submission in activeSubmissions}}
                 <tr class="submission">
                     {{#if isRecruiter}}
-                    <td>{{submission.candidate.display}}</td>
+                    <td>{{submission.candidateDisplay}}</td>
                     {{/if}}
                     <td>{{submission.languageDisplay}}</td>
-                    <td>{{submission.candidate.level.text}}</td>
+                    <td>{{submission.level.text}}</td>
                     <td>{{submission.createdAtDisplay}}</td>
                     <td>
                         {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
@@ -66,10 +66,10 @@
             {{#each submission in inactiveSubmissions}}
                 <tr class="submission">
                     {{#if isRecruiter}}
-                        <td>{{submission.candidate.display}}</td>
+                        <td>{{submission.candidateDisplay}}</td>
                     {{/if}}
                     <td>{{submission.languageDisplay}}</td>
-                    <td>{{submission.candidate.level.text}}</td>
+                    <td>{{submission.level.text}}</td>
                     <td>{{submission.createdAtDisplay}}</td>
                     <td>
                         {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}

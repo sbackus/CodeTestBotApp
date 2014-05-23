@@ -31,36 +31,15 @@ defineServerFixture('/levels', { levels: [
 defineServerFixture('/levels/1', { level: { id: 1, text: 'Junior' } });
 defineServerFixture('/levels/2', { level: { id: 2, text: 'Mid' } });
 
-defineServerFixture('/candidates', {
-    candidates: [
-        { id: 1, name: 'Candidate1', level_id: 1 },
-        { id: 2, name: 'Candidate2', level_id: 2 }
-    ],
-    levels: [
-        { id: 1, text: 'Junior'},
-        { id: 2, text: 'Mid'}
-    ]
-});
-defineServerFixture('/candidates/1', {
-    candidate: { id: 1, name: 'Candidate1', level_id: 1 },
-    levels: [{ id: 1, text: 'Junior'}]
-});
-defineServerFixture('/candidates/2', {
-    candidate: { id: 2, name: 'Candidate2', level_id: 2 },
-    levels: [{ id: 2, text: 'Mid'}]
-});
-
 defineServerFixture('/submissions/1', {
     submission: {
         id: 1,
+        candidate_email: 'Candidate1',
+        level_id: 1,
         email_text: 'some text',
         zipfile: 'url to file',
         language_id: 1,
-        candidate_id: 1
     },
-    candidates: [
-        { id: 1, name: 'Candidate1', level_id: 1}
-    ],
     levels: [
         { id: 1, text: 'Junior' }
     ],
