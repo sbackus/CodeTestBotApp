@@ -6,14 +6,14 @@ export default Ember.ObjectController.extend({
             var promises = {
                 assessment: this.store.find('assessment', assessment_id)
             };
-            var self = this;
+            //var self = this;
             var score = this.get('score');
             var notes = this.get('notes');
 
             Ember.RSVP.hash(promises).then(function(hash) {
                 var assessment = hash.assessment;
                 assessment.score = score;
-                assessment.notes = notes
+                assessment.notes = notes;
                 assessment.save();
             });
         }

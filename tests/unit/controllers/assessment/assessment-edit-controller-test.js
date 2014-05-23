@@ -36,7 +36,7 @@ describe('Assessment Edit Controller', testFor('controller:assessment/edit', fun
                     find.withArgs('assessment').returns(assessment);
                     assessment.reopen({
                         save: sinon.spy()
-                    })
+                    });
 
                     controller.send('editAssessment');
                 });
