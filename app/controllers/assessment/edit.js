@@ -7,13 +7,14 @@ export default Ember.ObjectController.extend({
                 assessment: this.store.find('assessment', assessment_id)
             };
             var self = this;
+            var score = this.get('score');
+            var notes = this.get('notes');
 
             Ember.RSVP.hash(promises).then(function(hash) {
                 var assessment = hash.assessment;
-                return assessment.save().then(function() {
-                    self.transitionToRoute('submission.index', assessment.get('submission'));
-                });
-
+                assessment.score = score;
+                assessment.notes = notes
+                assessment.save();
             });
         }
     }
