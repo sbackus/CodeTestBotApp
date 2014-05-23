@@ -86,9 +86,12 @@
         </table>
 
         {{#if active}}
-            {{#link-to 'assessments.new' class="button small radius success right"}}New Assessment{{/link-to}}
+            {{#if userCanCreateAssessment}}
+                {{#link-to 'assessments.new' class="button small radius success right"}}New Assessment{{/link-to}}
+            {{/if}}
         {{else}}
             <p>This submission is closed for new assessments.</p>
         {{/if}}
     </div>
 </div>
+
