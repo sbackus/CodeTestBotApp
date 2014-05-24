@@ -1,7 +1,7 @@
-import UserAwareMixin from 'code-test-bot-app/mixins/user-aware';
+import UserAwareControllerMixin from 'code-test-bot-app/mixins/user-aware-controller';
 import { cumulativeMovingAverage, roundToNearestHalf } from 'code-test-bot-app/utils/math';
 
-export default Ember.ObjectController.extend(UserAwareMixin, {
+export default Ember.ObjectController.extend(UserAwareControllerMixin, {
     userHasAssessment: false,
 
     assessments: function() {

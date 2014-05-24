@@ -8,6 +8,7 @@ export default {
         var options = {
             authorizerFactory: 'authorizer:oauth2-bearer',
             authenticationRoute: 'auth.login',
+            routeAfterAuthentication: 'secured.index',
             crossOriginWhitelist: [ENV.SERVER_HOST]
         };
 

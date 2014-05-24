@@ -4,6 +4,7 @@ var WWWAuthenticateHeader = Ember.Object.extend({
     rawHeader: null,
     error: null,
 
+
     init: function() {
         var self = this;
         var parts = split.call(this.get('rawHeader'), ' ');
@@ -11,7 +12,7 @@ var WWWAuthenticateHeader = Ember.Object.extend({
         parts.forEach(function(pair) {
             pair = split.call(pair, '=');
             if (pair[0] === 'error') {
-                self.set('error', pair[1]);
+                self.set('error', pair[1].replace(',', ''));
             }
         });
     },

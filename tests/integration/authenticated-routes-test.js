@@ -6,7 +6,6 @@ import fakeServer from '../helpers/fake-server';
 module('Authenticated Route', {
     setup: function() {
         fakeServer.start();
-        fakeServer.respondWith('GET', 'http://localhost:3000/sessions/current', [200, { "Content-Type": "application/json" }, JSON.stringify({ session: { id: 1, user_id: 2 }, users: [{id: 2, name: 'User2'}]})]);
         startAppEphemeral();
     },
     teardown: function() {
@@ -30,6 +29,7 @@ test('when session not authenticated, saves transition intent and transitions to
 test('when session is authenticated, continues transition like normal', function() {
     expect(1);
 
+    fakeServer.respondWith('GET', 'http://localhost:3000/sessions/current', [200, { "Content-Type": "application/json" }, JSON.stringify({ session: { id: 1, user_id: 2 }, users: [{id: 2, name: 'User2'}]})]);
     visit('/').then(authenticateSession);
 
     visit('/submissions/new');

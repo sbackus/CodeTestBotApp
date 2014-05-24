@@ -1,6 +1,4 @@
-import UserAwareRoute from 'code-test-bot-app/routes/user-aware-route';
-
-export default UserAwareRoute.extend({
+export default Ember.Route.extend({
     model: function() {
         return Ember.Object.create({
             submission: this.store.createRecord('submission'),

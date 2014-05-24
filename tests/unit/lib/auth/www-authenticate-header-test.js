@@ -7,7 +7,7 @@ describe('WWWAuthenticateHeader', function() {
                 return {
                     status: 401,
                     getResponseHeader: function() {
-                        return 'Bearer error="invalid_token"';
+                        return 'Bearer error="invalid_token", error_description="Access Token Expired"';
                     }
                 };
             });
@@ -49,7 +49,7 @@ describe('WWWAuthenticateHeader', function() {
             return WWWAuthenticateHeader.parse({
                 status: 401,
                 getResponseHeader: function() {
-                    return 'Bearer error="invalid_token"';
+                    return 'Bearer error="invalid_token", error_description="Access Token Expired"';
                 }
             });
         });

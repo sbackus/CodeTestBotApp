@@ -1,6 +1,4 @@
-import UserAwareRoute from 'code-test-bot-app/routes/user-aware-route';
-
-export default UserAwareRoute.extend({
+export default Ember.Route.extend({
     beforeModel: function(transition, queryParams) {
         var self = this;
         self._super(transition, queryParams);

@@ -11,6 +11,7 @@ export default Ember.Mixin.create({
     }.property('user.roles.[]'),
 
     hasRole: function(roleName) {
-        return this.get('user.roleNames').contains(roleName);
+        var roles = this.get('user.roleNames');
+        return !Ember.isNone(roles) && roles.contains(roleName);
     }
 });
