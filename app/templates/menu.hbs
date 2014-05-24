@@ -1,0 +1,12 @@
+<section class="top-bar-section">
+<ul class="right">
+    <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
+    <li class="divider"></li>
+    <li class="has-dropdown profile-dropdown">
+        <a>{{user.name}} <img {{bind-attr src=user.imageUrl}} /></a>
+        <ul class="dropdown">
+            <li><a {{action 'invalidateSession' }}><i class="fa fa-sign-out"></i> Logout</a></li>
+        </ul>
+    </li>
+</ul>
+</section>

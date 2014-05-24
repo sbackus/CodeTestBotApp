@@ -1,6 +1,6 @@
-import AuthenticatedRoute from 'code-test-bot-app/routes/authenticated-route';
+import UserAwareRoute from 'code-test-bot-app/routes/user-aware-route';
 
-export default AuthenticatedRoute.extend({
+export default UserAwareRoute.extend({
     model: function() {
         return Ember.Object.create({
             submission: this.store.createRecord('submission'),

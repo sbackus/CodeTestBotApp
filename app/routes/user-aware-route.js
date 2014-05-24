@@ -13,6 +13,16 @@ export default AuthenticatedRoute.extend({
 
     setupController: function(controller, model) {
         this._super(controller, model);
+        this.controllerFor('menuController').set('user', this.get('user'));
         controller.set('user', this.get('user'));
+    },
+
+    renderTemplate: function() {
+      this._super();
+      this.render('menu', {
+        into: 'application',
+        outlet: 'menu',
+        controller: 'menuController'
+      });
     }
 });

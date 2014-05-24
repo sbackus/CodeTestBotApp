@@ -17,7 +17,7 @@ module('Users Index Integration', {
 });
 
 test('displays a list of users', function() {
-    expect(1);
+    expect(2);
 
     visit('/users');
     andThen(function() {
@@ -26,7 +26,8 @@ test('displays a list of users', function() {
             names.push($(this).text());
         });
 
-        deepEqual(names, ['User1', 'User2']);
+        equal(names[0], 'User2');
+        equal(names[1], 'User1');
     });
 });
 

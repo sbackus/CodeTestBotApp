@@ -13,6 +13,7 @@ var app = new EmberApp({
 // Use this to add additional libraries to the generated output files.
 app.import('vendor/ember-data/ember-data.js');
 app.import('vendor/foundation/foundation.js');
+app.import('vendor/modernizr/modernizr.js');
 app.import('vendor/ember-simple-auth/ember-simple-auth.js');
 app.import('vendor/ember-simple-auth/ember-simple-auth-oauth2.js');
 app.import('vendor/momentjs/moment.js');
