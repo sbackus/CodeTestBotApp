@@ -2,6 +2,13 @@
 <ul class="right">
     <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
     <li class="divider"></li>
+    <li class="has-dropdown">
+        <a>Admin</a>
+        <ul class="dropdown">
+          <li>{{#link-to 'users.index'}}<i class="fa fa-user"></i> Users{{/link-to}}
+        </ul>
+    </lI>
+    <li class="divider"></li>
     <li class="has-dropdown profile-dropdown">
         <a>{{user.name}} <img {{bind-attr src=user.imageUrl}} /></a>
         <ul class="dropdown">

@@ -1,8 +1,7 @@
 import AuthenticatedRoute from 'code-test-bot-app/routes/authenticated-route';
+import UserAwareMixin from 'code-test-bot-app/mixins/user-aware';
 
-export default AuthenticatedRoute.extend({
-    user: null,
-
+export default AuthenticatedRoute.extend(UserAwareMixin, {
     beforeModel: function(transition, queryParams) {
         var self = this;
         self._super(transition, queryParams);

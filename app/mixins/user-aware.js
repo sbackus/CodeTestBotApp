@@ -6,6 +6,10 @@ export default Ember.Mixin.create({
         return this.hasRole('Recruiter') || this.hasRole('Administrator');
     }.property('user.roles.[]'),
 
+    isAdmin: function() {
+        return this.hasRole('Administrator');
+    }.property('user.roles.[]'),
+
     hasRole: function(roleName) {
         return this.get('user.roleNames').contains(roleName);
     }
