@@ -1,5 +1,5 @@
 import UserAwareMixin from 'code-test-bot-app/mixins/user-aware';
-import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
+import { cumulativeMovingAverage, roundToNearestHalf } from 'code-test-bot-app/utils/math';
 
 export default Ember.ObjectController.extend(UserAwareMixin, {
     userHasAssessment: false,
@@ -11,7 +11,7 @@ export default Ember.ObjectController.extend(UserAwareMixin, {
         });
     }.property('id'),
 
-    averageScore: Ember.reduceComputed('assessments', {
+    rawAverageScore: Ember.reduceComputed('assessments', {
         initialValue: 0,
         initialize: function(initialValue, changeMeta, instanceMeta) {
             instanceMeta.count = 0;
@@ -29,6 +29,10 @@ export default Ember.ObjectController.extend(UserAwareMixin, {
             return avg;
         }
     }),
+
+    averageScore: function() {
+        return roundToNearestHalf(this.get('rawAverageScore'));
+    }.property('rawAverageScore'),
 
     hasAssessments: function() {
         return this.get('assessments.length') > 0;

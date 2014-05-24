@@ -4,5 +4,9 @@ function cumulativeMovingAverage(accumulatedValue, value, count, removing) {
     return ((multiple * value) + count * accumulatedValue) / (count + multiple);
 }
 
-export { cumulativeMovingAverage };
-export default { cumulativeMovingAverage: cumulativeMovingAverage };
+function roundToNearestHalf(value) {
+    return Math.round(value * 2) / 2;
+}
+
+export { cumulativeMovingAverage, roundToNearestHalf };
+export default { cumulativeMovingAverage: cumulativeMovingAverage, roundToNearestHalf: roundToNearestHalf };

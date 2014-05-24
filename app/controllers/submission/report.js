@@ -1,6 +1,6 @@
 /* globals marked */
 
-import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
+import { cumulativeMovingAverage, roundToNearestHalf } from 'code-test-bot-app/utils/math';
 
 export default Ember.ObjectController.extend({
     // TODO: this is duplicated with submission/index.js
@@ -11,7 +11,7 @@ export default Ember.ObjectController.extend({
         });
     }.property('id'),
 
-    averageScore: Ember.reduceComputed('assessments', {
+    rawAverageScore: Ember.reduceComputed('assessments', {
         initialValue: 0,
         initialize: function(initialValue, changeMeta, instanceMeta) {
             instanceMeta.count = 0;
@@ -29,6 +29,10 @@ export default Ember.ObjectController.extend({
             return avg;
         }
     }),
+
+    averageScore: function() {
+        return roundToNearestHalf(this.get('rawAverageScore'));
+    }.property('rawAverageScore'),
 
     assessors: '',
     report: '',
