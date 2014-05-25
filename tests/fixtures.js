@@ -8,12 +8,31 @@ defineFixture(ENV.NEW_SESSION_URL + '?redirect_uri=' + ENV.APP_HOST + '/auth/com
     textStatus: 'success'
 });
 
-defineServerFixture('/users', { users: [
-    { id: 1, name: 'User1', editable: true },
-    { id: 2, name: 'User2', editable: false }
-]});
-defineServerFixture('/users/1', { user: { id: 1, name: 'User1', editable: true } });
-defineServerFixture('/users/2', { user: { id: 2, name: 'User2', editable: false } });
+defineServerFixture('/users', { 
+    users: [
+        { id: 1, name: 'User1', editable: true, role_id: 1 },
+        { id: 2, name: 'User2', editable: false, role_id: 3 }
+    ],
+    roles: [
+        { id: 1, name: 'Assessor' },
+        { id: 3, name: 'Administrator' }
+    ]
+});
+defineServerFixture('/users/1', { 
+    user: { id: 1, name: 'User1', editable: true, role_id: 1 },
+    roles: [{ id: 1, name: 'Assessor' }]
+});
+defineServerFixture('/users/2', { 
+    user: { id: 2, name: 'User2', editable: false, role_id: 3 },
+    roles: [{ id: 3, name: 'Administrator' }]
+});
+
+defineServerFixture('/roles/1', {
+    role: { id: 1, name: 'Assessor' }
+});
+defineServerFixture('/roles/3', {
+    role: { id: 3, name: 'Administrator' }
+});
 
 defineServerFixture('/languages', { languages: [
     { id: 1, name: 'Java' },
@@ -31,6 +50,9 @@ defineServerFixture('/levels', { levels: [
 defineServerFixture('/levels/1', { level: { id: 1, text: 'Junior' } });
 defineServerFixture('/levels/2', { level: { id: 2, text: 'Mid' } });
 
+defineServerFixture('/submissions', {
+    submissions: [{id: 1}]
+});
 defineServerFixture('/submissions/1', {
     submission: {
         id: 1,
@@ -46,6 +68,13 @@ defineServerFixture('/submissions/1', {
     languages: [
         { id: 1, name: 'Java' }
     ]
+});
+
+defineServerFixture('/assessors/2', {
+    assessor: { id: 2, name: 'Assessor2' }
+});
+defineServerFixture('/assessors/3', {
+    assessor: { id: 3, name: 'Assessor3' }
 });
 
 function defineServerFixture(path, response, options) {

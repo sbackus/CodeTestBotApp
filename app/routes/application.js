@@ -19,6 +19,14 @@ export default Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin, {
 
     actions: {
         error: function(err) {
+            if (typeof err === 'string') {
+                this.controller.set('error', err);
+                this.render('error', {
+                    into: 'application'
+                });
+                return false;
+            }
+
             var xhr = err.jqXHR ? err.jqXHR : err;
             if (xhr.status === 401) {
                 this.handleUnauthorized(xhr);

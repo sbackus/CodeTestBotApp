@@ -29,8 +29,12 @@ test('when session not authenticated, saves transition intent and transitions to
 test('when session is authenticated, continues transition like normal', function() {
     expect(1);
 
-    fakeServer.respondWith('GET', 'http://localhost:3000/sessions/current', [200, { "Content-Type": "application/json" }, JSON.stringify({ session: { id: 1, user_id: 2 }, users: [{id: 2, name: 'User2'}]})]);
-    visit('/').then(authenticateSession);
+    fakeServer.respondWith('GET', 'http://localhost:3000/sessions/current', [200, { "Content-Type": "application/json" }, JSON.stringify({ 
+        session: { id: 1, user_id: 1 }, 
+        users: [{id: 1, name: 'User1', role_id: 1}],
+        roles: [{id: 1, name: 'Assessor'}]
+    })]);
+    visit('/auth/login').then(authenticateSession);
 
     visit('/submissions/new');
     andThen(function() {

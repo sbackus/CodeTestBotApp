@@ -28,7 +28,7 @@ Router.map(function() {
             });
         });
         
-        this.resource('admin', { path: '/' }, function() {
+        this.resource('admin', function() {
             this.resource('users', function() {
                 this.resource('user', { path: '/:user_id' }, function() {
                     this.route('edit');
