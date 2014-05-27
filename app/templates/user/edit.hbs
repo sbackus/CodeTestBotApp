@@ -1,0 +1,38 @@
+<div class="row">
+        <div class="large-12 columns">
+            <h1>Edit {{name}} </h1>
+        </div>
+    </div>
+<div class="row">
+        <div id="role-warning" class="warning"></div>
+        <div class="large-12 columns">
+            <table class="user-roles">
+                <thead>
+            <tr>
+                    <th class="large-3">Name</th>
+                    <th class="large-3">Email</th>
+                    <th class="large-3">Current Role</th>
+                    <th class="large-3">Change Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+                <tbody>
+            <tr>
+                    <td class="name">{{name}}</td>
+                    <td class="email">{{email}}</td>
+                    <td>{{role.name}}</td>
+                    <td class="role">
+                        {{view Ember.Select
+                    id="role-select"
+                    prompt="Please select a role"
+
+                    contentBinding="all_roles"
+                    optionValuePath="content.id"
+                    optionLabelPath="content.name"
+                    selection=selectedRole}}
+                    <td><button id="add-role" class="button tiny" {{action 'changeRole'}}>change role</button></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
