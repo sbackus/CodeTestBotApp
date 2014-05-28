@@ -10,6 +10,10 @@ export default DS.Model.extend({
     createdAtDisplay: function() {
         return moment(this.get('createdAt')).format('l LT');
     }.property('createdAt'),
+    createdAtMoment: function() {
+        return moment(this.get('createdAt'));
+    }.property('createdAtMoment'),
+
     
     notesDisplay: function() {
         var renderer = new marked.Renderer();

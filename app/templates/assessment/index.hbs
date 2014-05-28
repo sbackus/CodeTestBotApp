@@ -11,10 +11,10 @@
         <label>Notes</label>
         <p>{{{notesDisplay}}}</p>
 
-        {{#if isInactive}}<p>This assessment is closed for edits</p>{{/if}}
-        {{#if canEdit }}
-            {{#link-to 'assessment.edit' this class="button small radius"}}Edit{{/link-to}}
-        {{/if}}
+        <label>Created at</label>
+        <p>{{createdAtDisplay}}</p>
+
+        {{#if canEdit}}{{#link-to 'assessment.edit' this class="button small radius"}}Edit{{/link-to}} {{/if}}
 
         {{#link-to 'submission.index' submission class="button small radius"}}Back to submission{{/link-to}}
     </div>
