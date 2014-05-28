@@ -6,6 +6,7 @@ import { randomElement } from '../../../helpers/utils';
 var controller, createdAt, assessment, model, user, assessor;
 moduleFor('controller:assessment/index', 'Assessment Index Controller', {
     needs: ['controller:application'],
+
     setup: function() {
         controller = this.subject();
         createdAt = moment();
@@ -25,8 +26,8 @@ moduleFor('controller:assessment/index', 'Assessment Index Controller', {
         });
 
         assessor = Ember.Object.create({
-            id: 2,
-            name: 'Kate'
+            id: 1,
+            name: 'Bob'
         });
 
         controller.set('model', model);
@@ -36,8 +37,40 @@ moduleFor('controller:assessment/index', 'Assessment Index Controller', {
     }
 });
 
-test('createdAtRecently is true', function() {
+test('createdAtRecently is true for assessment created one minute ago', function() {
+    createdAt = createdAt.minutes(-1);
     equal(controller.get('assessmentCreatedRecently'), true);
 });
+
+test('createdAtRecently is false for assessment created yesterday', function() {
+    createdAt = createdAt.days(-1);
+    equal(controller.get('assessmentCreatedRecently'), false);
+});
+
+test('ownAssessment is true when user and assessor have the same id', function() {
+    equal(controller.get('ownAssessment'), true);
+});
+
+test('ownAssessment is false when user and assessor have different ids', function() {
+    assessor.id = 5;
+    equal(controller.get('ownAssessment'), false);
+});
+
+test('canEdit is true when user and assessor have the same id and assessment was created recently', function() {
+    createdAt = createdAt.minutes(-1);
+    equal(controller.get('canEdit'), true);
+});
+
+test('canEdit is false when user and assessor have the same id and assessment was not created recently', function() {
+    createdAt = createdAt.days(-1);
+    equal(controller.get('canEdit'), false);
+});
+
+test('canEdit is false when user and assessor do not have the same id and assessment was created recently', function() {
+    createdAt = createdAt.minutes(-1);
+    assessor.id = 5;
+    equal(controller.get('canEdit'), false);
+});
+
 
 
