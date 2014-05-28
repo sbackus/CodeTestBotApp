@@ -2,6 +2,8 @@
     <div class="large-12 columns">
         <h1>Edit Assessment</h1>
 
+    {{#if notOwnAssessment}} <p>You can't edit this assessment as you didn't create it.</p> {{/if}}
+    {{#if ownAssessment}}
         <fieldset>
             <legend>Assessment</legend>
 
@@ -25,7 +27,7 @@
                 </div>
             </div>
         </fieldset>
-
+    {{/if}}
         {{#link-to 'submission.index' submission class="button small radius"}}Back to submission{{/link-to}}
     </div>
 </div>
