@@ -4,8 +4,8 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
 
     ownAssessment: function(){
         return this.get('user.id') === this.get('assessor.id');
-    }.property('ownAssessment'),
-    notOwnAssessment: Ember.computed.not('ownAssessment'),
+    }.property('ownAssessment').volatile(),
+    notOwnAssessment: Ember.computed.not('ownAssessment').volatile(),
     actions: {
         editAssessment: function() {
             var assessment_id = this.get('id');
