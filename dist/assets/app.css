@@ -12,3 +12,7 @@ table .button {
 div.report h5 {
     font-weight: bold;
 }
+
+.profile-dropdown a > img {
+  margin-top: -4px;
+}
