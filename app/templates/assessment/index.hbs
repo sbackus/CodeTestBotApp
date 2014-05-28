@@ -11,6 +11,7 @@
         <label>Notes</label>
         <p>{{{notesDisplay}}}</p>
 
+        {{#if isInactive}}<p>This assessment is closed for edits</p>{{/if}}
         {{#if canEdit }}
             {{#link-to 'assessment.edit' this class="button small radius"}}Edit{{/link-to}}
         {{/if}}
