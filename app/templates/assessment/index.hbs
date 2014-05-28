@@ -11,7 +11,10 @@
         <label>Notes</label>
         <p>{{{notesDisplay}}}</p>
 
-        {{#link-to 'assessment.edit' this class="button small radius"}}Edit{{/link-to}}
+        <label>Created at</label>
+        <p>{{createdAtDisplay}}</p>
+
+        {{#if canEdit}}{{#link-to 'assessment.edit' this class="button small radius"}}Edit{{/link-to}} {{/if}}
 
         {{#link-to 'submission.index' submission class="button small radius"}}Back to submission{{/link-to}}
     </div>
