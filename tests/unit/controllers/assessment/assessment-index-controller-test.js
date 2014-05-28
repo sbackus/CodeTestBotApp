@@ -1,13 +1,12 @@
 /* globals moment */
 
-import testFor from '../../../helpers/test-for';
+import { moduleFor, test } from 'ember-qunit';
 import { randomElement } from '../../../helpers/utils';
 
-describe('Assessment Index Controller', testFor('controller:assessment/index', function() {
-    var controller;
-    var model, assessment, createdAt, user, assessor;
-
-    before(function() {
+var controller, createdAt, assessment, model, user, assessor;
+moduleFor('controller:assessment/index', 'Assessment Index Controller', {
+    needs: ['controller:application'],
+    setup: function() {
         controller = this.subject();
         createdAt = moment();
         assessment = Ember.Object.create({
@@ -34,15 +33,11 @@ describe('Assessment Index Controller', testFor('controller:assessment/index', f
         controller.set('createdAtMoment', createdAt);
         controller.set('user', user);
         controller.set('assessor', assessor);
-    });
+    }
+});
 
-    describe('#assessmentCreatedRecently', function() {
+test('createdAtRecently is true', function() {
+    equal(controller.get('assessmentCreatedRecently'), true);
+});
 
-        context('assessment created yesterday', function() {
-            it('assessment was not created recently', function() {
-                createdAt = createdAt.day(-1);
-                expect(controller.get('assessmentCreatedRecently')).to.be.false();
-            });
-        });
-    });
-}));
+
