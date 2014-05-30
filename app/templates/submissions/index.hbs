@@ -61,7 +61,7 @@
                 {{else}}
                     <th width="33%">Language</th>
                     <th width="33%">Level</th>
-                    <th width="33%">Created</th>
+                    <th width="33%">Closed At</th>
                 {{/if}}
                 <th></th>
             </tr>
@@ -74,7 +74,7 @@
                     {{/if}}
                     <td>{{submission.languageDisplay}}</td>
                     <td>{{submission.level.text}}</td>
-                    <td>{{submission.createdAtDisplay}}</td>
+                    <td>{{submission.updatedAtDisplay}}</td>
                     <td>
                         {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
                     </td>

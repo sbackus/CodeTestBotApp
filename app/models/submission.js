@@ -5,6 +5,7 @@ export default DS.Model.extend({
     zipfile: DS.attr(),
     active: DS.attr(),
     createdAt: DS.attr(),
+    updatedAt: DS.attr(),
 
     level: DS.belongsTo('level'),
     language: DS.belongsTo('language'),
@@ -20,6 +21,10 @@ export default DS.Model.extend({
 
     createdAtDisplay: function() {
         return moment(this.get('createdAt')).format('l LT');
-    }.property('createdAt')
+    }.property('createdAt'),
+    updatedAtDisplay: function() {
+        return moment(this.get('updatedAt')).format('l LT');
+    }.property('updatedAt')
+
 });
 
