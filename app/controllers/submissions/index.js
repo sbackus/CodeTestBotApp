@@ -1,4 +1,20 @@
 export default Ember.ArrayController.extend({
-    activeSubmissions: Ember.computed.filterBy('content', 'active', true),
-    inactiveSubmissions: Ember.computed.filterBy('content', 'active', false)
+    sortPropertiesActive: ['createdAtDisplay:desc'],
+    sortPropertiesInactive: ['updatedAtDisplay:desc'],
+    sortAscending: false,
+
+    sortedActiveSubmissions: Ember.computed.sort('model', 'sortPropertiesActive'),
+    activeSubmissions: Ember.computed.filterBy('sortedActiveSubmissions', 'active', true),
+    sortedInactiveSubmissions: Ember.computed.sort('model', 'sortPropertiesInactive'),
+    inactiveSubmissions: Ember.computed.filterBy('sortedInactiveSubmissions', 'active', false),
+
+    actions: {
+        activeSortBy: function (sortPropertiesActive) {
+            this.set('sortPropertiesActive', [sortPropertiesActive]);
+        },
+
+        inactiveSortBy: function (sortPropertiesInactive) {
+            this.set('sortPropertiesInactive', [sortPropertiesInactive]);
+        }
+    }
 });

@@ -7,14 +7,14 @@
             <thead>
                 <tr>
                     {{#if isRecruiter}}
-                    <th width="40%">Candidate</th>
-                    <th width="20%">Language</th>
-                    <th width="20%">Level</th>
-                    <th width="20%">Created</th>
+                    <th width="40%">Candidate <button class="button tiny radius" {{action "activeSortBy" "candidateDisplay:asc"}}>Sort by candidate name</button></th>
+                    <th width="20%">Language <button class="button tiny radius" {{action "activeSortBy" "languageDisplay:asc, createdAtDisplay:desc"}}>Sort by language</button></th>
+                    <th width="20%">Level <button class="button tiny radius" {{action "activeSortBy" "level.text:asc, createdAtDisplay:desc"}}>Sort by level</button></th>
+                    <th width="20%">Created <button class="button tiny radius" {{action "activeSortBy" "createdAtDisplay:desc"}}>Sort by created date</button></th>
                     {{else}}
-                    <th width="33%">Language</th>
-                    <th width="33%">Level</th>
-                    <th width="33%">Created</th>
+                    <th width="33%">Language <button class="button tiny radius" {{action "activeSortBy" "languageDisplay:asc, createdAtDisplay:desc"}}>Sort by language</button></th>
+                    <th width="33%">Level <button class="button tiny radius" {{action "activeSortBy" "level.text:asc, createdAtDisplay:desc"}}>Sort by level</button></th>
+                    <th width="33%">Created <button class="button tiny radius" {{action "activeSortBy" "createdAtDisplay:desc"}}>Sort by created date</button></th>
                     {{/if}}
                     <th></th>
                 </tr>
@@ -54,14 +54,14 @@
             <thead>
             <tr>
                 {{#if isRecruiter}}
-                    <th width="40%">Candidate</th>
-                    <th width="20%">Language</th>
-                    <th width="20%">Level</th>
-                    <th width="20%">Created</th>
+                    <th width="40%">Candidate <button class="button tiny radius" {{action "inactiveSortBy" "candidateDisplay:asc"}}>Sort by candidate name</button></th>
+                    <th width="20%">Language <button class="button tiny radius" {{action "inactiveSortBy" "languageDisplay:asc, updatedAtDisplay:desc"}}>Sort by language</button></th>
+                    <th width="20%">Level <button class="button tiny radius" {{action "inactiveSortBy" "level.text:asc, updatedAtDisplay:desc"}}>Sort by level</button><</th>
+                    <th width="20%">Closed At <button class="button tiny radius" {{action "inactiveSortBy" "updatedAtDisplay:desc"}}>Sort by closed at</button></th>
                 {{else}}
-                    <th width="33%">Language</th>
-                    <th width="33%">Level</th>
-                    <th width="33%">Closed At</th>
+                    <th width="33%">Language <button class="button tiny radius" {{action "inactiveSortBy" "languageDisplay:asc, updatedAtDisplay:desc"}}>Sort by language</button></th>
+                    <th width="33%">Level <button class="button tiny radius" {{action "inactiveSortBy" "level.text:asc, updatedAtDisplay:desc"}}>Sort by level</button></th>
+                    <th width="33%">Closed At <button class="button tiny radius" {{action "inactiveSortBy" "updatedAtDisplay:desc"}}>Sort by closed at</button></th>
                 {{/if}}
                 <th></th>
             </tr>
