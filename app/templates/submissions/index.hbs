@@ -54,14 +54,16 @@
             <thead>
             <tr>
                 {{#if isRecruiter}}
-                    <th width="40%">Candidate <button class="button tiny radius" {{action "inactiveSortBy" "candidateDisplay:asc"}}>Sort by candidate name</button></th>
+                    <th width="10%">Average Score</th>
+                    <th width="30%">Candidate <button class="button tiny radius" {{action "inactiveSortBy" "candidateDisplay:asc"}}>Sort by candidate name</button></th>
                     <th width="20%">Language <button class="button tiny radius" {{action "inactiveSortBy" "languageDisplay:asc, updatedAtDisplay:desc"}}>Sort by language</button></th>
                     <th width="20%">Level <button class="button tiny radius" {{action "inactiveSortBy" "level.text:asc, updatedAtDisplay:desc"}}>Sort by level</button><</th>
                     <th width="20%">Closed At <button class="button tiny radius" {{action "inactiveSortBy" "updatedAtDisplay:desc"}}>Sort by closed at</button></th>
                 {{else}}
-                    <th width="33%">Language <button class="button tiny radius" {{action "inactiveSortBy" "languageDisplay:asc, updatedAtDisplay:desc"}}>Sort by language</button></th>
-                    <th width="33%">Level <button class="button tiny radius" {{action "inactiveSortBy" "level.text:asc, updatedAtDisplay:desc"}}>Sort by level</button></th>
-                    <th width="33%">Closed At <button class="button tiny radius" {{action "inactiveSortBy" "updatedAtDisplay:desc"}}>Sort by closed at</button></th>
+                    <th width="10%">Average Score</th>
+                    <th width="30%">Language <button class="button tiny radius" {{action "inactiveSortBy" "languageDisplay:asc, updatedAtDisplay:desc"}}>Sort by language</button></th>
+                    <th width="30%">Level <button class="button tiny radius" {{action "inactiveSortBy" "level.text:asc, updatedAtDisplay:desc"}}>Sort by level</button></th>
+                    <th width="30%">Closed At <button class="button tiny radius" {{action "inactiveSortBy" "updatedAtDisplay:desc"}}>Sort by closed at</button></th>
                 {{/if}}
                 <th></th>
             </tr>
@@ -72,6 +74,7 @@
                     {{#if isRecruiter}}
                         <td>{{submission.candidateDisplay}}</td>
                     {{/if}}
+                    <td>{{submission.averageScore}}</td>
                     <td>{{submission.languageDisplay}}</td>
                     <td>{{submission.level.text}}</td>
                     <td>{{submission.updatedAtDisplay}}</td>

@@ -6,6 +6,7 @@ export default DS.Model.extend({
     active: DS.attr(),
     createdAt: DS.attr(),
     updatedAt: DS.attr(),
+    averageScore: DS.attr(),
 
     level: DS.belongsTo('level'),
     language: DS.belongsTo('language'),

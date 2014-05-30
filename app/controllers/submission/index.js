@@ -56,6 +56,7 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
             var self = this;
             var submission = this.get('content');
             submission.set('active', false);
+            submission.set('averageScore', this.get('averageScore'));
             submission.save().then(function() {
                 self.transitionToRoute('/submissions');
             });
