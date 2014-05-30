@@ -9,12 +9,12 @@
                     {{#if isRecruiter}}
                     <th width="40%"> <a href="#" {{action "activeSortBy" "candidateDisplay:asc"}} >Candidate</a></th>
                     <th width="20%"> <a href="#" {{action "activeSortBy" "languageDisplay:asc, createdAtDisplay:desc"}}>Language</a></th>
-                    <th width="20%"><a href="#" {{action "activeSortBy" "level.text:asc, createdAtDisplay:desc"}}>Sort by level</a></th>
-                    <th width="20%"><a href="#"{{action "activeSortBy" "createdAtDisplay:desc"}}>Sort by created date</a></th>
+                    <th width="20%"><a href="#" {{action "activeSortBy" "level.text:asc, createdAtDisplay:desc"}}>Level</a></th>
+                    <th width="20%"><a href="#"{{action "activeSortBy" "createdAtDisplay:desc"}}>Created date</a></th>
                     {{else}}
                         <th width="33%"> <a href="#" {{action "activeSortBy" "languageDisplay:asc, createdAtDisplay:desc"}}>Language</a></th>
-                        <th width="33%"><a href="#" {{action "activeSortBy" "level.text:asc, createdAtDisplay:desc"}}>Sort by level</a></th>
-                        <th width="33%"><a href="#"{{action "activeSortBy" "createdAtDisplay:desc"}}>Sort by created date</a></th>
+                        <th width="33%"><a href="#" {{action "activeSortBy" "level.text:asc, createdAtDisplay:desc"}}>Level</a></th>
+                        <th width="33%"><a href="#"{{action "activeSortBy" "createdAtDisplay:desc"}}>Created date</a></th>
                     {{/if}}
                     <th></th>
                 </tr>
