@@ -27,13 +27,8 @@ describe('User Edit Controller', testFor('controller:user/edit', function() {
             role: role
         });
 
-        model = Ember.Object.create({
-            role: role
-        });
-
-        controller.set('model', model);
+        controller.set('content', user);
         controller.set('selectedRole', new_role);
-        controller.set('id', 1);
     });
 
     describe('#changeRole', function() {
