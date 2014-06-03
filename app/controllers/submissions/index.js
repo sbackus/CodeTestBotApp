@@ -9,6 +9,10 @@ export default Ember.ArrayController.extend({
     inactiveSubmissions: Ember.computed.filterBy('sortedInactiveSubmissions', 'active', false),
 
     actions: {
+        delete: function(submission){
+            submission.deleteRecord();
+            submission.save();
+        },
         activeSortBy: function (sortPropertiesActive) {
             this.set('sortPropertiesActive', [sortPropertiesActive]);
         },
