@@ -1,4 +1,6 @@
-export default Ember.ArrayController.extend({
+import UserAwareControllerMixin from 'code-test-bot-app/mixins/user-aware-controller';
+
+export default Ember.ArrayController.extend(UserAwareControllerMixin, {
     sortPropertiesActive: ['createdAtDisplay:desc'],
     sortPropertiesInactive: ['updatedAtDisplay:desc'],
     sortAscending: false,
