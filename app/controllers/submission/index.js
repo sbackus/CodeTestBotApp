@@ -7,7 +7,7 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
     assessments: function() {
         var id = this.get('id');
         return this.store.filter('assessment', { submission_id: id }, function(assessment) {
-            return assessment.get('submission.id') === id;
+            return assessment.get('submission.id') === id && assessment.get('published');
         });
     }.property('id'),
 

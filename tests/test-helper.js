@@ -32,6 +32,6 @@ window.exists = exists;
 window.equal = equal;
 window.strictEqual = strictEqual;
 
-QUnit.config.testTimeout = 2000;
+QUnit.config.testTimeout = 5000;
 
 import './fixtures';

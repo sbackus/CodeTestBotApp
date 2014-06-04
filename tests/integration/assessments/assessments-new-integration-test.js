@@ -26,6 +26,8 @@ module('Integration - assessments/new', {
 test('displays a form to create an assessment', function() {
     expect(4);
 
+    fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1&assessor_id=1&include_unpublished=true', { assessments: []});
+
     visit('/submissions/1/assessments/new');
     andThen(function() {
         equal(find('select.language').val(), 1);
@@ -38,8 +40,10 @@ test('displays a form to create an assessment', function() {
 test('saves the assessment and redirects to the submission details page', function() {
     expect(1);
 
-    fakeServer.jsonSuccess('POST', 'http://localhost:3000/assessments', {});
-    fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1', { assessments: []});
+    fakeServer.jsonSuccess('POST', 'http://localhost:3000/assessments', { assessment: { id: 33, score: 1, notes: 'notes', submission_id: 1 } });
+    fakeServer.jsonSuccess('PUT', 'http://localhost:3000/assessments/33', { assessment: { id: 33, score: 1, notes: 'notes', submission_id: 1 } });
+    fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1&assessor_id=1&include_unpublished=true', { assessments: []});
+    fakeServer.jsonSuccess('GET', 'https://localhost:3000/assessments?submission_id=1', { assessments: [] });
 
     visit('/submissions/1/assessments/new');
     fillIn('input.score', '1');

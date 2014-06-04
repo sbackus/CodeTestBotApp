@@ -59,8 +59,8 @@ describe('Integration - submissions', function() {
         context('when assessments exist', function() {
             before(function() {
                 fakeServer.jsonSuccess('GET', 'http://localhost:3000/assessments?submission_id=1', { assessments: [
-                    { id: 1, score: 2, notes: 'notes', submission_id: 1, assessor_id: 2 },
-                    { id: 2, score: 4, notes: 'notes', submission_id: 1, assessor_id: 3 }
+                    { id: 1, score: 2, notes: 'notes', submission_id: 1, assessor_id: 2, published: true },
+                    { id: 2, score: 4, notes: 'notes', submission_id: 1, assessor_id: 3, published: true }
                 ]});
             });
 

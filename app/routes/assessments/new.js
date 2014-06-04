@@ -1,29 +1,29 @@
-export default Ember.Route.extend({
-    beforeModel: function(transition, queryParams) {
+import UserAwareRouteMixin from 'code-test-bot-app/mixins/user-aware-route';
+
+export default Ember.Route.extend(UserAwareRouteMixin, {
+    model: function() {
         var self = this;
-        self._super(transition, queryParams);
-        return self.store.find('session', 'current').then(function(session) {
-            var user = session.get('user');
-            var assessor = user.toJSON({ includeId: true });
-            transition.data.assessor = self.store.push('assessor', assessor);
+        var submission = self.modelFor('submission');
+        var assessor = this.modelFor('secured').get('user');
+        return self.store.find('assessment', { submission_id: submission.get('id'), assessor_id: assessor.get('id'), include_unpublished: true }).then(function(assessments) {
+            if (assessments.get('length') === 0) {
+                var model = self.store.createRecord('assessment');
+                model.set('published', false);
+                model.set('languages', self.store.find('language'));
+                model.set('levels', self.store.find('level'));
+                model.set('assessor', self.store.push('assessor', assessor.toJSON({ includeId: true })));
+                return model;
+            } else {
+                return assessments.get('firstObject');
+            }
         });
     },
-    model: function(params, transition) {
-        var model = Ember.Object.create({
-            assessment: this.store.createRecord('assessment'),
-            languages: this.store.find('language'),
-            levels: this.store.find('level')
-        });
 
-        model.set('assessment.assessor', transition.data.assessor);
-
-        return model;
-    },
     setupController: function(controller, model) {
         this._super(controller, model);
 
         var submission = this.controllerFor('submission').get('model');
-        model.set('assessment.submission', submission);
+        model.set('submission', submission);
         controller.set('selectedLanguage', submission.get('language'));
         controller.set('selectedLevel', submission.get('level'));
     }

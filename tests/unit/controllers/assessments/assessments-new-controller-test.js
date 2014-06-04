@@ -13,11 +13,7 @@ describe('Assessments New Controller', testFor('controller:assessments/new', fun
             notes: 'some notes'
         });
 
-        model = Ember.Object.create({
-            assessment: assessment
-        });
-
-        controller.set('model', model);
+        controller.set('model', assessment);
     });
 
     describe('#isFormIncomplete', function() {

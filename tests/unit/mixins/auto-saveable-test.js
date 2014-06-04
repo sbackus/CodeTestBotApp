@@ -57,7 +57,7 @@ describe('AutoSaveable', function() {
         it('calls setProperties on the proxied content with the buffered properties', function() {
             instance.tryAutoSave();
 
-            ok(content.setProperties.calledWith({ testProperty: 'testValue' }), 'should call setProperties with buffered properties');
+            ok(content.setProperties.calledWithMatch({ testProperty: 'testValue' }), 'should call setProperties with buffered properties');
         });
 
         it('debounces a call to save', function() {
