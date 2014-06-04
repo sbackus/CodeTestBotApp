@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="large-12 columns">
-        <h1>Active Submissions</h1>
+        <h1>Active Submissions </h1>
 
         <table width="100%">
             <thead>
@@ -17,6 +17,7 @@
                         <th width="33%"><a href="#"{{action "activeSortBy" "createdAtDisplay:desc"}}>Created date</a></th>
                     {{/if}}
                     <th></th>
+                    {{#if isRecruiter}}<th></th>{{/if}}
                 </tr>
             </thead>
             <tbody>
@@ -28,9 +29,8 @@
                     <td>{{submission.languageDisplay}}</td>
                     <td>{{submission.level.text}}</td>
                     <td>{{submission.createdAtDisplay}}</td>
-                    <td>
-                        {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
-                    </td>
+                    <td>{{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}</td>
+                {{#if isRecruiter}} <td> <a href="#" {{action "delete" submission}} class="button tiny radius alert">delete</a> </td>{{/if}}
                 </tr>
                 {{else}}
                 <tr>
@@ -41,11 +41,13 @@
         </table>
     </div>
 </div>
+{{#if isRecruiter}}
 <div class="row">
     <div class="large-12 columns">
         {{#link-to 'submissions.new' classNames="button small radius success right"}}New Submission{{/link-to}}
     </div>
 </div>
+{{/if}}
 <div class="row">
     <div class="large-12 columns">
         <h1>Inactive Submissions</h1>
@@ -66,6 +68,7 @@
                     <th width="30%"><a href="#" {{action "inactiveSortBy" "updatedAtDisplay:desc"}}>Closed At</a></th>
                 {{/if}}
                 <th></th>
+                {{#if isRecruiter}}<th></th>{{/if}}
             </tr>
             </thead>
             <tbody>
@@ -81,6 +84,7 @@
                     <td>
                         {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
                     </td>
+                    {{#if isRecruiter}}<td> <a href="#" {{action "delete" submission}} class="button tiny radius alert">delete</a> </td>{{/if}}
                 </tr>
             {{else}}
                 <tr>
