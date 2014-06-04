@@ -5,6 +5,7 @@ export default Ember.TextField.extend({
     attributeBindings: ['name'],
     type: 'file',
     file: null,
+    fileName: null,
     change: function(event) {
         var self = this;
         var reader = new FileReader();
@@ -13,7 +14,7 @@ export default Ember.TextField.extend({
                 self.set('file', event.target.result);
             });
         };
-
+        self.set('fileName', event.target.files[0].name);
         return reader.readAsDataURL(event.target.files[0]);
     }
 });
