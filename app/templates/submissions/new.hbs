@@ -40,7 +40,7 @@
             {{textarea value=submission.emailText rows="6" placeholder="Email text or instructions" id="email-text"}}
         </label>
         <label>Select the zipfile provided by the candidate.
-            {{view 'file-upload' name="zipfile" file=submission.zipfile id="zipfile"}}
+            {{view 'file-upload' name="zipfile" file=submission.zipfile id="zipfile" fileName=submission.fileName }}
         </label>
         <input id="submit-button" type="button" value="Create New Codetest!" class="button small radius success" {{bind-attr disabled=isFormIncomplete}} {{action submit}}/>
     </div>

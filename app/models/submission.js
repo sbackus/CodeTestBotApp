@@ -3,6 +3,7 @@ export default DS.Model.extend({
     candidateEmail: DS.attr(),
     emailText: DS.attr(),
     zipfile: DS.attr(),
+    fileName: DS.attr(),
     active: DS.attr(),
     createdAt: DS.attr(),
     updatedAt: DS.attr(),
