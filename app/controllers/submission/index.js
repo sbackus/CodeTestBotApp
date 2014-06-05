@@ -2,16 +2,19 @@ import UserAwareControllerMixin from 'code-test-bot-app/mixins/user-aware-contro
 import { cumulativeMovingAverage, roundToNearestHalf } from 'code-test-bot-app/utils/math';
 
 export default Ember.ObjectController.extend(UserAwareControllerMixin, {
-    userHasAssessment: false,
+    userHasPublishedAssessment: false,
 
     assessments: function() {
         var id = this.get('id');
-        return this.store.filter('assessment', { submission_id: id }, function(assessment) {
-            return assessment.get('submission.id') === id && assessment.get('published');
+        return this.store.filter('assessment', { submission_id: id, include_unpublished: true }, function(assessment) {
+            return assessment.get('submission.id') === id;
         });
     }.property('id'),
 
-    rawAverageScore: Ember.reduceComputed('assessments', {
+    publishedAssessments: Ember.computed.filterBy('assessments', 'published', true),
+    unpublishedAssessments: Ember.computed.filterBy('assessments', 'published', false),
+
+    rawAverageScore: Ember.reduceComputed('publishedAssessments', {
         initialValue: 0,
         initialize: function(initialValue, changeMeta, instanceMeta) {
             instanceMeta.count = 0;
@@ -34,22 +37,30 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
         return roundToNearestHalf(this.get('rawAverageScore'));
     }.property('rawAverageScore'),
 
-    hasAssessments: function() {
-        return this.get('assessments.length') > 0;
-    }.property('assessments.length'),
+    hasPublishedAssessments: function() {
+        return this.get('publishedAssessments.length') > 0;
+    }.property('publishedAssessments.length'),
 
     isInactive: Ember.computed.not('active'),
     showCloseButton: Ember.computed.and('isRecruiter', 'active'),
-    showReportButton: Ember.computed.and('isRecruiter', 'hasAssessments'),
-    showAssessments: Ember.computed.or('userHasAssessment', 'isRecruiter'),
-    userCanCreateAssessment: Ember.computed.not('userHasAssessment'),
+    showReportButton: Ember.computed.and('isRecruiter', 'hasPublishedAssessments'),
+    showAssessments: Ember.computed.or('userHasPublishedAssessment', 'isRecruiter'),
+    userCanCreateAssessment: Ember.computed.not('userHasPublishedAssessment'),
 
     updateUserHasAssessment: function() {
-        var self = this;
-        self.get('assessments').then(function(assessments) {
-            self.set('userHasAssessment', assessments.findBy('assessor.id', self.get('user.id')) !== undefined);
-        });
-    }.observes('assessments.[]'),
+        var assessments = this.get('publishedAssessments');
+        this.set('userHasPublishedAssessment', assessments.findBy('assessor.id', this.get('user.id')) !== undefined);
+    }.observes('publishedAssessments.[]'),
+
+    newAssessmentButtonText: function() {
+        var userId = this.get('user.id');
+        var assessments = this.get('unpublishedAssessments');
+            if (assessments.findBy('assessor.id', userId) !== undefined) {
+                return 'Resume Assessment';
+            } else {
+                return 'New Assessment';
+            }
+    }.property('assessments.[]'),
 
     actions: {
         closeSubmission: function() {

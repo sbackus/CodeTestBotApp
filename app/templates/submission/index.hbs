@@ -29,7 +29,7 @@
         <p>{{emailText}}</p>
     </div>
 </div>
-{{#if hasAssessments}}
+{{#if hasPublishedAssessments}}
 <div class="row display">
     <div class="large-12 columns">
         <label>Average Score</label>
@@ -65,11 +65,11 @@
             </thead>
             <tbody>
             {{#if showAssessments}}
-            {{#each assessment in assessments}}
+            {{#each assessment in publishedAssessments}}
                 <tr class="assessment">
                     <td class="assessor">{{assessment.assessor}}</td>
                     <td class="score">{{assessment.score}}</td>
-                    <td class="created-at">{{assessment.createdAtDisplay}}</td>
+                    <td class="created-at">{{assessment.updatedAtDisplay}}</td>
                     <td>
                         {{#link-to 'assessment.index' assessment class="button tiny radius"}}View{{/link-to}}
                     </td>
@@ -87,7 +87,7 @@
 
         {{#if active}}
             {{#if userCanCreateAssessment}}
-                {{#link-to 'assessments.new' class="button small radius success right"}}New Assessment{{/link-to}}
+                {{#link-to 'assessments.new' class="button small radius success right"}}{{newAssessmentButtonText}}{{/link-to}}
             {{/if}}
         {{else}}
             <p>This submission is closed for new assessments.</p>
