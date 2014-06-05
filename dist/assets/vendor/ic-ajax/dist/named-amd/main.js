@@ -20,7 +20,7 @@ define("ic-ajax",
 
     function request() {
       return raw.apply(null, arguments).then(function(result) {
-        return JSON.parse(JSON.stringify(result.response));
+        return result.response;
       }, null, 'ic-ajax: unwrap raw ajax response');
     }
 
@@ -76,7 +76,6 @@ define("ic-ajax",
         var fixture = lookupFixture(settings.url);
         if (fixture) {
           if (fixture.textStatus === 'success') {
-              console.log('Resolving ' + settings.url + ' with: ', fixture.response);
             return Ember.run(null, resolve, fixture);
           } else {
             return Ember.run(null, reject, fixture);
