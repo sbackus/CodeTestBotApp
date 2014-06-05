@@ -2,6 +2,7 @@
 <ul class="right">
     <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
     <li class="divider"></li>
+    {{#if isAdmin}}
     <li class="has-dropdown">
         <a>Admin</a>
         <ul class="dropdown">
@@ -9,6 +10,7 @@
         </ul>
     </lI>
     <li class="divider"></li>
+    {{/if}}
     <li class="has-dropdown profile-dropdown">
         <a>{{user.name}} <img {{bind-attr src=user.imageUrl}} /></a>
         <ul class="dropdown">
