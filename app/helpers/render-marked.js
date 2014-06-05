@@ -1,3 +1,4 @@
+/* globals marked */
 
 export default Ember.Handlebars.makeBoundHelper(function(raw) {
     var renderer = new marked.Renderer();

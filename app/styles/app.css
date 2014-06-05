@@ -27,3 +27,12 @@ div.report h5 {
     bottom: 0;
     margin-bottom: 0;
 }
+
+.tabs-content {
+    margin-bottom: 0;
+}
+
+#preview {
+    border: 1px solid #ADADAD;
+    margin-bottom: 1.5em;
+}
