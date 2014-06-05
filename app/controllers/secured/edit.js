@@ -2,7 +2,10 @@
 export default Ember.ObjectController.extend({
     actions: {
         save: function() {
-            this.get('content').save();
+            var self = this;
+            self.get('content').save().then(function() {
+                self.transitionToRoute('/');
+            });
         }
     }
 });
