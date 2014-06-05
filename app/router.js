@@ -10,6 +10,8 @@ Router.map(function() {
     });
 
     this.resource('secured', { path: '/' }, function() {
+        this.route('edit');
+
         this.resource('submissions', function() {
             this.route('new');
 
