@@ -19,5 +19,10 @@
 ####to run the tests:
 - ```ember test```
 
-####to build for distribution:
-- ```ember build```
+####to deploy:
+
+- ```git remote add heroku git@heroku.com:codetestbot.git```
+- ```./build-dist.sh```
+- ```git commit the dist files that have appeared```
+- ```git push origin master```
+- ```git push heroku master```
