@@ -16,3 +16,7 @@ div.report h5 {
 .profile-dropdown a > img {
   margin-top: -4px;
 }
+
+.inline-with-button {
+    padding-top: 0.8125em;
+}
