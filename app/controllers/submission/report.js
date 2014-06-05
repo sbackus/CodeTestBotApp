@@ -11,7 +11,9 @@ export default Ember.ObjectController.extend({
         });
     }.property('id'),
 
-    rawAverageScore: Ember.reduceComputed('assessments', {
+    publishedAssessments: Ember.computed.filterBy('assessments', 'published', true),
+
+    rawAverageScore: Ember.reduceComputed('publishedAssessments', {
         initialValue: 0,
         initialize: function(initialValue, changeMeta, instanceMeta) {
             instanceMeta.count = 0;
@@ -38,30 +40,26 @@ export default Ember.ObjectController.extend({
     report: '',
 
     updateAssessors: function() {
-        var self = this;
-        self.get('assessments').then(function(assessments) {
-            var assessors = assessments.map(function(assessment) {
-                return assessment.get('assessor.name') + ' (score: ' + assessment.get('score') + ')';
-            });
-            self.set('assessors', assessors.join(', '));
+        var assessments = this.get('publishedAssessments');
+        var assessors = assessments.map(function(assessment) {
+            return assessment.get('assessor.name') + ' (score: ' + assessment.get('score') + ')';
         });
-    }.observes('assessments.[]'),
+        this.set('assessors', assessors.join(', '));
+    }.observes('publishedAssessments.[]'),
 
     updateReport: function() {
-        var self = this;
-        self.get('assessments').then(function(assessments) {
-            var report = assessments.reduce(function(previousValue, item, index) {
-                if (previousValue !== '') {
-                    previousValue += '\n\n';
-                }
+        var assessments = this.get('publishedAssessments');
+        var report = assessments.reduce(function(previousValue, item, index) {
+            if (previousValue !== '') {
+                previousValue += '\n\n';
+            }
 
-                return previousValue + '##### Developer ' + (index + 1) + ' wrote:\n\n' + item.get('notes');
-            }, '');
+            return previousValue + '##### Developer ' + (index + 1) + ' wrote:\n\n' + item.get('notes');
+        }, '');
 
-            var renderer = new marked.Renderer();
-            report = marked(report, { renderer: renderer });
+        var renderer = new marked.Renderer();
+        report = marked(report, { renderer: renderer });
 
-            self.set('report', report);
-        });
-    }.observes('assessments.[]')
+        this.set('report', report);
+    }.observes('publishedAssessments.[]')
 });

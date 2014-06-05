@@ -38,14 +38,14 @@
             <div class="row">
                 <div class="large-2 columns">
                     <label>File
-                        <a class="button small radius success zipfile" {{bind-attr href=assessment.submission.zipfile}}><i class="fi-download"></i>&nbsp;Download</a>
+                        <a class="button small radius success zipfile" {{bind-attr href=submission.zipfile}}><i class="fi-download"></i>&nbsp;Download</a>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="large-12 columns">
                     <label>Email Text
-                        {{textarea value=assessment.submission.emailText rows="6" disabled="disabled" class="email-text"}}
+                        {{textarea value=submission.emailText rows="6" disabled="disabled" class="email-text"}}
                     </label>
                 </div>
             </div>
@@ -57,20 +57,23 @@
             <div class="row">
                 <div class="large-2 columns">
                     <label>Score (0-5)
-                        {{input value=assessment.score class="score"}}
+                        {{input value=score class="score"}}
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="large-12 columns">
                     <label>Notes
-                        {{textarea value=assessment.notes rows="6" class="notes"}}
+                        {{textarea value=notes rows="6" class="notes"}}
                     </label>
                 </div>
             </div>
             <div class="row">
-                <div class="large-12 columns">
-                    <button class="button small radius success right create" {{bind-attr disabled=isFormIncomplete}} {{action createAssessment}}>Submit</button>
+                <div class="large-2 large-offset-8 columns">
+                    {{view 'saving-indicator'}}
+                </div>
+                <div class="large-2 columns">
+                    <button class="button small expand radius success create" {{bind-attr disabled=isFormIncomplete}} {{action createAssessment}}>Submit</button>
                 </div>
             </div>
         </fieldset>
