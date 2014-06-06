@@ -1,0 +1,4 @@
+<a {{bind-attr href=view.mainLink}} class="button radius tiny split">View <span {{bind-attr data-dropdown=view.dropdownId}}></span></a>
+<ul {{bind-attr id=view.dropdownId}} class="f-dropdown" data-dropdown-content>
+    <li><a {{action 'delete' view.context}}><i class="fa fa-times"></i> Delete</a></li>
+</ul>

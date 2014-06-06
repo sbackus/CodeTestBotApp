@@ -17,7 +17,6 @@
                         <th width="33%"><a href="#"{{action "activeSortBy" "createdAtDisplay:desc"}}>Created date</a></th>
                     {{/if}}
                     <th></th>
-                    {{#if isRecruiter}}<th></th>{{/if}}
                 </tr>
             </thead>
             <tbody>
@@ -29,8 +28,13 @@
                     <td>{{submission.languageDisplay}}</td>
                     <td>{{submission.level.text}}</td>
                     <td>{{submission.createdAtDisplay}}</td>
-                    <td>{{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}</td>
-                {{#if isRecruiter}} <td> <a href="#" {{action "delete" submission}} class="button tiny radius alert">delete</a> </td>{{/if}}
+                    <td>
+                    {{#if isRecruiter}}
+                        {{view 'submission/action-menu' context=submission}}
+                    {{else}}
+                        {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
+                    {{/if}}
+                    </td>
                 </tr>
                 {{else}}
                 <tr>
