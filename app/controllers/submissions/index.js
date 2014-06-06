@@ -11,10 +11,10 @@ export default Ember.ArrayController.extend(UserAwareControllerMixin, {
     inactiveSubmissions: Ember.computed.filterBy('sortedInactiveSubmissions', 'active', false),
 
     actions: {
-        delete: function(submission){
-            submission.deleteRecord();
-            submission.save();
+        confirmDelete: function(submission){
+           return this.send('openModal', 'submission/confirm-delete', submission);
         },
+
         activeSortBy: function (sortPropertiesActive) {
             this.set('sortPropertiesActive', [sortPropertiesActive]);
         },

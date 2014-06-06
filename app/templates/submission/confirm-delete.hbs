@@ -1,0 +1,14 @@
+{{#modal-dialog action='closeModal'}}
+<div class="row">
+    <div class="large-12 columns">
+        <h2>Confirm Delete</h2>
+        Are you sure you want to delete the {{level.text}} {{language.name}} submission from {{candidateDisplay}}?
+    </div>
+</div>
+<div class="row">
+    <div class="large-3 large-offset-9 columns">
+        <button class="button radius small right" style="margin-left: 4px;" {{action 'closeModal'}}>Cancel</button>
+        <button class="button alert radius small right" {{action 'deleteSubmission'}}>Delete</button>
+    </div>
+</div>
+{{/modal-dialog}}
