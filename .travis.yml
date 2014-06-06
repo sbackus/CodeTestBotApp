@@ -5,4 +5,5 @@ before_script:
   - npm install -g bower
   - bower install
 notifications:
-  slack: cyrusinnovation:Z2W8lBY3jScFOXf5I8QzDy6x
+  slack:
+    secure: "StJoLxNQfMA+dFq8lCYQEb4FGloELHZatrfQA5m0fkdIJSPohvXsVV9WLb0pKQewvxjblkZPj9VbPz2/sJeI44lcTm0KcQg1Pf6S/5zMepMpeCnawHOt77aZ5l0o0/2fSo67FVR7zV7esgb3eyBGtd6qAU/EBlNVivJf1ze7awI="
