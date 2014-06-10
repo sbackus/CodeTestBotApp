@@ -6,19 +6,13 @@
     "qunit": "~1.12.0",
     "ember-qunit": "~0.1.5",
     "ember": "1.6.0-beta.3",
-    "ember-data": "1.0.0-beta.7",
-    "ember-resolver": "stefanpenner/ember-jj-abrams-resolver#master",
+    "ember-data": "1.0.0-beta.8",
+    "ember-resolver": "~0.1.1",
     "ic-ajax": "~1.x",
     "loader": "stefanpenner/loader.js#1.0.0",
-    "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.1",
-    "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.1",
-    "ember-simple-auth": "simplabs/ember-simple-auth-component#0.3.1",
-    "momentjs": "~2.6.0",
-    "marked": "~0.3.2",
-    "modernizr": "~2.8.2"
-  },
-  "devDependencies": {
-    "sinonjs": "~1.9.1",
-    "qunit-bdd": "~0.4.0"
+    "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.2",
+    "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
+    "ember-qunit-notifications": "^0.0.1",
+    "ember-cli-test-loader": "rjackson/ember-cli-test-loader#0.0.2"
   }
 }

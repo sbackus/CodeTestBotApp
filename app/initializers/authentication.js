@@ -9,7 +9,7 @@ export default {
             authorizerFactory: 'authorizer:oauth2-bearer',
             authenticationRoute: 'auth.login',
             routeAfterAuthentication: 'secured.index',
-            crossOriginWhitelist: [ENV.SERVER_HOST]
+            crossOriginWhitelist: [CodeTestBotAppENV.SERVER_HOST]
         };
 
         options = Ember.merge({ storeFactory: application.get('storeFactory') }, options);

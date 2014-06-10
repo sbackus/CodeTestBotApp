@@ -8,7 +8,7 @@
     "Em": true,
     "DS": true,
     "$": true,
-    "ENV": true,
+    "CodeTestBotAppENV": true,
     "module": true,
     "QUnit": true,
     "require": true,

@@ -7,11 +7,23 @@ var mergeTrees = require('broccoli-merge-trees');
 var app = new EmberApp({
     name: require('./package.json').name,
 
+    minifyCSS: {
+        enabled: true,
+        options: {}
+    },
+
     getEnvJSON: require('./config/environment')
 });
 
 // Use this to add additional libraries to the generated output files.
-app.import('vendor/ember-data/ember-data.js');
+app.import({
+    development: 'vendor/ember-data/ember-data.js',
+    production: 'vendor/ember-data/ember-data.prod.js'
+}, {
+    'ember-data': [
+        'default'
+    ]
+});
 app.import('vendor/foundation/foundation.js');
 app.import('vendor/modernizr/modernizr.js');
 app.import('vendor/ember-simple-auth/ember-simple-auth.js');

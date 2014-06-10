@@ -1,3 +1,3 @@
 export default DS.ActiveModelAdapter.extend({
-    host: ENV.SERVER_HOST
+    host: CodeTestBotAppENV.SERVER_HOST
 });

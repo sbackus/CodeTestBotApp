@@ -1,6 +1,7 @@
 import { startAppEphemeral, resetApp } from '../../helpers/start-app';
 import { authenticateSession } from '../../helpers/authentication';
 import fakeServer from '../../helpers/fake-server';
+import '../../helpers/dom-helpers';
 
 describe('Integration - submissions', function() {
     before(function() {

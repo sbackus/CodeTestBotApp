@@ -11,16 +11,19 @@
 
     <link rel="stylesheet" href="assets/normalize.css">
     <link rel="stylesheet" href="assets/foundation.min.css">
-    <link rel="stylesheet" href="assets/app.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/code-test-bot-app.css">
   </head>
   <body>
     <script>
-      window.ENV = {"baseURL":"/","FEATURES":{"query-params-new":true},"APP":{},"SERVER_HOST":"https://codetestbotserver.herokuapp.com","APP_HOST":"https://codetestbot.herokuapp.com","NEW_SESSION_URL":"https://codetestbotserver.herokuapp.com/sessions/new"};
+      window.CodeTestBotAppENV = {"baseURL":"/","FEATURES":{"query-params-new":true},"APP":{"LOG_RESOLVER":true,"LOG_ACTIVE_GENERATION":true,"LOG_MODULE_RESOLVER":true,"LOG_VIEW_LOOKUPS":true},"SERVER_HOST":"http://localhost:3000","APP_HOST":"http://localhost:4200","NEW_SESSION_URL":"http://localhost:3000/sessions/new"};
+      window.EmberENV = window.CodeTestBotAppENV.EmberENV;
     </script>
-    <script src="assets/app.js"></script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/code-test-bot-app.js"></script>
     <script>
-      window.CodeTestBotApp = require('code-test-bot-app/app')['default'].create(ENV.APP);
+      window.CodeTestBotApp = require('code-test-bot-app/app')['default'].create(CodeTestBotAppENV.APP);
     </script>
   </body>
 </html>

@@ -1,8 +1,8 @@
-/* globals ENV */
+/* globals CodeTestBotAppENV */
 
 import { defineFixture } from 'ic-ajax';
 
-defineFixture(ENV.NEW_SESSION_URL + '?redirect_uri=' + ENV.APP_HOST + '/auth/complete', {
+defineFixture(CodeTestBotAppENV.NEW_SESSION_URL + '?redirect_uri=' + CodeTestBotAppENV.APP_HOST + '/auth/complete', {
     response: {auth_uri: 'testing_uri'},
     jqXHR: {},
     textStatus: 'success'
@@ -81,7 +81,7 @@ function defineServerFixture(path, response, options) {
     options = Ember.merge({ jqXHR: {}, textStatus: 'success' }, options);
     options.response = response;
 
-    defineFixture(ENV.SERVER_HOST + path, options);
+    defineFixture(CodeTestBotAppENV.SERVER_HOST + path, options);
 }
 
 export {
