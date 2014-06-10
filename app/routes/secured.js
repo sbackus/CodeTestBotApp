@@ -14,6 +14,10 @@ export default ApplicationRoute.extend(Ember.SimpleAuth.AuthenticatedRouteMixin,
         var self = this;
         return self.store.find('session', 'current').then(function(session) {
             self.set('user', session.get('user'));
+            Raven.setUser({
+                id: self.get('user.id'),
+                email: self.get('user.email')
+            });
             return Ember.Object.create({
                 user: self.get('user')
             });

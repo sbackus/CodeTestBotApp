@@ -1,11 +1,17 @@
 import WWWAuthenticateHeader from 'code-test-bot-app/lib/auth/www-authenticate-header';
 
+var CONTINUE_ERROR_HANDLING = true;
+var STOP_ERROR_HANDLING = false;
+
 export default Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin, {
     handleUnauthorized: function(xhr) {
         var header = WWWAuthenticateHeader.parse(xhr);
         if (header.get('isEmpty') || header.get('isInvalidToken')) {
             this.transitionTo('auth.login');
+            return STOP_ERROR_HANDLING;
         }
+
+        return CONTINUE_ERROR_HANDLING;
     },
 
     renderTemplate: function(controller, model) {
@@ -17,22 +23,30 @@ export default Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin, {
         });
     },
 
-    actions: {
-        error: function(err) {
-            if (typeof err === 'string') {
-                this.controller.set('error', err);
-                this.render('error', {
-                    into: 'application'
-                });
-                return false;
-            }
+    handleAjaxError: function(error) {
+        if (typeof(error) !== 'object') {
+            return CONTINUE_ERROR_HANDLING;
+        }
 
-            var xhr = err.jqXHR ? err.jqXHR : err;
+        var xhr = error.jqXHR ? error.jqXHR : error;
+        if (xhr && xhr.hasOwnProperty('status') && xhr.hasOwnProperty('getResponseHeader')) {
             if (xhr.status === 401) {
-                this.handleUnauthorized(xhr);
+                if(this.handleUnauthorized(xhr) === STOP_ERROR_HANDLING) {
+                    return STOP_ERROR_HANDLING;
+                }
+            }
+        }
+
+        return CONTINUE_ERROR_HANDLING;
+    },
+
+    actions: {
+        error: function(error) {
+            if (this.handleAjaxError(error) === STOP_ERROR_HANDLING) {
+                return STOP_ERROR_HANDLING;
             }
 
-            return true;
+            return CONTINUE_ERROR_HANDLING;
         },
         unauthorized: function(jqXHR) {
             this.handleUnauthorized(jqXHR);

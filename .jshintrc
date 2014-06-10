@@ -14,7 +14,8 @@
     "require": true,
     "requirejs": true,
     "moment": true,
-    "CodeTestBotApp": true
+    "CodeTestBotApp": true,
+    "Raven": true
   },
   "node" : false,
   "browser" : false,

@@ -23,6 +23,9 @@
     <script src="assets/vendor.js"></script>
     <script src="assets/code-test-bot-app.js"></script>
     <script>
+      Raven.config('https://bd18a70d0bc043cb9a9668086377c4f4@app.getsentry.com/25662', {
+//        whitelistUrls: ['example.com/scripts/']
+      }).install();
       window.CodeTestBotApp = require('code-test-bot-app/app')['default'].create(CodeTestBotAppENV.APP);
     </script>
   </body>

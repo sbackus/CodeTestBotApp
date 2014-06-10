@@ -1,10 +1,12 @@
 module.exports = function(environment) {
   var ENV = {
     baseURL: '/',
-    FEATURES: {
-      // Here you can enable experimental features on an ember canary build
-      // e.g. 'with-controller': true
-        'query-params-new': true
+    EmberENV: {
+        FEATURES: {
+          // Here you can enable experimental features on an ember canary build
+          // e.g. 'with-controller': true
+            'query-params-new': true
+        }
     },
 
     APP: {
@@ -12,6 +14,8 @@ module.exports = function(environment) {
       // when it is created
     }
   };
+
+  ENV.environment = environment;
 
   if (environment === 'development') {
     ENV.APP.LOG_RESOLVER = true;
