@@ -44,7 +44,7 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
     isInactive: Ember.computed.not('active'),
     showCloseButton: Ember.computed.and('isRecruiter', 'active'),
     showReportButton: Ember.computed.and('isRecruiter', 'hasPublishedAssessments'),
-    showAssessments: Ember.computed.or('userHasPublishedAssessment', 'isRecruiter'),
+    showAssessments: Ember.computed.or('userHasPublishedAssessment', 'isRecruiter', 'isInactive'),
     userCanCreateAssessment: Ember.computed.not('userHasPublishedAssessment'),
 
     updateUserHasAssessment: function() {
