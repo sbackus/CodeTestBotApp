@@ -2,6 +2,8 @@
 <ul class="right">
     <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
     <li class="divider"></li>
+    <li><a target="_blank" href="https://sites.google.com/a/cyrusinnovation.com/cyrus-internal-wiki/employee-guides/cyrus-interview-training/code-test-review-instructions">Review Instructions</a></li>
+    <li class="divider"></li>
     {{#if isAdmin}}
     <li class="has-dropdown">
         <a>Admin</a>
@@ -14,7 +16,6 @@
     <li class="has-dropdown profile-dropdown">
         <a>{{user.name}} <img {{bind-attr src=user.imageUrl}} /></a>
         <ul class="dropdown">
-            <li><a target="_blank" href="https://sites.google.com/a/cyrusinnovation.com/cyrus-internal-wiki/employee-guides/cyrus-interview-training/code-test-review-instructions">Review Instructions</a></li>
             <li><a {{action 'invalidateSession' }}><i class="fa fa-sign-out"></i> Logout</a></li>
         </ul>
     </li>
