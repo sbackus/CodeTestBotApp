@@ -11,7 +11,8 @@ if ! `git diff --cached --quiet`; then
 fi
 
 set -e
-
+bower cache-clean
+bower install
 ember build --environment production
 git add dist
 git commit -m "Build for production deploy."
