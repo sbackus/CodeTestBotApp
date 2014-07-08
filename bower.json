@@ -14,6 +14,14 @@
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
     "ember-qunit-notifications": "^0.0.1",
     "ember-cli-test-loader": "rjackson/ember-cli-test-loader#0.0.2",
-    "raven-js": "~1.1.15"
+    "raven-js": "~1.1.15",
+    "ember-simple-auth": "simplabs/ember-simple-auth-component#0.3.1",
+    "momentjs": "~2.6.0",
+    "marked": "~0.3.2",
+    "modernizr": "~2.8.2"
+  },
+  "devDependencies": {
+    "sinonjs": "~1.9.1",
+    "qunit-bdd": "~0.4.0"
   }
 }
