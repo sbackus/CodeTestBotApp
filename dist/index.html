@@ -9,20 +9,23 @@
 
     <base href="/" />
 
-    <link rel="stylesheet" href="assets/normalize.css">
-    <link rel="stylesheet" href="assets/foundation.min.css">
+    <link rel="stylesheet" href="assets/normalize-741fb6b35880ca4b14d9aeef607c896d.css">
+    <link rel="stylesheet" href="assets/foundation.min-685e236e7374e4493e5910abf32384f1.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/code-test-bot-app.css">
+    <link rel="stylesheet" href="assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css">
+    <link rel="stylesheet" href="assets/code-test-bot-app-6f683a290fc04ef3b2023f82cffbd0e3.css">
   </head>
   <body>
     <script>
-      window.CodeTestBotAppENV = {"baseURL":"/","FEATURES":{"query-params-new":true},"APP":{"LOG_RESOLVER":true,"LOG_ACTIVE_GENERATION":true,"LOG_MODULE_RESOLVER":true,"LOG_VIEW_LOOKUPS":true},"SERVER_HOST":"http://localhost:3000","APP_HOST":"http://localhost:4200","NEW_SESSION_URL":"http://localhost:3000/sessions/new"};
+      window.CodeTestBotAppENV = {"baseURL":"/","EmberENV":{"FEATURES":{"query-params-new":true}},"APP":{},"environment":"production","SERVER_HOST":"https://codetestbotserver.herokuapp.com","APP_HOST":"https://codetestbot.herokuapp.com","NEW_SESSION_URL":"https://codetestbotserver.herokuapp.com/sessions/new"};
       window.EmberENV = window.CodeTestBotAppENV.EmberENV;
     </script>
-    <script src="assets/vendor.js"></script>
-    <script src="assets/code-test-bot-app.js"></script>
+    <script src="assets/vendor-804e26771635d719bef602bcd1897da0.js"></script>
+    <script src="assets/code-test-bot-app-3bf6142348da62daf212eb319509e3b4.js"></script>
     <script>
+      Raven.config('https://bd18a70d0bc043cb9a9668086377c4f4@app.getsentry.com/25662', {
+//        whitelistUrls: ['example.com/scripts/']
+      }).install();
       window.CodeTestBotApp = require('code-test-bot-app/app')['default'].create(CodeTestBotAppENV.APP);
     </script>
   </body>
