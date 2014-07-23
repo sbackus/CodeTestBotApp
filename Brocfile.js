@@ -20,9 +20,11 @@ app.import({
     development: 'vendor/ember-data/ember-data.js',
     production: 'vendor/ember-data/ember-data.prod.js'
 }, {
-    'ember-data': [
-        'default'
-    ]
+    exports: {
+        'ember-data': [
+            'default'
+        ]
+    }
 });
 app.import('vendor/foundation/foundation.js');
 app.import('vendor/modernizr/modernizr.js');
@@ -37,13 +39,15 @@ app.import('vendor/raven-js/dist/raven.js');
 // object with the list of modules as keys along with the exports of each
 // module as its value.
 app.import('vendor/ic-ajax/dist/named-amd/main.js', {
-    'ic-ajax': [
-        'default',
-        'defineFixture',
-        'lookupFixture',
-        'raw',
-        'request',
-    ]
+    exports: {
+        'ic-ajax': [
+            'default',
+            'defineFixture',
+            'lookupFixture',
+            'raw',
+            'request',
+        ]
+    }
 });
 
 var qunitBdd = pickFiles('vendor/qunit-bdd/lib', {

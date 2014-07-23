@@ -52,7 +52,7 @@ describe('Integration - submissions', function() {
 
                 visit('/submissions/1');
                 andThen(function() {
-                    shouldContainText('table.assessments', 'All assessments will be visible');
+                    shouldContainText('table.assessments', 'No assessments');
                 });
             });
         });
