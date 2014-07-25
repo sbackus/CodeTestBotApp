@@ -15,7 +15,8 @@
     "requirejs": true,
     "moment": true,
     "CodeTestBotApp": true,
-    "Raven": true
+    "Raven": true,
+    "d3": true
   },
   "node" : false,
   "browser" : false,

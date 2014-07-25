@@ -33,6 +33,7 @@ app.import('vendor/ember-simple-auth/ember-simple-auth-oauth2.js');
 app.import('vendor/momentjs/moment.js');
 app.import('vendor/marked/lib/marked.js');
 app.import('vendor/raven-js/dist/raven.js');
+app.import('vendor/d3/d3.min.js');
 
 // If the library that you are including contains AMD or ES6 modules that
 // you would like to import into your application please specify an

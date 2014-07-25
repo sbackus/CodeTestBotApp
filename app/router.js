@@ -24,6 +24,10 @@ Router.map(function() {
             });
         });
 
+        this.resource('analytics', function() {
+
+        });
+
         this.resource('assessments', function() {
             this.resource('assessment', { path: '/:assessment_id' }, function() {
                 this.route('edit');

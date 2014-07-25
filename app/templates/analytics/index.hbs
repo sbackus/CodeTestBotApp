@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Code Test Analytics</h1>
+
+        {{bar-chart width=300 height=160 data=content}}
+    	{{bar-chart width=400 height=200 data=content}}
+
+		<g {{bind-attr transform=transformG}}>
+	    	<g class="x axis" {{bind-attr transform=transformX}}></g>
+	    	<g class="y axis"><text transform="rotate(-90)" y="6" dy=".71em" style="text-anchor:end;">Frequency</text></g>
+	    	<g class="rects"></g>
+    	</g>
+    </div>
+</div>
