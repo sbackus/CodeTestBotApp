@@ -1,25 +1,7 @@
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.bar {
-  fill: steelblue;
-}
-
-.x.axis path {
-  display: none;
-}
-
-/*analytics-body {
+.analytics-body {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   font-weight: 400;
-  background-color: #fff;
-  width: 960px;
-  height: 700px;
   margin-top: 10px;
 }
 
@@ -33,7 +15,7 @@
   height: 40px;
 }
 
-#analytics-svg-container {
+#svg-container {
   border: 1px solid #d9d9d9;
 }
 
@@ -63,4 +45,3 @@
 #analytics-percentage {
   font-size: 2em;
 }
-*/
