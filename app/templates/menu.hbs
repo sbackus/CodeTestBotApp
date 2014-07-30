@@ -1,6 +1,11 @@
 <section class="top-bar-section">
 <ul class="right">
-    <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
+    <li class="has-dropdown">
+        {{#link-to 'submissions.index'}}Submissions{{/link-to}}
+        <ul class="dropdown">
+            <li>{{#link-to 'analytics.index'}}Analytics{{/link-to}}</li>
+        </ul>
+    <li>
     <li class="divider"></li>
     <li><a target="_blank" href="https://sites.google.com/a/cyrusinnovation.com/cyrus-internal-wiki/employee-guides/cyrus-interview-training/code-test-review-instructions">Review Instructions</a></li>
     <li class="divider"></li>
