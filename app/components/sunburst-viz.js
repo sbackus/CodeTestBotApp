@@ -35,6 +35,7 @@ export default Ember.Component.extend({
     var totalSize = 0; 
 
     var vis = d3.select("#analytics-chart").append("svg:svg")
+        .attr("chart-name", 'sunburst')
         .attr("width", width)
         .attr("height", height)
         .append("svg:g")
