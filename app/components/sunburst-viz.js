@@ -283,6 +283,10 @@ export default Ember.Component.extend({
 
       for (var i = 0; i < analytics.length; i++) {
         var datum = analytics[i];
+        if (datum.get('active')) {
+          continue; // Don't include active submissions in the stats.
+        }
+
         var lang = datum.get('language');
         var level = datum.get('level');
         
