@@ -1,5 +1,6 @@
 // Source: http://bl.ocks.org/kerryrodden/7090426
 export default Ember.Component.extend({
+
   sunburst: function() {
 
     // Dimensions of sunburst.
@@ -53,13 +54,11 @@ export default Ember.Component.extend({
     // Use d3.text and d3.csv.parseRows so that we do not need to have a header
     // row, and can receive the csv as an array of arrays.
     var data = this.get('data');
-    data = data.content.map(function(d) { return d._data; } );
-    Ember.Logger.info(data);
-    var json = buildHierarchy(data);
-    createVisualization(json);
+    var hierarchy = buildHierarchy(data.content);
+    createVisualization(hierarchy);
 
     // Main function to draw and set up the visualization, once we have the data.
-    function createVisualization(json) {
+    function createVisualization(hierarchy) {
 
       // Basic setup of page elements.
       initializeBreadcrumbTrail();
@@ -71,12 +70,12 @@ export default Ember.Component.extend({
           .style("opacity", 0);
 
       // For efficiency, filter nodes to keep only those large enough to see.
-      var nodes = partition.nodes(json)
+      var nodes = partition.nodes(hierarchy)
           .filter(function(d) {
           return (d.dx > 0.005); // 0.005 radians = 0.29 degrees
           });
 
-      var path = vis.data([json]).selectAll("path")
+      var path = vis.data([hierarchy]).selectAll("path")
           .data(nodes)
           .enter().append("svg:path")
           .attr("display", function(d) { return d.depth ? null : "none"; })
@@ -283,13 +282,12 @@ export default Ember.Component.extend({
 
       for (var i = 0; i < analytics.length; i++) {
         var datum = analytics[i];
-        Ember.Logger.info(datum);
-        var lang = datum.language._data;
-        var level = datum.level._data;
+        var lang = datum.get('language');
+        var level = datum.get('level');
         
-        var lang_node = addChild(root, lang.name, false);
-        var level_node = addChild(lang_node, level.text, false);
-        var score_node = addChild(level_node, truncatedScore(datum.averageScore), true);
+        var lang_node = addChild(root, lang.get('name'), false);
+        var level_node = addChild(lang_node, level.get('text'), false);
+        var score_node = addChild(level_node, truncatedScore(datum.get('averageScore')), true);
         score_node.size += 1;
       }
       return root;
