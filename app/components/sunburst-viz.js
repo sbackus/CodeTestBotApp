@@ -33,6 +33,8 @@ export default Ember.Component.extend({
 
     // Total size of all segments; we set this later, after loading the data.
     var totalSize = 0; 
+    var colorScale = d3.scale.category20c();
+    var allHierarchyNames = {};
 
     var vis = d3.select("#analytics-chart").append("svg:svg")
         .attr("chart-name", 'sunburst')
@@ -79,15 +81,16 @@ export default Ember.Component.extend({
       var path = vis.data([hierarchy]).selectAll("path")
           .data(nodes)
           .enter().append("svg:path")
+          .attr("chart-type", 'sunburst')
           .attr("display", function(d) { return d.depth ? null : "none"; })
           .attr("d", arc)
           .attr("fill-rule", "evenodd")
-          .style("fill", function(d) { return colors[d.name]; })
+          .style("fill", function(d) { return /*colorScale(d.name);*/ colors[d.name]; })
           .style("opacity", 1)
           .on("mouseover", mouseover);
 
       // Add the mouseleave handler to the bounding circle.
-      d3.select("#svg-container").on("mouseleave", mouseleave);
+      d3.select(".svg-container").on("mouseleave", mouseleave);
 
       // Get total size of the tree = value of root node from partition.
       totalSize = path.node().__data__.value;
@@ -133,11 +136,11 @@ export default Ember.Component.extend({
       updateBreadcrumbs(sequenceArray, percentageString);
 
       // Fade all the segments.
-      d3.selectAll("path")
+      d3.selectAll('path[chart-type="sunburst"]')
           .style("opacity", 0.3);
 
       // Then highlight only those that are an ancestor of the current segment.
-      vis.selectAll("path")
+      vis.selectAll('path[chart-type="sunburst"]')
           .filter(function(node) {
                     return (sequenceArray.indexOf(node) >= 0);
                   })
@@ -152,10 +155,10 @@ export default Ember.Component.extend({
           .style("visibility", "hidden");
 
       // Deactivate all segments during transition.
-      d3.selectAll("path").on("mouseover", null);
+      d3.selectAll('path[chart-type="sunburst"]').on("mouseover", null);
 
       // Transition each segment to full opacity and then reactivate it.
-      d3.selectAll("path")
+      d3.selectAll('path[chart-type="sunburst"]')
           .transition()
           .duration(1000)
           .style("opacity", 1)
@@ -218,7 +221,7 @@ export default Ember.Component.extend({
 
       entering.append("svg:polygon")
           .attr("points", breadcrumbPoints)
-          .style("fill", function(d) { return colors[d.name]; });
+          .style("fill", function(d) { return /*colorScale(d.name);*/ colors[d.name]; });
 
       entering.append("svg:text")
           .attr("x", (b.w + b.t) / 2)
@@ -261,6 +264,7 @@ export default Ember.Component.extend({
       if (childNode == null) {
         if (leaf) {
           childNode = {"name": searchTerm, "size": 0};
+          allHierarchyNames[searchTerm] = searchTerm;
         }
         else {
           childNode = {"name": searchTerm, "children": []};
@@ -295,8 +299,15 @@ export default Ember.Component.extend({
         var score_node = addChild(level_node, truncatedScore(datum.get('averageScore')), true);
         score_node.size += 1;
       }
+
+      mapColors();
       return root;
     }
+
+    function mapColors() {
+      var flattenedNames = $.map(allHierarchyNames, function(v) { return v; });
+      colorScale.domain(flattenedNames);
+    }    
   },
 
   didInsertElement: function(){

@@ -1,10 +1,10 @@
 <div class="row">
     <div class="large-12 columns">
-        <h1>Code Test Analytics</h1>
+        <h2>Code Test Sunburst</h2>
 		<div class="analytics-body">
-			  <div id="analytics-main">
+			  <div class="analytics-main">
 			    <div id="analytics-sequence"></div>
-			    <div id="svg-container">
+			    <div class="svg-container">
 			      <div id="analytics-chart">
 			        <div id="analytics-explanation" style="visibility: hidden;">
 			          <span id="analytics-percentage"></span><br/>
@@ -12,8 +12,20 @@
 			        </div>
 			      </div>
 			    </div>
+				<p>A sunburst is similar to the treemap, except it uses a radial layout. The root node of the tree is at the center, with leaves on the circumference. The angle of each arc corresponds to its value. Mouse over an arc to show its related details. Active submissions are not included in this chart.</p>
+				<a href="http://bl.ocks.org/kerryrodden/7090426">Reference</a>			    
 			  </div>
 			  {{sunburst-viz data=content}}
+		</div>
+        <h2>Submissions by Time Series</h2>
+    	<div class="line-chart">
+        	<div class="svg-container">
+	        	<div id="line-chart">
+    	    	</div>
+        	</div>
+            <p>A line chart showing a time-series view of code tests by their submission date and broken down by candidate level. Data is plotted with one data point for every 7 days.</p>
+            <a href="http://bl.ocks.org/mbostock/3884955">Reference</a>
+      		{{line-chart data=content leveldata=levels}}
 		</div>
     </div>
 </div>

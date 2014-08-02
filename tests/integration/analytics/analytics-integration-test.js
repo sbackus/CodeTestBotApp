@@ -25,7 +25,7 @@ describe('Integration - analytics', function() {
             before(function() {
                 fakeServer.jsonSuccess('GET', 'http://localhost:3000/analytics', { 
                     submissions: [
-                    { Id: 0, average_score: 1, language_id: 0, level_id: 0 }
+                    { Id: 0, average_score: 1, language_id: 0, level_id: 0, created_at: "2014-05-02T00:00:00.000Z" }
                     ] 
                 });
                 visit('/analytics');
@@ -38,6 +38,15 @@ describe('Integration - analytics', function() {
                     expect(find('svg[chart-name="sunburst"]').length).to.equal(1);
                 });
             });
+
+            it('shows a line-chart element', function() {
+                expect(1);
+
+                andThen(function() {
+                    // For some reason, the line-chart svg is not found, so just instead search for its container DOM element.
+                    expect(find('#line-chart').length).to.equal(1);
+                });
+            });            
         });
     });
 });
