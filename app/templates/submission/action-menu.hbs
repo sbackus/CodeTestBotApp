@@ -1,4 +1,7 @@
 <a {{bind-attr href=view.mainLink}} class="button radius tiny split">View <span {{bind-attr data-dropdown=view.dropdownId}}></span></a>
 <ul {{bind-attr id=view.dropdownId}} class="f-dropdown" data-dropdown-content>
+    {{#unless active}}
+    <li><a {{action 'reopen' view.context}}><i class="fa fa-refresh"></i> Reopen</a></li>
+    {{/unless}}
     <li><a {{action 'confirmDelete' view.context}}><i class="fa fa-times"></i> Delete</a></li>
 </ul>

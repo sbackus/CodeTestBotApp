@@ -46,6 +46,9 @@
         {{#if showReportButton}}
         {{#link-to 'submission.report' class="button small radius" }}Generate Report{{/link-to}}
         {{/if}}
+        {{#if showReopenButton}}
+        <button class="button small radius" {{action reopenSubmission}}>Reopen Submission</button>
+        {{/if}}
     </div>
 </div>
 {{/if}}

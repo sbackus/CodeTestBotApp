@@ -15,6 +15,11 @@ export default Ember.ArrayController.extend(UserAwareControllerMixin, {
            return this.send('openModal', 'submission/confirm-delete', submission);
         },
 
+        reopen: function(submission) {
+          submission.set('active', true);
+          submission.save();
+        },
+
         activeSortBy: function (sortPropertiesActive) {
             this.set('sortPropertiesActive', [sortPropertiesActive]);
         },

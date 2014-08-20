@@ -44,6 +44,7 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
     isInactive: Ember.computed.not('active'),
     showCloseButton: Ember.computed.and('isRecruiter', 'active'),
     showReportButton: Ember.computed.and('isRecruiter', 'hasPublishedAssessments'),
+    showReopenButton: Ember.computed.and('isRecruiter', 'isInactive'),
     showAssessments: Ember.computed.or('userHasPublishedAssessment', 'isRecruiter', 'isInactive'),
     userCanCreateAssessment: Ember.computed.not('userHasPublishedAssessment'),
 
@@ -71,6 +72,15 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
             submission.save().then(function() {
                 self.transitionToRoute('/submissions');
             });
+        },
+
+        reopenSubmission: function() {
+          var self = this;
+          var submission = this.get('content');
+          submission.set('active', true);
+          submission.save().then(function() {
+            self.transitionToRoute('/submissions');
+          });
         }
     }
 });
