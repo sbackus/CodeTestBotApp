@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import ApplicationRoute from 'code-test-bot-app/routes/application';
 import UserAwareMixin from 'code-test-bot-app/mixins/user-aware';
 

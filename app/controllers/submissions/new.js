@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 export default Ember.ObjectController.extend({
     candidateName: null,
     candidateEmail: null,

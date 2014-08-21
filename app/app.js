@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Resolver from 'ember/resolver';
 import loadInitializers from 'ember/load-initializers';
 
@@ -7,7 +8,7 @@ var App = Ember.Application.extend({
     modulePrefix: 'code-test-bot-app', // TODO: loaded via config
     Resolver: Resolver,
     ready: function() {
-        $(document).foundation();
+        Ember.$(document).foundation();
     }
 });
 

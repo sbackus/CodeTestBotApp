@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import WWWAuthenticateHeader from 'code-test-bot-app/lib/auth/www-authenticate-header';
 
 var CONTINUE_ERROR_HANDLING = true;

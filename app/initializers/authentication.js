@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import 'code-test-bot-app/lib/ember-simple-auth/authenticators/out-of-band-token-authenticator';
 
 export default {

@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Router from 'code-test-bot-app/router';
 
 export default Ember.View.extend({

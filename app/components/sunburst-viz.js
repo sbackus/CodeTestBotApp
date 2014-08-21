@@ -1,4 +1,6 @@
 // Source: http://bl.ocks.org/kerryrodden/7090426
+import Ember from 'ember';
+
 export default Ember.Component.extend({
 
   sunburst: function() {
@@ -276,7 +278,9 @@ export default Ember.Component.extend({
     }
 
     function truncatedScore(score) {
-      if (score == null) return "Score 0";
+      if (score == null) {
+        return "Score 0";
+      }
       return "Score " + Math.floor( score );
     }
 
@@ -305,7 +309,7 @@ export default Ember.Component.extend({
     }
 
     function mapColors() {
-      var flattenedNames = $.map(allHierarchyNames, function(v) { return v; });
+      var flattenedNames = Ember.$.map(allHierarchyNames, function(v) { return v; });
       colorScale.domain(flattenedNames);
     }    
   },

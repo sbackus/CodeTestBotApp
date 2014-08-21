@@ -1,5 +1,6 @@
 /* globals CodeTestBotAppENV */
 
+import Ember from 'ember';
 import { defineFixture } from 'ic-ajax';
 
 defineFixture(CodeTestBotAppENV.NEW_SESSION_URL + '?redirect_uri=' + CodeTestBotAppENV.APP_HOST + '/auth/complete', {

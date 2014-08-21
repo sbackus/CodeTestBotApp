@@ -1,5 +1,5 @@
 /* globals marked */
-
+import Ember from 'ember';
 import { cumulativeMovingAverage, roundToNearestHalf } from 'code-test-bot-app/utils/math';
 
 export default Ember.ObjectController.extend({

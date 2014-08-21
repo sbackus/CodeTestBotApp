@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import UserAwareRouteMixin from 'code-test-bot-app/mixins/user-aware-route';
 
 export default Ember.Route.extend(UserAwareRouteMixin, {

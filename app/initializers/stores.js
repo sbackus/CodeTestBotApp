@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import LocalStore from 'code-test-bot-app/lib/stores/local';
 import EphemeralStore from 'code-test-bot-app/lib/stores/ephemeral';
 

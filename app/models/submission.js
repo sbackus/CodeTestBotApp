@@ -1,3 +1,6 @@
+import Ember from 'ember';
+import DS from 'ember-data';
+
 export default DS.Model.extend({
     candidateName: DS.attr(),
     candidateEmail: DS.attr(),

@@ -1,11 +1,15 @@
+/* jshint node: true */
+
 module.exports = function(environment) {
   var ENV = {
+    environment: environment,
     baseURL: '/',
+    locationType: 'auto',
     EmberENV: {
         FEATURES: {
           // Here you can enable experimental features on an ember canary build
           // e.g. 'with-controller': true
-            'query-params-new': true
+          'query-params-new': true
         }
     },
 
@@ -14,8 +18,6 @@ module.exports = function(environment) {
       // when it is created
     }
   };
-
-  ENV.environment = environment;
 
   if (environment === 'development') {
     ENV.APP.LOG_RESOLVER = true;

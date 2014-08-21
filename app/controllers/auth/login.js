@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import WindowLocationHelper from 'code-test-bot-app/lib/window-location-helper';
 
 var AuthLoginController = Ember.ObjectController.extend({

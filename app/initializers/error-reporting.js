@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 export default {
     name: 'error-reporting',
     initialize: function() {

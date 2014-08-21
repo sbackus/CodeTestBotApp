@@ -1,5 +1,7 @@
+import Ember from 'ember';
+
 var Router = Ember.Router.extend({
-  location: 'auto'
+  location: CodeTestBotAppENV.locationType
 });
 
 Router.map(function() {

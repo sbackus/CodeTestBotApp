@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/code-test-bot-app.css">
-    <link rel="stylesheet" href="assets/qunit.css">
+    <link rel="stylesheet" href="assets/test-support.css">
     <style>
       #ember-testing-container {
         position: absolute;
@@ -34,13 +34,12 @@
     <div id="qunit-fixture"></div>
 
     <script>
-      window.CodeTestBotAppENV = {"baseURL":"/","EmberENV":{"FEATURES":{"query-params-new":true}},"APP":{"LOG_RESOLVER":true,"LOG_ACTIVE_GENERATION":true,"LOG_MODULE_RESOLVER":true,"LOG_VIEW_LOOKUPS":true},"environment":"development","SERVER_HOST":"http://localhost:3000","APP_HOST":"http://localhost:4200","NEW_SESSION_URL":"http://localhost:3000/sessions/new"};
+      window.CodeTestBotAppENV = {"environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{"query-params-new":true}},"APP":{"LOG_RESOLVER":true,"LOG_ACTIVE_GENERATION":true,"LOG_MODULE_RESOLVER":true,"LOG_VIEW_LOOKUPS":true},"SERVER_HOST":"http://localhost:3000","APP_HOST":"http://localhost:4200","NEW_SESSION_URL":"http://localhost:3000/sessions/new"};
       window.EmberENV = window.CodeTestBotAppENV.EmberENV;
     </script>
-    <script src="assets/qunit.js"></script>
+    <script src="assets/test-support.js"></script>
     <script src="assets/qunit-bdd.js"></script>
     <script src="assets/sinon.js"></script>
-    <script src="assets/qunit-notifications.js"></script>
     <script src="assets/vendor.js"></script>
     <script src="assets/code-test-bot-app.js"></script>
     <script src="testem.js"></script>

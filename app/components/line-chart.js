@@ -1,6 +1,7 @@
 // Sources: 
 // http://bl.ocks.org/mbostock/3884955
 // https://gist.github.com/ZJONSSON/3918369#file-thumbnail-png (legend)
+import Ember from 'ember';
 
 export default Ember.Component.extend({
 
@@ -57,7 +58,7 @@ export default Ember.Component.extend({
         var level = d.get('level').get('text');
         levelsSet[level] = level;
       });
-      return $.map(levelsSet, function(v) { return v; });
+      return Ember.$.map(levelsSet, function(v) { return v; });
     }
 
     function groupDataByDate(data) {
@@ -79,7 +80,7 @@ export default Ember.Component.extend({
         }
       });
 
-      return $.map(groups, function(v) { return v; });
+      return Ember.$.map(groups, function(v) { return v; });
     }
 
     function buildDateRange(data) {
@@ -130,7 +131,7 @@ export default Ember.Component.extend({
       var dataOverRange = iterateRange(all_dates, data);
       countDateLevels(dataOverRange, data);
 
-      return $.map(dataOverRange, function(v) { return v; });
+      return Ember.$.map(dataOverRange, function(v) { return v; });
     }
 
     function addDataPoint(submissions, dataPoint) {

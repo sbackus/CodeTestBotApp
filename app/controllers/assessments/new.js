@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import AutoSaveable from 'code-test-bot-app/mixins/auto-saveable';
 
 export default Ember.ObjectController.extend(AutoSaveable, {

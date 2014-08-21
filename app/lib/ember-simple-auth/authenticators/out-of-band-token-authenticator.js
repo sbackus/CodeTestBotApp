@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 Ember.SimpleAuth.Authenticators.OutOfBandTokenAuthenticator = Ember.SimpleAuth.Authenticators.Base.extend({
     restore: function(data) {
         return new Ember.RSVP.Promise(function(resolve, reject) {

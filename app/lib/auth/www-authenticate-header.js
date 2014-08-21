@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 var split = String.prototype.split;
 
 var WWWAuthenticateHeader = Ember.Object.extend({
