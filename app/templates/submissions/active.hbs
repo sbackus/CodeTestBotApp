@@ -5,18 +5,57 @@
             {{#link-to 'analytics' classNames="button small radius right"}}Analytics{{/link-to}}
         </div>
 
-        <table width="100%">
+        {{#if isRecruiter}}
+        <table class="active recruiter">
+        {{else}}
+        <table class="active">
+        {{/if}}
             <thead>
                 <tr>
                 {{#if isRecruiter}}
-                    <th width="40%"> <a href="#" {{action "sortBy" "candidateDisplay"}} >Candidate</a></th>
-                    <th width="20%"> <a href="#" {{action "sortBy" "languageDisplay, createdAtDisplay"}}>Language</a></th>
-                    <th width="20%"><a href="#" {{action "sortBy" "level.text, createdAtDisplay"}}>Level</a></th>
-                    <th width="20%"><a href="#"{{action "sortBy" "createdAtDisplay"}}>Created date</a></th>
+                    {{sorting-header title='Candidate'
+                                     key='candidateDisplay'
+                                     sortProperties=sortProperties
+                                     sortAscending=sortAscending
+                                     action='sort'
+                                     class='candidate'}}
+                    {{sorting-header title='Langauge'
+                                     key='languageDisplay'
+                                     sortProperties=sortProperties
+                                     sortAscending=sortAscending
+                                     action='sort'
+                                     class='language'}}
+                    {{sorting-header title='Level'
+                                     key='level.text'
+                                     sortProperties=sortProperties
+                                     sortAscending=sortAscending
+                                     action='sort'
+                                     class='level'}}
+                    {{sorting-header title='Created date'
+                                     key='createdAtDisplay'
+                                     sortProperties=sortProperties
+                                     sortAscending=sortAscending
+                                     action='sort'
+                                     class='time'}}
                 {{else}}
-                    <th width="33%"> <a href="#" {{action "sortBy" "languageDisplay, createdAtDisplay"}}>Language</a></th>
-                    <th width="33%"><a href="#" {{action "sortBy" "level.text, createdAtDisplay"}}>Level</a></th>
-                    <th width="33%"><a href="#"{{action "sortBy" "createdAtDisplay"}}>Created date</a></th>
+                    {{sorting-header title='Langauge'
+                                     key='languageDisplay'
+                                     sortProperties=sortProperties
+                                     sortAscending=sortAscending
+                                     action='sort'
+                                     class='language'}}
+                    {{sorting-header title='Level'
+                                     key='level.text'
+                                     sortProperties=sortProperties
+                                     sortAscending=sortAscending
+                                     action='sort'
+                                     class='level'}}
+                    {{sorting-header title='Created date'
+                                     key='createdAtDisplay'
+                                     sortProperties=sortProperties
+                                     sortAscending=sortAscending
+                                     action='sort'
+                                     class='time'}}
                 {{/if}}
                     <th></th>
                 </tr>

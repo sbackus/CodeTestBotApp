@@ -2,20 +2,69 @@
     <div class="large-12 columns">
         <h1>Inactive Submissions</h1>
 
-        <table width="100%">
+        {{#if isRecruiter}}
+        <table class='inactive recruiter'>
+        {{else}}
+        <table class='inactive'>
+        {{/if}}
             <thead>
             <tr>
             {{#if isRecruiter}}
-                <th width="30%"><a href="#" {{action "sortBy" "candidateDisplay"}}>Candidate</a></th>
-                <th width="10%"><a href="#" {{action "sortBy" "averageScore, updatedAtDisplay"}}>Score</a></th>
-                <th width="20%"> <a href="#" {{action "sortBy" "languageDisplay, updatedAtDisplay"}}>Language</a></th>
-                <th width="20%"><a href="#" {{action "sortBy" "level.text, updatedAtDisplay"}}>Level</a></th>
-                <th width="20%"><a href="#" {{action "sortBy" "updatedAtDisplay"}}>Closed At</a></th>
+                {{sorting-header title='Candidate'
+                                 key='candidateDisplay'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='candidate'}}
+                {{sorting-header title='Score'
+                                 key='averageScore'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='score'}}
+                {{sorting-header title='Language'
+                                 key='languageDisplay'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='language'}}
+                {{sorting-header title='Level'
+                                 key='level.text'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='level'}}
+                {{sorting-header title='Closed At'
+                                 key='updatedAtDisplay'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='time'}}
             {{else}}
-                <th width="40%"><a href="#" {{action "sortBy" "averageScore, updatedAtDisplay"}}>Score</a></th>
-                <th width="20%"> <a href="#" {{action "sortBy" "languageDisplay, updatedAtDisplay"}}>Language</a></th>
-                <th width="20%"><a href="#" {{action "sortBy" "level.text, updatedAtDisplay"}}>Level</a></th>
-                <th width="20%"><a href="#" {{action "sortBy" "updatedAtDisplay"}}>Closed At</a></th>
+                {{sorting-header title='Score'
+                                 key='averageScore'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='score'}}
+                {{sorting-header title='Language'
+                                 key='languageDisplay'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='language'}}
+                {{sorting-header title='Level'
+                                 key='level.text'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='level'}}
+                {{sorting-header title='Closed At'
+                                 key='updatedAtDisplay'
+                                 sortProperties=sortProperties
+                                 sortAscending=sortAscending
+                                 action='sort'
+                                 class='time'}}
             {{/if}}
                 <th></th>
             </tr>

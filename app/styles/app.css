@@ -36,3 +36,63 @@ div.report h5 {
     border: 1px solid #ADADAD;
     margin-bottom: 1.5em;
 }
+
+table.inactive, table.active {
+    width: 100%;
+}
+
+table.inactive th.candidate {
+    width: 40%;
+}
+
+table.inactive.recruiter th.candidate {
+    width: 30%;
+}
+
+th.score {
+    width: 10%;
+}
+
+th.language {
+    width: 20%;
+}
+
+th.level {
+    width: 20%;
+}
+
+th.time {
+    width: 20%;
+}
+
+th.asc a:after {
+    content: " \2191"
+}
+
+th.desc a:after {
+    content: " \2193"
+}
+
+table.active th.language {
+    width: 33%;
+}
+
+table.active th.level {
+    width: 33%;
+}
+
+table.active th.time {
+    width: 33%;
+}
+
+table.active.recruiter th.language {
+    width: 20%;
+}
+
+table.active.recruiter th.level {
+    width: 20%;
+}
+
+table.active.recruiter th.time {
+    width: 20%;
+}
