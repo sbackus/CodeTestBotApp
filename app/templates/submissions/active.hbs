@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1 style="float:left">Active Submissions </h1>
+        <div style="margin-top:12px">
+            {{#link-to 'analytics' classNames="button small radius right"}}Analytics{{/link-to}}
+        </div>
+
+        <table width="100%">
+            <thead>
+                <tr>
+                {{#if isRecruiter}}
+                    <th width="40%"> <a href="#" {{action "sortBy" "candidateDisplay"}} >Candidate</a></th>
+                    <th width="20%"> <a href="#" {{action "sortBy" "languageDisplay, createdAtDisplay"}}>Language</a></th>
+                    <th width="20%"><a href="#" {{action "sortBy" "level.text, createdAtDisplay"}}>Level</a></th>
+                    <th width="20%"><a href="#"{{action "sortBy" "createdAtDisplay"}}>Created date</a></th>
+                {{else}}
+                    <th width="33%"> <a href="#" {{action "sortBy" "languageDisplay, createdAtDisplay"}}>Language</a></th>
+                    <th width="33%"><a href="#" {{action "sortBy" "level.text, createdAtDisplay"}}>Level</a></th>
+                    <th width="33%"><a href="#"{{action "sortBy" "createdAtDisplay"}}>Created date</a></th>
+                {{/if}}
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each submission in arrangedContent}}
+                <tr class="submission">
+                    {{#if isRecruiter}}
+                    <td>{{submission.candidateDisplay}}</td>
+                    {{/if}}
+                    <td>{{submission.languageDisplay}}</td>
+                    <td>{{submission.level.text}}</td>
+                    <td>{{submission.createdAtDisplay}}</td>
+                    <td>
+                    {{#if isRecruiter}}
+                        {{view 'submission/action-menu' context=submission}}
+                    {{else}}
+                        {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
+                    {{/if}}
+                    </td>
+                </tr>
+                {{else}}
+                <tr>
+                    <td colspan="5" class="text-center">There are no active submissions.</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{#if isRecruiter}}
+<div class="row">
+    <div class="large-12 columns">
+        {{#link-to 'submissions.new' classNames="button small radius success right"}}New Submission{{/link-to}}
+    </div>
+</div>
+{{/if}}

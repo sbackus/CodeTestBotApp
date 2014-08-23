@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="large-12 columns">
+        <h1>Inactive Submissions</h1>
+
+        <table width="100%">
+            <thead>
+            <tr>
+            {{#if isRecruiter}}
+                <th width="30%"><a href="#" {{action "sortBy" "candidateDisplay"}}>Candidate</a></th>
+                <th width="10%"><a href="#" {{action "sortBy" "averageScore, updatedAtDisplay"}}>Score</a></th>
+                <th width="20%"> <a href="#" {{action "sortBy" "languageDisplay, updatedAtDisplay"}}>Language</a></th>
+                <th width="20%"><a href="#" {{action "sortBy" "level.text, updatedAtDisplay"}}>Level</a></th>
+                <th width="20%"><a href="#" {{action "sortBy" "updatedAtDisplay"}}>Closed At</a></th>
+            {{else}}
+                <th width="40%"><a href="#" {{action "sortBy" "averageScore, updatedAtDisplay"}}>Score</a></th>
+                <th width="20%"> <a href="#" {{action "sortBy" "languageDisplay, updatedAtDisplay"}}>Language</a></th>
+                <th width="20%"><a href="#" {{action "sortBy" "level.text, updatedAtDisplay"}}>Level</a></th>
+                <th width="20%"><a href="#" {{action "sortBy" "updatedAtDisplay"}}>Closed At</a></th>
+            {{/if}}
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each submission in arrangedContent}}
+                <tr class="submission">
+                    {{#if isRecruiter}}
+                        <td>{{submission.candidateDisplay}}</td>
+                    {{/if}}
+                    <td>{{submission.averageScore}}</td>
+                    <td>{{submission.languageDisplay}}</td>
+                    <td>{{submission.level.text}}</td>
+                    <td>{{submission.updatedAtDisplay}}</td>
+                    <td>
+                    {{#if isRecruiter}}
+                        {{view 'submission/action-menu' context=submission}}
+                    {{else}}
+                        {{#link-to 'submission.index' submission class="button tiny radius"}}View{{/link-to}}
+                    {{/if}}
+                    </td>
+                </tr>
+            {{else}}
+                <tr>
+                    <td colspan="6" class="text-center">There are no inactive submissions.</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
