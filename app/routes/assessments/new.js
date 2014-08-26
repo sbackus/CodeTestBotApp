@@ -10,9 +10,8 @@ export default Ember.Route.extend(UserAwareRouteMixin, {
             if (assessments.get('length') === 0) {
                 var model = self.store.createRecord('assessment');
                 model.set('published', false);
-                model.set('languages', self.store.find('language'));
-                model.set('levels', self.store.find('level'));
                 model.set('assessor', self.store.push('assessor', assessor.toJSON({ includeId: true })));
+                model.set('submission', submission);
                 return model;
             } else {
                 return assessments.get('firstObject');
@@ -22,10 +21,7 @@ export default Ember.Route.extend(UserAwareRouteMixin, {
 
     setupController: function(controller, model) {
         this._super(controller, model);
-
-        var submission = this.controllerFor('submission').get('model');
-        model.set('submission', submission);
-        controller.set('selectedLanguage', submission.get('language'));
-        controller.set('selectedLevel', submission.get('level'));
+        controller.set('languages', this.store.find('language'));
+        controller.set('levels', this.store.find('level'));
     }
 });

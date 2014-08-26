@@ -2,8 +2,8 @@ import Ember from 'ember';
 import AutoSaveable from 'code-test-bot-app/mixins/auto-saveable';
 
 export default Ember.ObjectController.extend(AutoSaveable, {
-    selectedLanguage: null,
-    selectedLevel: null,
+    selectedLanguage: Ember.computed.alias('content.submission.language'),
+    selectedLevel: Ember.computed.alias('content.submission.level'),
 
     isFormIncomplete: function() {
         return Ember.isEmpty(this.get('score')) || Ember.isEmpty(this.get('notes'));
