@@ -1,7 +1,8 @@
 // See https://raw.githubusercontent.com/ahawkins/ember.js/arrangable-mixin/packages/ember-runtime/lib/mixins/arrangeable.js
+/* jshint unused: false */
 
 import Ember from 'ember';
-var get = Ember.get, set = Ember.set, forEach = Ember.EnumerableUtils.forEach;
+var get = Ember.get, forEach = Ember.EnumerableUtils.forEach;
 
 /**
   `Ember.ArrangeableMixin` provides a standard interface for array proxies
