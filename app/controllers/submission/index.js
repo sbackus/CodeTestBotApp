@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import UserAwareControllerMixin from 'code-test-bot-app/mixins/user-aware-controller';
-import { cumulativeMovingAverage, roundToNearestHalf } from 'code-test-bot-app/utils/math';
+import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
+import Score from 'code-test-bot-app/models/score';
 
 export default Ember.ObjectController.extend(UserAwareControllerMixin, {
     userHasPublishedAssessment: false,
@@ -35,8 +36,13 @@ export default Ember.ObjectController.extend(UserAwareControllerMixin, {
     }),
 
     averageScore: function() {
-        return roundToNearestHalf(this.get('rawAverageScore'));
+        //return roundToNearestHalf(this.get('rawAverageScore'));
+        return Math.round(this.get('rawAverageScore'));
     }.property('rawAverageScore'),
+
+    averageScoreText: function() {
+        return Score.pluralDisplayTextForScore(this.get('averageScore'));
+    }.property('averageScore'),
 
     hasPublishedAssessments: function() {
         return this.get('publishedAssessments.length') > 0;

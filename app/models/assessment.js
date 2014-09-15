@@ -3,6 +3,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
     score: DS.attr(),
+    exemplary: DS.attr(),
     notes: DS.attr(),
     published: DS.attr(),
     createdAt: DS.attr(),
@@ -25,5 +26,11 @@ export default DS.Model.extend({
     notesDisplay: function() {
         var renderer = new marked.Renderer();
         return marked(this.get('notes'), { renderer: renderer });
-    }.property('notes')
+    }.property('notes'),
+
+    clearExemplaryFlag: function() {
+        if (this.get('score') !== 3) {
+            this.set('exemplary', false);
+        }
+    }.observes('score')
 });

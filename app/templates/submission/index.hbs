@@ -32,8 +32,8 @@
 {{#if hasPublishedAssessments}}
 <div class="row display">
     <div class="large-12 columns">
-        <label>Average Score</label>
-        <p class="score">{{averageScore}}</p>
+        <label>Consensus</label>
+        <p class="score">{{averageScoreText}}</p>
     </div>
 </div>
 {{/if}}
@@ -57,36 +57,7 @@
     <div class="large-12 columns">
         <h3>Assessments</h3>
 
-        <table class="large-12 assessments">
-            <thead>
-            <tr>
-                <th width="33%">Assessor</th>
-                <th width="33%">Score</th>
-                <th width="33%">Completion Date</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#if showAssessments}}
-              {{#each assessment in publishedAssessments}}
-                  <tr class="assessment">
-                      <td class="assessor">{{assessment.assessor}}</td>
-                      <td class="score">{{assessment.score}}</td>
-                      <td class="created-at">{{assessment.updatedAtDisplay}}</td>
-                      <td>
-                          {{#link-to 'assessment.index' assessment class="button tiny radius"}}View{{/link-to}}
-                      </td>
-                  </tr>
-              {{else}}
-                  <tr>
-                      <td colspan="4" class="text-center">No assessments yet.</td>
-                  </tr>
-              {{/each}}
-            {{else}}
-              <tr><td class="text-center" colspan="4">All assessments will be visible once you've submitted yours.</td></tr>
-            {{/if}}
-            </tbody>
-        </table>
+        {{outlet 'assessments'}}
 
         {{#if active}}
             {{#if userCanCreateAssessment}}

@@ -1,0 +1,35 @@
+<table class="large-12 assessments">
+    <thead>
+    <tr>
+        <th width="33%">Assessor</th>
+        <th width="33%">Recommendation</th>
+        <th width="33%">Completion Date</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#if showAssessments}}
+        {{#each}}
+          <tr class="assessment">
+              {{#unless isIncomplete}}
+              <td class="assessor">{{assessor}}</td>
+              <td class="score">{{recommendation}}</td>
+              <td class="created-at">{{updatedAtDisplay}}</td>
+              <td>
+                  {{#link-to 'assessment.index' this class="button tiny radius"}}View{{/link-to}}
+              </td>
+              {{else}}
+              <td class="assessor">{{assessor}}</td>
+              <td colspan="3" class="incomplete">Assessment incomplete</td>
+              {{/unless}}
+          </tr>
+      {{else}}
+          <tr>
+              <td colspan="4" class="text-center">No assessments yet.</td>
+          </tr>
+      {{/each}}
+    {{else}}
+      <tr><td class="text-center" colspan="4">All assessments will be visible once you've submitted yours.</td></tr>
+    {{/if}}
+    </tbody>
+</table>

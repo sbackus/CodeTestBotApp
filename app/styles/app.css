@@ -37,6 +37,10 @@ div.report h5 {
     margin-bottom: 1.5em;
 }
 
+td.incomplete {
+    font-style: italic;
+}
+
 table.inactive, table.active {
     width: 100%;
 }

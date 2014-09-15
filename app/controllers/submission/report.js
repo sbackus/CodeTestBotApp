@@ -1,6 +1,7 @@
 /* globals marked */
 import Ember from 'ember';
-import { cumulativeMovingAverage, roundToNearestHalf } from 'code-test-bot-app/utils/math';
+import Score from 'code-test-bot-app/models/score';
+import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
 
 export default Ember.ObjectController.extend({
     // TODO: this is duplicated with submission/index.js
@@ -33,8 +34,12 @@ export default Ember.ObjectController.extend({
     }),
 
     averageScore: function() {
-        return roundToNearestHalf(this.get('rawAverageScore'));
+        return Math.round(this.get('rawAverageScore'));
     }.property('rawAverageScore'),
+
+    averageScoreText: function() {
+        return Score.pluralDisplayTextForScore(this.get('averageScore'));
+    }.property('averageScore'),
 
     assessors: '',
     report: '',
@@ -42,7 +47,7 @@ export default Ember.ObjectController.extend({
     updateAssessors: function() {
         var assessments = this.get('publishedAssessments');
         var assessors = assessments.map(function(assessment) {
-            return assessment.get('assessor.name') + ' (score: ' + assessment.get('score') + ')';
+            return assessment.get('assessor.name') + ' (' + Score.shortDisplayTextForScore(assessment.get('score')) + ')';
         });
         this.set('assessors', assessors.join(', '));
     }.observes('publishedAssessments.[]'),

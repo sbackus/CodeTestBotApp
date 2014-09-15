@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
+import Score from 'code-test-bot-app/models/score';
 
 export default DS.Model.extend({
     candidateName: DS.attr(),
@@ -23,6 +24,10 @@ export default DS.Model.extend({
     languageDisplay: function() {
         return Ember.isNone(this.get('language')) ? 'Unknown' : this.get('language.name');
     }.property('language'),
+
+    averageScoreShortText: function() {
+        return Score.shortDisplayTextForScore(Math.round(this.get('averageScore')));
+    }.property('averageScore'),
 
     createdAtDisplay: function() {
         return moment(this.get('createdAt')).format('l LT');

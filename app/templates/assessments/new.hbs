@@ -55,19 +55,36 @@
             <legend>Assessment</legend>
 
             <div class="row">
-                <div class="large-2 columns">
-                    <label>Score (0-5)
-                        {{input value=score class="score"}}
+                <div class="large-9 columns">
+                    <label>Notes</label>
+                </div>
+                <div class="large-3 columns">
+                    <label class="right">
+                    <img src="/assets/images/32x20.png" width="24" /> Parsed as Markdown
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="large-12 columns">
-                    <label>Notes
-                        {{textarea value=notes rows="6" class="notes"}}
+                    {{textarea value=notes rows="6" class="notes"}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Recommendation
+                        {{view Ember.Select viewName="select"
+                        content=scoreOptions
+                        optionLabelPath="content.text"
+                        optionValuePath="content.score"
+                        prompt="Select a recommendation:"
+                        value=score
+                        class="score"}}
                     </label>
                 </div>
             </div>
+            {{#if showExemplaryOption}}
+            {{input type="checkbox" checked=exemplary}} Furthermore, I think this submission is exemplary for this language and candidate level.
+            {{/if}}
             <div class="row">
                 <div class="large-2 large-offset-8 columns">
                     {{view 'saving-indicator'}}
