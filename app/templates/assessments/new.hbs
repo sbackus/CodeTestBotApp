@@ -57,11 +57,13 @@
 
         <div class="form-group">
           <label>Notes</label>
+          <p>Write your thoughts about the submission (for example, a list of pros and cons). Keep in mind that these comments are also intended for the candidate. While a human will compile and sanitize them before showing them to the candidate, you should try to be as constructive as possible.</p>
           {{textarea value=notes rows="6" class="form-control notes"}}
         </div>
 
         <div class="form-group">
           <label>Recommendation</label>
+          <p>Considering your comments above, make a recommendation on whether or not you think the candidate should advance to the next step of the interview process.</p>
           {{view Ember.Select viewName="select"
           content=scoreOptions
           optionLabelPath="content.text"
