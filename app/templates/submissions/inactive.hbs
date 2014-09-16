@@ -69,7 +69,7 @@
             </tr>
             </thead>
             <tbody>
-            {{#each submission in arrangedContent}}
+            {{#each submission in paginatedContent}}
                 <tr class="submission">
                     {{#if isRecruiter}}
                         <td>{{submission.candidateDisplay}}</td>
@@ -93,5 +93,6 @@
             {{/each}}
             </tbody>
         </table>
+      {{page-numbers currentPage=currentPage pageCount=pageCount}}
     </div>
 </div>

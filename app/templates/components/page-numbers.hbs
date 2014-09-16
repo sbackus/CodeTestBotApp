@@ -1,0 +1,22 @@
+<div class="text-center">
+  <ul class="pagination">
+    <li {{bind-attr class="hasPrevious::disabled"}}>
+      <a {{action goToPreviousPage}}>&laquo;</a>
+    </li>
+    {{#each item in pageNumbers}}
+    <li {{bind-attr class="item.current:active item.ellipses:disabled"}}>
+      {{#if item.ellipses}}
+        <a>&hellip;</a>
+      {{else}}
+        <a {{action goToPage item.page}}>{{item.page}}</a>
+      {{/if}}
+    </li>
+    {{/each}}
+    <li {{bind-attr class="hasNext::disabled"}}>
+      <a {{action goToNextPage}}>
+        &raquo;
+      </a>
+    </li>
+  </ul>
+</div>
+{{yield}}
