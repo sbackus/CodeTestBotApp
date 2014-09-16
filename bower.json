@@ -17,6 +17,7 @@
     "momentjs": "~2.6.0",
     "marked": "~0.3.2",
     "modernizr": "~2.8.2",
-    "d3": "~3.4.11"
+    "d3": "~3.4.11",
+    "ember-breadcrumbs": "~0.0.2"
   }
 }

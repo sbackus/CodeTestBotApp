@@ -1,24 +1,22 @@
 <div class="collapse navbar-collapse">
 <ul class="nav navbar-nav navbar-right">
     <li class="dropdown">
-        <a class="dorpdown-toggle" data-toggle="dropdown">Submissions <span class="caret"></span></a>
+        <a class="dropdown-toggle" data-toggle="dropdown">Submissions <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
             <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
             <li>{{#link-to 'analytics.index'}}Analytics{{/link-to}}</li>
         </ul>
-    <li>
-    <li class="divider"></li>
-    <li><a target="_blank" href="https://sites.google.com/a/cyrusinnovation.com/cyrus-internal-wiki/employee-guides/cyrus-interview-training/code-test-review-instructions">Review Instructions</a></li>
-    <li class="divider"></li>
+    </li>
+
     {{#if isAdmin}}
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li>{{#link-to 'users.index'}}<i class="fa fa-user"></i> Users{{/link-to}}
         </ul>
-    </lI>
-    <li class="divider"></li>
+    </li>
     {{/if}}
+
     <li class="dropdown profile-dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">{{user.name}} <span class="caret"></span> <img {{bind-attr src=user.imageUrl}} /></a>
         <ul class="dropdown-menu" role="menu">

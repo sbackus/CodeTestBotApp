@@ -22,18 +22,16 @@ Router.map(function() {
 
                 this.resource('assessments', function() {
                     this.route('new');
+
+                    this.resource('assessment', { path: '/:assessment_id' }, function() {
+                        this.route('edit');
+                    });
                 });
             });
         });
 
         this.resource('analytics', function() {
 
-        });
-
-        this.resource('assessments', function() {
-            this.resource('assessment', { path: '/:assessment_id' }, function() {
-                this.route('edit');
-            });
         });
         
         this.resource('admin', function() {

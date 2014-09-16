@@ -4,6 +4,7 @@ import Score from 'code-test-bot-app/models/score';
 import { cumulativeMovingAverage } from 'code-test-bot-app/utils/math';
 
 export default Ember.ObjectController.extend({
+  breadCrumb: 'Report',
     // TODO: this is duplicated with submission/index.js
     assessments: function() {
         var id = this.get('id');

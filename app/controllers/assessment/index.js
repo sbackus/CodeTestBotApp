@@ -3,6 +3,10 @@ import UserAwareControllerMixin from 'code-test-bot-app/mixins/user-aware-contro
 import Score from 'code-test-bot-app/models/score';
 
 export default Ember.ObjectController.extend(UserAwareControllerMixin, {
+    breadCrumb: function() {
+      return 'Assessment by %@'.fmt(this.get('assessor.name'));
+    }.property('assessor.name'),
+
     ownAssessment: function(){
         return this.get('user.id') === this.get('assessor.id');
     }.property('ownAssessment').volatile(),

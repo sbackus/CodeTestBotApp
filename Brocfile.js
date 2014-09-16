@@ -7,6 +7,7 @@ var app = new EmberApp({
     }
 });
 
+app.import('bower_components/ember-breadcrumbs/dist/ember-breadcrumbs.js');
 app.import('bower_components/ember-simple-auth/ember-simple-auth.js');
 app.import('bower_components/ember-simple-auth/ember-simple-auth-oauth2.js');
 app.import('bower_components/momentjs/moment.js');

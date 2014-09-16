@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+  breadCrumb: Ember.computed.alias('name'),
+
   allRoles: function() {
     return this.store.find('role');
   }.property(),
