@@ -1,7 +1,13 @@
-<a {{bind-attr href=view.mainLink}} class="button radius tiny split">View <span {{bind-attr data-dropdown=view.dropdownId}}></span></a>
-<ul {{bind-attr id=view.dropdownId}} class="f-dropdown" data-dropdown-content>
-    {{#unless active}}
-    <li><a {{action 'reopenSubmission' view.context}}><i class="fa fa-refresh"></i> Reopen</a></li>
-    {{/unless}}
-    <li><a {{action 'confirmDelete' view.context}}><i class="fa fa-times"></i> Delete</a></li>
-</ul>
+<div class="btn-group">
+    {{#link-to 'submission.index' view.context class="btn btn-primary"}}View{{/link-to}}
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        {{#unless active}}
+        <li><a {{action 'reopenSubmission' view.context}}><i class="fa fa-refresh"></i> Reopen</a></li>
+        {{/unless}}
+        <li><a {{action 'confirmDelete' view.context}}><i class="fa fa-times"></i> Delete</a></li>
+    </ul>
+</div>

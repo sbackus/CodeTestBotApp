@@ -1,10 +1,12 @@
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp();
+var app = new EmberApp({
+    'ember-cli-bootstrap': {
+        'importBootstrapJS': true
+    }
+});
 
-app.import('bower_components/foundation/js/foundation.js');
-app.import('bower_components/modernizr/modernizr.js');
 app.import('bower_components/ember-simple-auth/ember-simple-auth.js');
 app.import('bower_components/ember-simple-auth/ember-simple-auth-oauth2.js');
 app.import('bower_components/momentjs/moment.js');

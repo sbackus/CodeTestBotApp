@@ -58,10 +58,12 @@ export default Ember.Route.extend(Ember.SimpleAuth.ApplicationRouteMixin, {
             return this.render(modalName, {
                 into: 'application',
                 outlet: 'modal',
+                view: 'modal'
             });
         },
 
         closeModal: function() {
+          Ember.$('.modal').modal('hide');
             return this.disconnectOutlet({
                 outlet: 'modal',
                 parentView: 'application'

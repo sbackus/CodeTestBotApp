@@ -1,10 +1,10 @@
-<table class="large-12 assessments">
+<table class="table table-bordered assessments">
     <thead>
     <tr>
         <th width="33%">Assessor</th>
         <th width="33%">Recommendation</th>
         <th width="33%">Completion Date</th>
-        <th></th>
+        <th class="action-column-small"></th>
     </tr>
     </thead>
     <tbody>
@@ -16,7 +16,7 @@
               <td class="score">{{recommendation}}</td>
               <td class="created-at">{{updatedAtDisplay}}</td>
               <td>
-                  {{#link-to 'assessment.index' this class="button tiny radius"}}View{{/link-to}}
+                  {{#link-to 'assessment.index' this class="btn btn-primary"}}View{{/link-to}}
               </td>
               {{else}}
               <td class="assessor">{{assessor}}</td>

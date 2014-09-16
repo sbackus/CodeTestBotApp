@@ -1,17 +1,14 @@
 <div class="row">
-    <div class="large-12 columns">
+    <div class="col-md-12">
         <h1>Users</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="large-12 columns">
-        <table class="large-12 users">
+
+        <table class="table table-bordered table-buttons users">
             <thead>
             <tr>
-                <th class="large-3">Name</th>
-                <th class="large-6">Email</th>
-                <th class="large-3">Role</th>
-                <th></th>
+                <th class="">Name</th>
+                <th class="">Email</th>
+                <th class="">Role</th>
+                <th class="action-column-small"></th>
             </tr>
             </thead>
             <tbody>
@@ -20,7 +17,7 @@
                     <td class="name">{{name}}</td>
                     <td class="email">{{email}}</td>
                     <td class="role">{{role.name}}</td>
-                    <td>{{#link-to 'user.edit' this class="button small radius" disabled=editDisabled}}Edit{{/link-to}}</td>
+                    <td>{{#link-to 'user.edit' this class="btn btn-primary" disabled=editDisabled}}Edit{{/link-to}}</td>
                 </tr>
             {{/each}}
             </tbody>
