@@ -17,6 +17,15 @@
   width: 100px;
 }
 
+.markdown-info {
+  float: right;
+  padding: 10px 15px;
+}
+
+.markdown-info > a > img {
+  margin-bottom: 3px;
+}
+
 .table.table-buttons > thead > tr > th, .table.table-buttons > tbody > tr > th, .table.table-buttons > tfoot > tr > th, .table.table-buttons > thead > tr > td, .table.table-buttons > tbody > tr > td, .table.table-buttons > tfoot > tr > td {
   line-height: 2.25;
 }
@@ -42,11 +51,6 @@ div.report h5 {
 
 .tabs-content {
     margin-bottom: 0;
-}
-
-#preview {
-    border: 1px solid #ADADAD;
-    margin-bottom: 1.5em;
 }
 
 td.incomplete {
