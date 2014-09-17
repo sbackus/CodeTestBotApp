@@ -14,5 +14,6 @@ app.import('bower_components/momentjs/moment.js');
 app.import('bower_components/marked/lib/marked.js');
 app.import('bower_components/raven-js/dist/raven.js');
 app.import('bower_components/d3/d3.min.js');
+app.import('bower_components/matchHeight/jquery.matchHeight.js');
 
 module.exports = app.toTree();

@@ -5,7 +5,8 @@
     "CodeTestBotAppENV": true,
     "Raven": true,
     "d3": true,
-    "moment": true
+    "moment": true,
+    "BreadCrumbs": true
   },
   "browser" : true,
   "boss" : true,

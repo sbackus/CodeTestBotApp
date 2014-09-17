@@ -1,7 +1,56 @@
-<div class="row">
-    <div class="large-12 columns">
-        {{render-marked rawText}}
-    </div>
-</div>
+<div class="row row-md-height">
+  <div class="col-md-6 col-md-height">
+    {{#simple-panel title="Notifications"}}
+    {{#if submissionsWithUnfinishedAssessment}}
+    {{#with submissionsWithUnfinishedAssessment}}
+      <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} {{pluralize-phrase length phrase='submission{|s}'}} for which you have an unfinished assessment.</p>
+      <table class="table table-buttons">
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Language</th>
+            <th class="action-column-small"></th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#each}}
+          <tr>
+            <td>{{level.text}}</td>
+            <td>{{language.name}}</td>
+            <td>{{link-to 'Resume' 'assessments.new' this class="btn btn-success"}}</td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    {{/with}}
+    {{/if}}
 
-{{#link-to 'secured.edit' class="button secondary radius tiny fixed-bottom-right"}}<i class="fa fa-edit"></i>{{/link-to}}
+    {{#if submissionsNeedingAssessment}}
+    {{#with submissionsNeedingAssessment}}
+      <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} {{pluralize-phrase length phrase='submission{|s}'}} that you have not assessed.</p>
+      <table class="table table-buttons">
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Language</th>
+            <th class="action-column-small"></th>
+          </tr>
+        </thead>
+        <tbody>
+        {{#each}}
+          <tr>
+            <td>{{level.text}}</td>
+            <td>{{language.name}}</td>
+            <td>{{link-to 'New Assessment' 'assessments.new' this class="btn btn-success"}}</td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    {{/with}}
+    {{/if}}
+    {{/simple-panel}}
+  </div>
+  <div class="col-md-6 col-md-height">
+    {{outlet 'recentlyClosed'}}
+  </div>
+</div>
