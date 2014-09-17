@@ -6,8 +6,8 @@
     {{/if}}
 
     {{#if isRecruiter}}
+      {{#if activeSubmissions}}
       <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} active {{pluralize-phrase length phrase='submission{|s}'}}.</p> 
-    
       <table class="table table-buttons active recruiter">
         <thead>
           <th>Candidate</th>
@@ -24,6 +24,7 @@
         {{/each}}
         </tbody>
       </table>
+      {{/if}}
     {{else}}
       {{#if submissionsWithUnfinishedAssessment}}
       {{#with submissionsWithUnfinishedAssessment}}
