@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+  breadCrumb: 'New Submission',
     candidateName: null,
     candidateEmail: null,
     selectedLanguage: null,

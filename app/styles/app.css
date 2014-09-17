@@ -3,6 +3,14 @@
     padding-bottom: 4px;
 }
 
+.navbar.navbar-inverse {
+  border-radius: 0;
+}
+
+.btn-group-vertical.text-left > .btn {
+  text-align: left;
+}
+
 .action-column {
     width: 98px;
     min-width: 98px;

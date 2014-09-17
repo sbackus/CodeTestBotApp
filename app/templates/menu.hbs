@@ -1,27 +1,28 @@
 <div class="collapse navbar-collapse">
-<ul class="nav navbar-nav navbar-right">
+  <ul class="nav navbar-nav navbar-right">
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">Submissions <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-            <li>{{#link-to 'submissions.index'}}Submissions{{/link-to}}</li>
-            <li>{{#link-to 'analytics.index'}}Analytics{{/link-to}}</li>
-        </ul>
+    <a class="dropdown-toggle" data-toggle="dropdown">Submissions <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li>{{#link-to 'submissions.new'}}<i class="fa fa-plus"></i>&nbsp;Create Submission{{/link-to}}</li>
+      <li>{{#link-to 'submissions.index'}}<i class="fa fa-database"></i>&nbsp;Browse Submissions{{/link-to}}</li>
+      <li>{{#link-to 'analytics.index'}}<i class="fa fa-line-chart"></i>&nbsp;Analytics{{/link-to}}</li>
+    </ul>
     </li>
 
     {{#if isAdmin}}
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li>{{#link-to 'users.index'}}<i class="fa fa-user"></i> Users{{/link-to}}
-        </ul>
+    <a class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+    <ul class="dropdown-menu" role="menu">
+      <li>{{#link-to 'users.index'}}<i class="fa fa-users"></i> Users{{/link-to}}
+    </ul>
     </li>
     {{/if}}
 
     <li class="dropdown profile-dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown">{{user.name}} <span class="caret"></span> <img {{bind-attr src=user.imageUrl}} /></a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a {{action 'invalidateSession' }}><i class="fa fa-sign-out"></i> Logout</a></li>
-        </ul>
+    <a class="dropdown-toggle" data-toggle="dropdown">{{user.name}} <span class="caret"></span> <img {{bind-attr src=user.imageUrl}} /></a>
+    <ul class="dropdown-menu" role="menu">
+      <li><a {{action 'invalidateSession' }}><i class="fa fa-sign-out"></i> Logout</a></li>
+    </ul>
     </li>
-</ul>
+  </ul>
 </div>

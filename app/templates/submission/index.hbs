@@ -2,7 +2,10 @@
   <div class="col-md-12">
     <h1>{{level.text}} {{language.name}} Submission {{#if isInactive}}(Closed){{/if}}</h1>
     <h3>Details</h3>
-
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10">
     <form class="form-horizontal form-horizontal-narrow" role="form">
         {{#if isRecruiter}}
         <div class="form-group">
@@ -16,7 +19,7 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">File</label>
           <div class="col-sm-10">
-            <a class="btn btn-success" {{bind-attr href=zipfile}}><i class="fa fa-download"></i>&nbsp;Download</a>
+            <a class="btn btn-default" {{bind-attr href=zipfile}}><i class="fa fa-download"></i>&nbsp;Download</a>
           </div>
         </div>
 
@@ -35,20 +38,27 @@
           </div>
         </div>
         {{/if}}
-
+    </form>
+  </div>
+  <div class="col-md-2">
+    <div class="btn-group-vertical text-left pull-right">
         {{#if isRecruiter}}
+          {{#if showReportButton}}
+          {{#link-to 'submission.report' class="btn btn-default" }}<i class="fa fa-table"></i>&nbsp;Generate Report{{/link-to}}
+          {{/if}}
           {{#if showCloseButton}}
-          <button class="btn btn-primary" {{action closeSubmission}}><i class="fa fa-close"></i>&nbsp;Close Submission</button>
+          <a class="btn btn-default" {{action closeSubmission}}><i class="fa fa-check"></i>&nbsp;Close Submission</a>
           {{/if}}
           {{#if showReopenButton}}
-          <button class="btn btn-primary" {{action reopenSubmission}}><i class="fa fa-refresh"></i>&nbsp;Reopen Submission</button>
+          <a class="btn btn-default" {{action reopenSubmission}}><i class="fa fa-refresh"></i>&nbsp;Reopen Submission</a>
           {{/if}}
-          {{#if showReportButton}}
-          {{#link-to 'submission.report' class="btn btn-primary" }}<i class="fa fa-table"></i>&nbsp;Generate Report{{/link-to}}
-          {{/if}}
+          <a class="btn btn-default" {{action 'confirmDelete' this}}><i class="fa fa-close"></i>&nbsp;Delete Submission</a>
         {{/if}}
-    </form>
-
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
     <h3>Assessments</h3>
 
     {{outlet 'assessments'}}
