@@ -44,7 +44,12 @@ var SecuredIndexController = Ember.ArrayController.extend(ArrangeableMixin, User
     return submissions.filter(function(submission) {
       return !submissionsWithUserAssessment.contains(submission.id);
     });
-  }.property('userAssessments')
+  }.property('userAssessments'),
+
+  noNotifications: function() {
+    return Ember.isEmpty(this.get('submissionsNeedingAssessment')) && Ember.isEmpty(this.get('submissionsWithUnfinishedAssessment'));
+  }.property('submissionsNeedingAssessment', 'submissionsWithUnfinishedAssessment')
+
 });
 
 export default SecuredIndexController;

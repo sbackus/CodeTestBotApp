@@ -1,7 +1,8 @@
 {{#custom-panel}}
-  {{panel-title title="Recently Closed Submissions"}}
-  <div class="panel-body">
-    <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} recently closed {{pluralize-phrase length phrase='submission{|s}'}}.</p>
+{{panel-title title="Recently Closed Submissions"}}
+<div class="panel-body">
+  {{#if arrangedContent}}
+  <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} recently closed {{pluralize-phrase length phrase='submission{|s}'}}.</p>
   <table class="table table-buttons">
     <thead>
       <tr>
@@ -19,25 +20,33 @@
     </thead>
     <tbody>
     {{#each submission in arrangedContent}}
-      <tr>
-        {{#if isRecruiter}}
-          <td>{{submission.candidateDisplay}}</td>
-          <td>{{submission.averageScoreShortText}}</td>
-          <td>
-            <div class="btn-group">
-              {{link-to 'View' 'submission.index' submission class='btn btn-primary'}}
-              {{link-to 'Report' 'submission.report' submission class='btn btn-primary'}}
-            </div>
-          </td>
-        {{else}}
-          <td>{{submission.averageScoreShortText}}</td>
-          <td>{{submission.level.text}}</td>
-          <td>{{submission.language.name}}</td>
-          <td>{{link-to 'View' 'submission.index' submission class='btn btn-primary'}}</td>
-        {{/if}}
-      </tr>
+    <tr>
+      {{#if isRecruiter}}
+      <td>{{submission.candidateDisplay}}</td>
+      <td>{{submission.averageScoreShortText}}</td>
+      <td>
+        <div class="btn-group">
+          {{link-to 'View' 'submission.index' submission class='btn btn-primary'}}
+          {{link-to 'Report' 'submission.report' submission class='btn btn-primary'}}
+        </div>
+      </td>
+      {{else}}
+      <td>{{submission.averageScoreShortText}}</td>
+      <td>{{submission.level.text}}</td>
+      <td>{{submission.language.name}}</td>
+      <td>{{link-to 'View' 'submission.index' submission class='btn btn-primary'}}</td>
+      {{/if}}
+    </tr>
     {{/each}}
     </tbody>
   </table>
-  </div>
+  {{else}}
+  <p>There has been no activity recently.</p>
+  {{/if}}
+
+  {{#if isRecruiter}}
+  <hr/>
+  {{link-to 'New Submission' 'submissions.new' class='btn btn-success pull-right'}}
+  {{/if}}
+</div>
 {{/custom-panel}}
