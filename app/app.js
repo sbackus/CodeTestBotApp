@@ -14,8 +14,6 @@ loadInitializers(App, 'code-test-bot-app');
 
 // TODO: find a better place to put this
 BreadCrumbs.BreadCrumbsComponent.reopen({
-  tagName: 'ol',
-  classNames: ['breadcrumb'],
   layout: BreadcrumbsTemplate
 });
 

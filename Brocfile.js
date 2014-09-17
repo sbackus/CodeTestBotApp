@@ -2,12 +2,13 @@
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 var app = new EmberApp({
-    'ember-cli-bootstrap': {
-        'importBootstrapJS': true
-    }
 });
 
-app.import('bower_components/ember-breadcrumbs/dist/ember-breadcrumbs.js');
+app.import('bower_components/bootstrap/dist/css/bootstrap.css');
+
+app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+//app.import('bower_components/ember-breadcrumbs/dist/ember-breadcrumbs.js');
+app.import('vendor/ember-breadcrumbs/ember-breadcrumbs.js');
 app.import('bower_components/ember-simple-auth/ember-simple-auth.js');
 app.import('bower_components/ember-simple-auth/ember-simple-auth-oauth2.js');
 app.import('bower_components/momentjs/moment.js');
