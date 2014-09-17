@@ -21,6 +21,11 @@
   min-width: 72px;
 }
 
+.action-column-large {
+  width: 140px;
+  min-width: 140px;
+}
+
 .form-horizontal-narrow .form-group .control-label {
   width: 100px;
 }
@@ -87,6 +92,10 @@ th.level {
 
 th.time {
     width: 15%;
+}
+
+th.assessments {
+  width: 10%;
 }
 
 th.asc a:after {

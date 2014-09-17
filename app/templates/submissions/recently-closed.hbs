@@ -7,9 +7,9 @@
     <thead>
       <tr>
         {{#if isRecruiter}}
-        <th>Candidate</th>
-        <th>Consensus</th>
-        <th></th>
+        <th class="candidate">Candidate</th>
+        <th class="score">Consensus</th>
+        <th class="action-column-large"></th>
         {{else}}
         <th>Consensus</th>
         <th>Level</th>
@@ -22,7 +22,7 @@
     {{#each submission in arrangedContent}}
     <tr>
       {{#if isRecruiter}}
-      <td>{{submission.candidateDisplay}}</td>
+      <td>{{submission.candidateName}}</td>
       <td>{{submission.averageScoreShortText}}</td>
       <td>
         <div class="btn-group">

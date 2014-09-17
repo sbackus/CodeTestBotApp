@@ -1,57 +1,79 @@
 <div class="row row-md-height">
   <div class="col-md-6 col-md-height">
     {{#simple-panel title="Notifications"}}
-    {{#if submissionsWithUnfinishedAssessment}}
-    {{#with submissionsWithUnfinishedAssessment}}
-      <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} {{pluralize-phrase length phrase='submission{|s}'}} for which you have an unfinished assessment.</p>
-      <table class="table table-buttons">
-        <thead>
-          <tr>
-            <th>Level</th>
-            <th>Language</th>
-            <th class="action-column-small"></th>
-          </tr>
-        </thead>
-        <tbody>
-        {{#each}}
-          <tr>
-            <td>{{level.text}}</td>
-            <td>{{language.name}}</td>
-            <td>{{link-to 'Resume' 'assessments.new' this class="btn btn-success"}}</td>
-          </tr>
-        {{/each}}
-        </tbody>
-      </table>
-    {{/with}}
-    {{/if}}
-
-    {{#if submissionsNeedingAssessment}}
-    {{#with submissionsNeedingAssessment}}
-      <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} {{pluralize-phrase length phrase='submission{|s}'}} that you have not assessed.</p>
-      <table class="table table-buttons">
-        <thead>
-          <tr>
-            <th>Level</th>
-            <th>Language</th>
-            <th class="action-column-small"></th>
-          </tr>
-        </thead>
-        <tbody>
-        {{#each}}
-          <tr>
-            <td>{{level.text}}</td>
-            <td>{{language.name}}</td>
-            <td>{{link-to 'New Assessment' 'assessments.new' this class="btn btn-success"}}</td>
-          </tr>
-        {{/each}}
-        </tbody>
-      </table>
-    {{/with}}
-    {{/if}}
-
     {{#if noNotifications}}
     <p>Nothing requires your attention at the moment.</p>
     {{/if}}
+
+    {{#if isRecruiter}}
+      <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} active {{pluralize-phrase length phrase='submission{|s}'}}.</p> 
+    
+      <table class="table table-buttons active recruiter">
+        <thead>
+          <th>Candidate</th>
+          <th class="assessments">Assessments</th>
+          <th class="action-column-small"></th>
+        </thead>
+        <tbody>
+        {{#each activeSubmissions}}
+          <tr>
+            <td>{{candidate}}</td>
+            <td>{{assessments}}</td>
+            <td>{{link-to 'View' 'submission.index' submission class='btn btn-primary'}}</td>
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      {{#if submissionsWithUnfinishedAssessment}}
+      {{#with submissionsWithUnfinishedAssessment}}
+        <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} {{pluralize-phrase length phrase='submission{|s}'}} for which you have an unfinished assessment.</p>
+        <table class="table table-buttons">
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>Language</th>
+              <th class="action-column-small"></th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+            <tr>
+              <td>{{level.text}}</td>
+              <td>{{language.name}}</td>
+              <td>{{link-to 'Resume' 'assessments.new' this class="btn btn-success"}}</td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      {{/with}}
+      {{/if}}
+
+      {{#if submissionsNeedingAssessment}}
+      {{#with submissionsNeedingAssessment}}
+        <p>There {{pluralize-phrase length phrase='{is|are}'}} {{length}} {{pluralize-phrase length phrase='submission{|s}'}} that you have not assessed.</p>
+        <table class="table table-buttons">
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>Language</th>
+              <th class="action-column-small"></th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each}}
+            <tr>
+              <td>{{level.text}}</td>
+              <td>{{language.name}}</td>
+              <td>{{link-to 'New Assessment' 'assessments.new' this class="btn btn-success"}}</td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+      {{/with}}
+      {{/if}}
+    {{/if}}
+
     {{/simple-panel}}
   </div>
   <div class="col-md-6 col-md-height">

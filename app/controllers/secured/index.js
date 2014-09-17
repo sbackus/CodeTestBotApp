@@ -46,8 +46,35 @@ var SecuredIndexController = Ember.ArrayController.extend(ArrangeableMixin, User
     });
   }.property('userAssessments'),
 
+  activeSubmissions: function() {
+    var assessments = this.get('assessments');
+    var grouped = {};
+    assessments.forEach(function(assessment) {
+      var id = assessment.get('submission.id');
+      if (!grouped.hasOwnProperty(id)) {
+        grouped[id] = [];
+      }
+
+      if (assessment.get('published')) {
+        grouped[id].pushObject(assessment);
+      }
+    });
+
+    return this.get('submissions').map(function(submission) {
+      return {
+        candidate: submission.get('candidateName'),
+        assessments: grouped.hasOwnProperty(submission.get('id')) ? grouped[submission.get('id')].length : 0,
+        submission: submission
+      };
+    });
+  }.property('submissions', 'assessments'),
+
   noNotifications: function() {
-    return Ember.isEmpty(this.get('submissionsNeedingAssessment')) && Ember.isEmpty(this.get('submissionsWithUnfinishedAssessment'));
+    if (this.get('isRecruiter')) {
+      return this.get('length') === 0;
+    } else {
+      return Ember.isEmpty(this.get('submissionsNeedingAssessment')) && Ember.isEmpty(this.get('submissionsWithUnfinishedAssessment'));
+    }
   }.property('submissionsNeedingAssessment', 'submissionsWithUnfinishedAssessment')
 
 });
