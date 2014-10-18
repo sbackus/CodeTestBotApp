@@ -15,6 +15,10 @@ You will need the following things properly installed on your computer.
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM) and [Bower](http://bower.io/)
 
+You will also need to run the CodeTestBot server.
+
+* [CodeTestBot server](https://github.com/cyrusinnovation/CodeTestBotServer)
+
 ## Installation
 
 * `git clone <repository-url>` this repository
